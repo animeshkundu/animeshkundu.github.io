@@ -1,64 +1,88 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-  <title>Tool Shed</title>
-  <meta name="description" content="Collection of tools that I require from time to time.">
+    <title>Tool Shed by animeshkundu</title>
+  </head>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
-</head>
-
-<body>
-
-  <div class="wrapper">
+  <body>
     <header>
-      <h1 class="title">Tool Shed</h1>
+      <div class="inner">
+        <h1>Tool Shed</h1>
+        <h2>Utilities that I require from time to time.</h2>
+        <a href="https://github.com/animeshkundu" class="button"><small>Follow me on</small> GitHub</a>
+      </div>
     </header>
-    <div id="container">
-      <p class="tagline">Collection of tools that I require from time to time.</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/animeshkundu" class="code">View Tool Shed on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <p>Mostly stuff that I use daily at home or work.</p>
 
-<p>Need to start with documentation of each tool. </p>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>Most of the stuff that exist over here, were built simply because there was no solution or no easy solution out there. So most stuff over here automates something or makes doing something easier. Some of the stuff are boilerplate to speedup development of other things. </p>
 
-<p>Do take a peek at <code>https://github.com/animeshkundu</code></p>
-        </article>
+<p>I am a touch typist and huge terminal freak, so stuff present over here are mostly command line tools. Don't usually build GUI's unless it delivers a huge productivity boost. Like something, feel free to use, hack, improve it.</p>
+
+<h2>
+<a id="play-and-download-torrents" class="anchor" href="#play-and-download-torrents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/animeshkundu/torrent-dl">Play and download torrents</a>
+</h2>
+
+<p>Popcorn Time was/is a really cool solution to play torrents directly while its being downloaded in the background, if you can get one of the installers to work. I really love Peerflix, it just works.</p>
+
+<p>This is a port of my beloved peerflix to python. You can simultaneously watch and download a torrent at the same time. It also supports random and incremental seek functionality of the media player.</p>
+
+<h2>
+<a id="listen-to-audio-only-youtube" class="anchor" href="#listen-to-audio-only-youtube" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/animeshkundu/youtube-audio">Listen to audio only youtube</a>
+</h2>
+
+<p>If you are like me, chances are you listen to music on youtube more than video. </p>
+
+<p>I need my air to last through the day and also not burn through my FUP. Downloading and converting using a bash script wasn't really cutting it for me. Hence the extension both for firefox and chrome to mod youtube to my needs.</p>
+
+<p>On a different note, safari wants me to pay 99$ to build a free extension. Some one please hire me to build it :)</p>
+
+<h2>
+<a id="set-up-a-http-media-server-for-vlc" class="anchor" href="#set-up-a-http-media-server-for-vlc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/animeshkundu/media-server">Set up a http media server for vlc</a>
+</h2>
+
+<p>I needed to watch movies and listen to songs wirelessly from a desktop which has all the hard disks attached to it. SMB, AFP, etc were too much of a hassle to set up and not to mention slow, jittery performance. I am looking at you Mac OS ( SMB 1 in 2016 ?). Hence the python script.</p>
+
+<p>Shows the playlist directly in vlc. So that you can click and play :). Both random and incremental seek in vlc is supported. Playing directly in the browser is supported too.</p>
+
+<h2>
+<a id="write-micro-services-in-php" class="anchor" href="#write-micro-services-in-php" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/animeshkundu/flake">Write micro services in php</a>
+</h2>
+
+<p>Apache was too much configuration and setup. Needed something like tornado for php to develop micro services in php fast. Boiler plate code.</p>
+
+<p>I needed to seriously stop writing framework glue and start writing logic fast. Something that tornado enables me to do very easily. PHP had nothing like that. </p>
+
+<h2>
+<a id="file-download-accelerator" class="anchor" href="#file-download-accelerator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/animeshkundu/file-dl">File download accelerator</a>
+</h2>
+
+<p>If only axel2c provided a simple way of installation. Does not require root access or compilation or any of the nasty stuff. Clone and you are good to go.</p>
+
+<p>Written as a library. <code>file-dl</code> is a simple wrapper over that. <code>accelerator</code> is the boiler plate for other tools.</p>
+        </section>
+
+        <aside id="sidebar">
+
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
       </div>
     </div>
-    <footer>
-      <div class="owner">
-
-      <p><a href="https://github.com/animeshkundu" class="avatar"><img src="https://avatars2.githubusercontent.com/u/7248674?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/animeshkundu">animeshkundu</a> on <a href="https://www.github.com">GitHub</a></p>
-
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/animeshkundu/animeshkundu.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/animeshkundu/animeshkundu.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
 
   
-</body>
+  </body>
 </html>
