@@ -3,7 +3,7 @@ import { STATS } from '../lib/constants';
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-[#faf8f5] dark:bg-[#121212]">
+    <section id="about" className="py-20 lg:py-28 bg-[#faf8f5] dark:bg-dark-bg-base">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-4xl">
           <motion.div
@@ -27,7 +27,7 @@ export function About() {
             className="grid lg:grid-cols-3 gap-12 lg:gap-16"
           >
             {/* Main content */}
-            <div className="lg:col-span-2 space-y-5 text-[#1a1814]/70 dark:text-[#b8b6b3] leading-relaxed">
+            <div className="lg:col-span-2 space-y-5 text-[#1a1814]/70 dark:text-dark-text-secondary leading-relaxed">
               <p>
                 I build developer productivity tools that work entirely in the browser. 
                 No server uploads, no data collection — just powerful tools that respect your privacy.
@@ -50,7 +50,7 @@ export function About() {
                   {['TypeScript', 'React', 'Python', 'Vite', 'Tailwind'].map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-[#1a1814]/4 dark:bg-[#2a2a2a] text-[#1a1814]/70 dark:text-[#b8b6b3] text-xs font-medium"
+                      className="px-2 py-1 bg-[#1a1814]/4 dark:bg-[#2a2a2a] text-[#1a1814]/70 dark:text-dark-text-secondary text-xs font-medium"
                     >
                       {tech}
                     </span>

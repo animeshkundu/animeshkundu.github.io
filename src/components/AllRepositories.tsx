@@ -45,7 +45,7 @@ export function AllRepositories() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-dark-primary mb-3 block">
             Repositories
           </span>
           <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3] mb-4">
@@ -97,7 +97,7 @@ export function AllRepositories() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-[#f0927a] cursor-pointer"
+            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-dark-primary cursor-pointer"
           >
             {SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -214,7 +214,7 @@ export function AllRepositories() {
                       href={`https://animeshkundu.github.io/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors"
+                      className="flex items-center gap-1 text-primary-600 dark:text-dark-primary hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       Demo

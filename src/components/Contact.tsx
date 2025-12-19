@@ -4,7 +4,7 @@ import { GITHUB_USERNAME, LINKEDIN_URL, EMAIL } from '../lib/constants';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-white dark:bg-[#1a1a1a]">
+    <section id="contact" className="py-20 lg:py-28 bg-white dark:bg-dark-bg-alt">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-4xl">
           {/* Section Header */}
@@ -35,13 +35,13 @@ export function Contact() {
           >
             <a
               href={`mailto:${EMAIL}`}
-              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-[#3a3a3a] hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
+              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-dark-border hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
             >
               <div className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-[#1a1814]/40 dark:text-[#707070] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
                 <div>
                   <div className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">Email</div>
-                  <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">{EMAIL}</div>
+                  <div className="text-sm text-[#1a1814]/50 dark:text-dark-text-tertiary">{EMAIL}</div>
                 </div>
               </div>
               <ArrowUpRight className="w-5 h-5 text-[#1a1814]/30 dark:text-[#5a5a5a] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
@@ -51,13 +51,13 @@ export function Contact() {
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-[#3a3a3a] hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
+              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-dark-border hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
             >
               <div className="flex items-center gap-4">
                 <Github className="w-5 h-5 text-[#1a1814]/40 dark:text-[#707070] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
                 <div>
                   <div className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">GitHub</div>
-                  <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">@{GITHUB_USERNAME}</div>
+                  <div className="text-sm text-[#1a1814]/50 dark:text-dark-text-tertiary">@{GITHUB_USERNAME}</div>
                 </div>
               </div>
               <ArrowUpRight className="w-5 h-5 text-[#1a1814]/30 dark:text-[#5a5a5a] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
@@ -67,13 +67,13 @@ export function Contact() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-[#3a3a3a] hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
+              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-dark-border hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
             >
               <div className="flex items-center gap-4">
                 <Linkedin className="w-5 h-5 text-[#1a1814]/40 dark:text-[#707070] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
                 <div>
                   <div className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">LinkedIn</div>
-                  <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">Connect professionally</div>
+                  <div className="text-sm text-[#1a1814]/50 dark:text-dark-text-tertiary">Connect professionally</div>
                 </div>
               </div>
               <ArrowUpRight className="w-5 h-5 text-[#1a1814]/30 dark:text-[#5a5a5a] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />

@@ -4,7 +4,7 @@ import { STATS } from '../lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-[#faf8f5] dark:bg-[#121212]">
+    <section className="relative min-h-screen flex items-center bg-[#faf8f5] dark:bg-dark-bg-base">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" 
         style={{ 
@@ -19,7 +19,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-[#2a2a2a] rounded text-sm text-primary-700 dark:text-[#f0927a] font-medium mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-[#2a2a2a] rounded text-sm text-primary-700 dark:text-dark-primary font-medium mb-8"
           >
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
             {STATS.totalStars}+ stars on GitHub
@@ -30,7 +30,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[#1a1814] dark:text-[#e8e6e3] mb-6 leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[#1a1814] dark:text-dark-text-primary mb-6 leading-[1.1]"
           >
             I build tools that
             <br />
@@ -42,7 +42,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-[#1a1814]/60 dark:text-[#b8b6b3] max-w-xl mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-[#1a1814]/60 dark:text-dark-text-secondary max-w-xl mb-10 leading-relaxed"
           >
             Full-stack developer crafting privacy-first web applications. 
             From diagram editors to network analyzers — running entirely in your browser.

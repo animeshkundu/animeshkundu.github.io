@@ -29,7 +29,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-[#faf8f5]/95 dark:bg-[#121212]/95 backdrop-blur-sm border-b border-[#1a1814]/6 dark:border-[#3a3a3a]/80'
+          ? 'bg-[#faf8f5]/95 dark:bg-[#121212]/95 backdrop-blur-sm border-b border-[#1a1814]/6 dark:border-dark-border/80'
           : 'bg-transparent'
       }`}
     >
@@ -49,7 +49,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[#1a1814]/60 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
               >
                 {link.label}
               </a>
@@ -62,7 +62,7 @@ export function Navbar() {
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1a1814]/50 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
               aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5" />
@@ -71,14 +71,14 @@ export function Navbar() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1a1814]/50 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <button
               onClick={toggle}
-              className="text-[#1a1814]/50 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -89,14 +89,14 @@ export function Navbar() {
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={toggle}
-              className="text-[#1a1814]/60 dark:text-[#b8b6b3]"
+              className="text-[#1a1814]/60 dark:text-dark-text-secondary"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#1a1814]/60 dark:text-[#b8b6b3]"
+              className="text-[#1a1814]/60 dark:text-dark-text-secondary"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
             >
@@ -114,23 +114,23 @@ export function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-1 border-t border-[#1a1814]/6 dark:border-[#3a3a3a]/80">
+              <div className="py-4 space-y-1 border-t border-[#1a1814]/6 dark:border-dark-border/80">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    className="block py-2 text-[#1a1814]/70 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                    className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </a>
                 ))}
-                <div className="flex gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-[#3a3a3a]/80 mt-4">
+                <div className="flex gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-dark-border/80 mt-4">
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-[#b8b6b3]"
+                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
                   >
                     <Github className="w-4 h-4" />
                     GitHub
@@ -139,7 +139,7 @@ export function Navbar() {
                     href={LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-[#b8b6b3]"
+                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
                   >
                     <Linkedin className="w-4 h-4" />
                     LinkedIn

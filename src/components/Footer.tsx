@@ -5,11 +5,11 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 bg-[#1a1814] dark:bg-[#0a0a0a] text-[#faf8f5]/60 dark:text-[#8a8a8a]">
+    <footer className="py-12 bg-[#1a1814] dark:bg-[#0a0a0a] text-[#faf8f5]/60 dark:text-dark-text-tertiary">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-4xl">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
-            <a href="#" className="text-base font-semibold text-[#faf8f5] dark:text-[#e8e6e3]">
+            <a href="#" className="text-base font-semibold text-[#faf8f5] dark:text-dark-text-primary">
               Animesh Kundu
             </a>
             <div className="flex items-center gap-6 text-sm">

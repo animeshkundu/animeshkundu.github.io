@@ -22,7 +22,7 @@ export function FeaturedProjects() {
   const featuredProjects = FEATURED_PROJECTS.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-white dark:bg-[#1a1a1a]">
+    <section id="projects" className="py-20 lg:py-28 bg-white dark:bg-dark-bg-alt">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header - left aligned, editorial */}
         <motion.div
@@ -54,7 +54,7 @@ export function FeaturedProjects() {
             <motion.article
               key={project.id}
               variants={item}
-              className={`group relative bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/6 dark:border-[#3a3a3a] p-6 lg:p-8 transition-all duration-200 hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] ${
+              className={`group relative bg-[#faf8f5] dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a] p-6 lg:p-8 transition-all duration-200 hover:border-[#1a1814]/12 dark:hover:border-dark-border-hover ${
                 index === 0 ? 'lg:row-span-2' : ''
               }`}
             >
@@ -91,7 +91,7 @@ export function FeaturedProjects() {
               </h3>
               
               {/* Description */}
-              <p className="text-[#1a1814]/60 dark:text-[#b8b6b3] mb-5 leading-relaxed line-clamp-3">
+              <p className="text-[#1a1814]/60 dark:text-dark-text-secondary mb-5 leading-relaxed line-clamp-3">
                 {project.description}
               </p>
 
@@ -107,7 +107,7 @@ export function FeaturedProjects() {
                 {project.technologies.slice(0, 4).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-0.5 bg-[#1a1814]/4 dark:bg-[#2a2a2a] text-[#1a1814]/70 dark:text-[#b8b6b3] text-xs font-medium"
+                    className="px-2 py-0.5 bg-[#1a1814]/4 dark:bg-[#2a2a2a] text-[#1a1814]/70 dark:text-dark-text-secondary text-xs font-medium"
                   >
                     {tech}
                   </span>
@@ -120,7 +120,7 @@ export function FeaturedProjects() {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm font-medium text-[#1a1814]/70 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                 >
                   <Github className="w-4 h-4" />
                   Source
@@ -151,7 +151,7 @@ export function FeaturedProjects() {
         >
           <a
             href="#repositories"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#1a1814]/60 dark:text-[#b8b6b3] hover:text-primary-600 dark:hover:text-[#f0927a] transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-primary-600 dark:hover:text-[#f0927a] transition-colors"
           >
             View all repositories
             <ArrowUpRight className="w-4 h-4" />

@@ -16,10 +16,10 @@ export function LiveDemos() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-dark-primary mb-3 block">
             Live Demos
           </span>
-          <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3] mb-4">
+          <h2 className="section-title text-[#1a1814] dark:text-dark-text-primary mb-4">
             Try before you clone
           </h2>
           <p className="section-subtitle text-left mx-0 max-w-lg">
@@ -42,7 +42,7 @@ export function LiveDemos() {
                 className={`px-4 py-2 text-sm font-medium transition-colors ${
                   activeDemo.id === demo.id
                     ? 'bg-[#1a1814] dark:bg-[#e8e6e3] text-[#faf8f5] dark:text-[#1a1814]'
-                    : 'bg-transparent text-[#1a1814]/60 dark:text-[#b8b6b3] hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
+                    : 'bg-transparent text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
                 }`}
               >
                 {demo.title}
@@ -51,11 +51,11 @@ export function LiveDemos() {
           </div>
 
           {/* Demo Container */}
-          <div className="bg-white dark:bg-[#1e1e1e] border border-[#1a1814]/6 dark:border-[#3a3a3a]">
+          <div className="bg-white dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a]">
             {/* Header */}
             <div className="px-4 py-3 flex items-center justify-between border-b border-[#1a1814]/6 dark:border-[#3a3a3a]">
               <div>
-                <h3 className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">
+                <h3 className="font-medium text-[#1a1814] dark:text-dark-text-primary">
                   {activeDemo.title}
                 </h3>
                 <p className="text-xs text-[#1a1814]/50 dark:text-[#8a8a8a] mt-0.5">

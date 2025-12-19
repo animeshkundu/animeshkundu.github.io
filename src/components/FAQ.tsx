@@ -34,7 +34,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-[#1a1a1a]">
+    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-dark-bg-alt">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-2xl">
           {/* Section Header */}
@@ -44,7 +44,7 @@ export function FAQ() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
+            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-dark-primary mb-3 block">
               FAQ
             </span>
             <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3]">
@@ -72,7 +72,7 @@ export function FAQ() {
                   </h3>
                   <span className="flex-shrink-0 mt-0.5">
                     {openIndex === index ? (
-                      <Minus className="w-4 h-4 text-primary-600 dark:text-[#f0927a]" />
+                      <Minus className="w-4 h-4 text-primary-600 dark:text-dark-primary" />
                     ) : (
                       <Plus className="w-4 h-4 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
                     )}
