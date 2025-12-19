@@ -17,3 +17,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://animeshkundu.github.io/sitemap.xml
+AI-Policy: https://animeshkundu.github.io/ai.txt
