@@ -19,14 +19,14 @@ html {
 }
 
 .sr-only:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: 0.5rem 1rem;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
+    position: fixed !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
 }
 
 /* Fade-in animation */

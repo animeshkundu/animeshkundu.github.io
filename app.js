@@ -258,7 +258,7 @@ function createRepoCard(repo) {
             </div>
         </div>
         <h4 class="text-xl font-bold mb-2">${repo.name}</h4>
-        <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+        <p class="text-gray-600 dark:text-gray-400 mb-4" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
             ${repo.description || 'No description available'}
         </p>
         <div class="text-sm text-gray-500 dark:text-gray-500 mb-4">
