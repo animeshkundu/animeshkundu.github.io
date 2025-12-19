@@ -1,141 +1,94 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles, Code2, Zap, Shield } from 'lucide-react';
+import { ArrowRight, Terminal, Lock, Gauge } from 'lucide-react';
 import { STATS } from '../lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
-      
-      {/* Floating orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-400/30 to-accent-400/30 rounded-full blur-3xl"
-          animate={{
-            y: [0, 30, 0],
-            x: [0, -20, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute top-1/3 -left-20 w-60 h-60 bg-gradient-to-br from-accent-400/20 to-pink-400/20 rounded-full blur-3xl"
-          animate={{
-            y: [0, -40, 0],
-            x: [0, 30, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-        <motion.div
-          className="absolute -bottom-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-primary-400/20 rounded-full blur-3xl"
-          animate={{
-            y: [0, 20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        />
-      </div>
+    <section className="relative min-h-screen flex items-center bg-[#faf8f5] dark:bg-[#0f0e0c]">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" 
+        style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }} 
+      />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-24 lg:py-32 relative z-10">
+        <div className="max-w-4xl">
+          {/* Status badge - understated */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-full border border-slate-200 dark:border-slate-700 shadow-lg mb-8"
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-primary-950/50 rounded text-sm text-primary-700 dark:text-primary-300 font-medium mb-8"
           >
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-              {STATS.totalStars}+ Stars on GitHub
-            </span>
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            {STATS.totalStars}+ stars on GitHub
           </motion.div>
 
-          {/* Main heading */}
+          {/* Main heading - editorial style */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-[#1a1814] dark:text-[#faf8f5] mb-6 leading-[1.1]"
           >
-            <span className="block text-slate-900 dark:text-white">Hi, I'm</span>
-            <span className="block gradient-text">Animesh Kundu</span>
+            I build tools that
+            <br />
+            <span className="gradient-text">developers love</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl text-slate-600 dark:text-slate-400 font-medium mb-8"
+            className="text-lg md:text-xl text-[#1a1814]/60 dark:text-[#faf8f5]/60 max-w-xl mb-10 leading-relaxed"
           >
-            Full-Stack Developer & Open Source Creator
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            Building elegant developer tools that respect privacy and deliver exceptional experiences.
-            From diagram editors to network analyzers — all running 100% in your browser.
+            Full-stack developer crafting privacy-first web applications. 
+            From diagram editors to network analyzers — running entirely in your browser.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap gap-4 mb-16"
           >
-            <a href="#projects" className="btn-primary text-lg">
-              View Projects
-              <ArrowDown className="w-5 h-5" />
+            <a href="#projects" className="btn-primary">
+              Explore Projects
+              <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#demos" className="btn-secondary text-lg">
+            <a href="#demos" className="btn-secondary">
               Try Live Demos
             </a>
           </motion.div>
 
-          {/* Feature pills */}
+          {/* Feature list - minimal style */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-4"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap gap-6 text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50"
           >
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-200 dark:border-slate-700">
-              <Code2 className="w-5 h-5 text-primary-500" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                TypeScript & React Expert
-              </span>
+            <div className="flex items-center gap-2">
+              <Terminal className="w-4 h-4" />
+              <span>TypeScript & React</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-200 dark:border-slate-700">
-              <Shield className="w-5 h-5 text-green-500" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                Privacy-First Design
-              </span>
+            <div className="flex items-center gap-2">
+              <Lock className="w-4 h-4" />
+              <span>Privacy-first</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-200 dark:border-slate-700">
-              <Zap className="w-5 h-5 text-amber-500" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                High-Performance Tools
-              </span>
+            <div className="flex items-center gap-2">
+              <Gauge className="w-4 h-4" />
+              <span>High performance</span>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <ArrowDown className="w-6 h-6 text-slate-400" />
-      </motion.div>
+      {/* Side accent - geometric element */}
+      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-48 bg-gradient-to-b from-primary-400 to-accent-500" />
     </section>
   );
 }

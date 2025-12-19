@@ -1,37 +1,32 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { useState } from 'react';
 
 const faqs = [
   {
-    question: 'What type of projects does Animesh Kundu specialize in?',
+    question: 'What do you build?',
     answer:
-      'I specialize in developer productivity tools, web applications, browser extensions, and Python utilities. Notable projects include the Mermaid Editor for diagrams, HAR/SAZ viewers for network debugging, Gist Preview for GitHub gists, and the popular youtube-audio Firefox extension with 167+ stars that saves bandwidth by disabling video playback.',
+      'Developer tools that run in the browser. Mermaid Editor for diagrams, HAR/SAZ viewers for network debugging, Gist Preview for GitHub gists, and youtube-audio for Firefox.',
   },
   {
-    question: 'Are the web tools safe to use with sensitive data?',
+    question: 'Is my data safe with these tools?',
     answer:
-      'Absolutely! All web tools like SAZ Viewer, HAR Viewer, Mermaid Editor, and Gist Preview are designed to work 100% client-side. Your data never leaves your browser — all processing happens locally, ensuring complete privacy and security for sensitive network debugging data or proprietary diagrams.',
+      'Yes. All processing happens in your browser. Nothing is uploaded to any server. This is a core design principle for every tool I build.',
   },
   {
-    question: 'What technologies does Animesh Kundu use?',
+    question: 'What technologies do you use?',
     answer:
-      'I primarily work with TypeScript, React, Python, and JavaScript. Modern projects use React 19, Vite, Tailwind CSS, and comprehensive testing with Vitest. All projects follow best practices for code quality, testing (90%+ coverage), and CI/CD with GitHub Actions.',
+      'TypeScript, React 19, Vite, Python, Tailwind CSS. All projects have comprehensive tests and CI/CD with GitHub Actions.',
   },
   {
-    question: 'What is the most popular open source project?',
+    question: 'Can I contribute?',
     answer:
-      'The youtube-audio Firefox extension is the most popular with 167+ stars and 39 forks on GitHub. It allows users to listen to audio-only streams from YouTube, saving bandwidth and battery life — particularly useful for music listening while working.',
+      'Absolutely. Everything is open source. Open issues, submit PRs, or suggest features on GitHub.',
   },
   {
-    question: 'Can I contribute to these open source projects?',
+    question: 'How can I reach you?',
     answer:
-      'Yes! All projects are open source and contributions are welcome. Feel free to open issues, submit pull requests, or suggest new features on GitHub. Check out the contributing guidelines in each repository for more information.',
-  },
-  {
-    question: 'How can I contact Animesh for collaboration?',
-    answer:
-      'You can reach out via email at anik.edu@gmail.com, connect on LinkedIn, or open an issue/discussion on GitHub. I\'m always open to discussing new projects, collaboration opportunities, or interesting technical challenges.',
+      'Email anik.edu@gmail.com or connect on LinkedIn. Happy to discuss projects or collaborations.',
   },
 ];
 
@@ -39,52 +34,47 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
+    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-[#121110]">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-2xl">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <span className="inline-block px-4 py-1.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full text-sm font-semibold mb-4">
+            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
               FAQ
             </span>
-            <h2 className="section-title text-slate-900 dark:text-white mb-4">
-              Frequently Asked Questions
+            <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5]">
+              Common questions
             </h2>
-            <p className="section-subtitle">
-              Quick answers to common questions about my work and approach
-            </p>
           </motion.div>
 
           {/* FAQ Items */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            transition={{ delay: 0.1 }}
+            className="divide-y divide-[#1a1814]/8 dark:divide-[#faf8f5]/8"
           >
             {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="glass-card overflow-hidden"
-              >
+              <div key={index} className="py-5">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-6 py-5 flex items-start justify-between gap-4 text-left"
+                  className="w-full flex items-start justify-between gap-4 text-left group"
                   aria-expanded={openIndex === index}
                 >
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white pr-8">
+                  <h3 className="text-base font-medium text-[#1a1814] dark:text-[#faf8f5] group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                     {faq.question}
                   </h3>
-                  <span className="flex-shrink-0 mt-1">
+                  <span className="flex-shrink-0 mt-0.5">
                     {openIndex === index ? (
-                      <ChevronUp className="w-5 h-5 text-primary-500" />
+                      <Minus className="w-4 h-4 text-primary-600 dark:text-primary-400" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-slate-400" />
+                      <Plus className="w-4 h-4 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
                     )}
                   </span>
                 </button>
@@ -94,10 +84,10 @@ export function FAQ() {
                     height: openIndex === index ? 'auto' : 0,
                     opacity: openIndex === index ? 1 : 0,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <p className="px-6 pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                  <p className="pt-3 text-sm text-[#1a1814]/60 dark:text-[#faf8f5]/60 leading-relaxed">
                     {faq.answer}
                   </p>
                 </motion.div>

@@ -1,48 +1,48 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ChevronRight } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { LIVE_DEMOS } from '../lib/constants';
 
 export function LiveDemos() {
   const [activeDemo, setActiveDemo] = useState(LIVE_DEMOS[0]);
 
   return (
-    <section id="demos" className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="demos" className="py-20 lg:py-28 bg-[#faf8f5] dark:bg-[#0f0e0c]">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-12"
         >
-          <span className="inline-block px-4 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold mb-4">
-            Interactive
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
+            Live Demos
           </span>
-          <h2 className="section-title text-slate-900 dark:text-white mb-4">
-            Try It Live
+          <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5] mb-4">
+            Try before you clone
           </h2>
-          <p className="section-subtitle">
-            Experience the tools directly in your browser — no installation required
+          <p className="section-subtitle text-left mx-0 max-w-lg">
+            All tools run entirely in your browser. No installation, no signup.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-7xl mx-auto"
+          transition={{ delay: 0.1 }}
         >
-          {/* Demo Tabs */}
-          <div className="flex flex-wrap gap-2 justify-center mb-6">
+          {/* Demo Tabs - understated */}
+          <div className="flex flex-wrap gap-2 mb-6">
             {LIVE_DEMOS.map((demo) => (
               <button
                 key={demo.id}
                 onClick={() => setActiveDemo(demo)}
-                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-4 py-2 text-sm font-medium transition-colors ${
                   activeDemo.id === demo.id
-                    ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/25'
-                    : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-2 border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500'
+                    ? 'bg-[#1a1814] dark:bg-[#faf8f5] text-[#faf8f5] dark:text-[#1a1814]'
+                    : 'bg-transparent text-[#1a1814]/60 dark:text-[#faf8f5]/60 hover:text-[#1a1814] dark:hover:text-[#faf8f5]'
                 }`}
               >
                 {demo.title}
@@ -51,53 +51,39 @@ export function LiveDemos() {
           </div>
 
           {/* Demo Container */}
-          <div className="relative bg-white dark:bg-slate-900 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-slate-900/50 overflow-hidden border border-slate-200 dark:border-slate-700">
-            {/* Browser Chrome */}
-            <div className="bg-slate-100 dark:bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-700">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-amber-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
+          <div className="bg-white dark:bg-[#1a1814] border border-[#1a1814]/6 dark:border-[#faf8f5]/6">
+            {/* Header */}
+            <div className="px-4 py-3 flex items-center justify-between border-b border-[#1a1814]/6 dark:border-[#faf8f5]/6">
+              <div>
+                <h3 className="font-medium text-[#1a1814] dark:text-[#faf8f5]">
+                  {activeDemo.title}
+                </h3>
+                <p className="text-xs text-[#1a1814]/50 dark:text-[#faf8f5]/50 mt-0.5">
+                  {activeDemo.description}
+                </p>
               </div>
-              <div className="flex-1 mx-4 max-w-xl">
-                <div className="bg-white dark:bg-slate-900 px-4 py-1.5 rounded-lg text-sm text-slate-600 dark:text-slate-400 truncate font-mono">
-                  {activeDemo.url}
-                </div>
-              </div>
-              <a
-                href={activeDemo.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 bg-primary-500 text-white rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors"
-              >
-                Open <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Demo Description */}
-            <div className="px-4 py-3 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 border-b border-slate-200 dark:border-slate-700">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white">
-                    {activeDemo.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    {activeDemo.description}
-                  </p>
-                </div>
+              <div className="flex items-center gap-3">
                 <a
                   href={`https://github.com/animeshkundu/${activeDemo.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-500 hover:text-primary-600 text-sm font-medium flex items-center gap-1"
+                  className="text-xs text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
                 >
-                  View Source <ChevronRight className="w-4 h-4" />
+                  Source
+                </a>
+                <a
+                  href={activeDemo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 text-white text-xs font-medium hover:bg-primary-700 transition-colors"
+                >
+                  Open <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
 
             {/* iframe Container */}
-            <div className="relative" style={{ height: '600px' }}>
+            <div className="relative" style={{ height: '500px' }}>
               <iframe
                 key={activeDemo.id}
                 src={activeDemo.url}
@@ -110,14 +96,10 @@ export function LiveDemos() {
           </div>
 
           {/* Privacy note */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mt-6 text-sm text-slate-500 dark:text-slate-400"
-          >
-            🔒 All demos run 100% client-side. Your data never leaves your browser.
-          </motion.p>
+          <p className="mt-4 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+            Data stays in your browser — nothing uploaded
+          </p>
         </motion.div>
       </div>
     </section>

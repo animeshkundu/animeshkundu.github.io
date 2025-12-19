@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Star, GitFork, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { FEATURED_PROJECTS } from '../lib/constants';
 import { getLanguageColor } from '../lib/github';
 
@@ -8,142 +8,135 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
 export function FeaturedProjects() {
   const featuredProjects = FEATURED_PROJECTS.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="py-24 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="projects" className="py-20 lg:py-28 bg-white dark:bg-[#121110]">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Section Header - left aligned, editorial */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12 lg:mb-16"
         >
-          <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-semibold mb-4">
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
             Featured Work
           </span>
-          <h2 className="section-title text-slate-900 dark:text-white mb-4">
-            Projects I'm Proud Of
+          <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5] mb-4">
+            Selected Projects
           </h2>
-          <p className="section-subtitle">
-            Developer tools that solve real problems — all open source and built with modern technologies
+          <p className="section-subtitle text-left mx-0 max-w-lg">
+            Open source developer tools solving real problems, built with modern technologies.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - asymmetric layout */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6"
         >
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <motion.article
               key={project.id}
               variants={item}
-              className="group relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500"
+              className={`group relative bg-[#faf8f5] dark:bg-[#1a1814] border border-[#1a1814]/6 dark:border-[#faf8f5]/6 p-6 lg:p-8 transition-all duration-200 hover:border-[#1a1814]/12 dark:hover:border-[#faf8f5]/12 ${
+                index === 0 ? 'lg:row-span-2' : ''
+              }`}
             >
-              {/* Gradient accent */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative p-6">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="px-3 py-1 rounded-full text-sm font-semibold"
-                      style={{
-                        backgroundColor: `${getLanguageColor(project.language)}20`,
-                        color: getLanguageColor(project.language),
-                      }}
-                    >
-                      {project.language}
-                    </span>
-                    {project.stars && project.stars > 0 && (
-                      <div className="flex items-center gap-1 text-sm text-amber-500">
-                        <Star className="w-4 h-4 fill-current" />
-                        <span>{project.stars}</span>
-                      </div>
-                    )}
-                    {project.forks && project.forks > 0 && (
-                      <div className="flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400">
-                        <GitFork className="w-4 h-4" />
-                        <span>{project.forks}</span>
-                      </div>
-                    )}
-                  </div>
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: getLanguageColor(project.language) }}
+                  />
+                  <span className="text-xs font-medium text-[#1a1814]/50 dark:text-[#faf8f5]/50 uppercase tracking-wide">
+                    {project.language}
+                  </span>
                 </div>
-
-                {/* Title & Description */}
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-500 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Highlights */}
-                {project.highlights && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.highlights.slice(0, 3).map((highlight) => (
-                      <span
-                        key={highlight}
-                        className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-xs font-medium"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Actions */}
-                <div className="flex gap-3">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-xl font-medium hover:bg-slate-800 dark:hover:bg-slate-600 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    GitHub
-                  </a>
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-primary-500/25 transition-all"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Live Demo
-                    </a>
+                <div className="flex items-center gap-3 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40">
+                  {project.stars && project.stars > 0 && (
+                    <div className="flex items-center gap-1">
+                      <Star className="w-3.5 h-3.5" />
+                      <span>{project.stars}</span>
+                    </div>
+                  )}
+                  {project.forks && project.forks > 0 && (
+                    <div className="flex items-center gap-1">
+                      <GitFork className="w-3.5 h-3.5" />
+                      <span>{project.forks}</span>
+                    </div>
                   )}
                 </div>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl lg:text-2xl font-semibold text-[#1a1814] dark:text-[#faf8f5] mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {project.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-[#1a1814]/60 dark:text-[#faf8f5]/60 mb-5 leading-relaxed line-clamp-3">
+                {project.description}
+              </p>
+
+              {/* Highlights as inline text */}
+              {project.highlights && (
+                <p className="text-sm text-[#1a1814]/40 dark:text-[#faf8f5]/40 mb-6">
+                  {project.highlights.slice(0, 3).join(' · ')}
+                </p>
+              )}
+
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.technologies.slice(0, 4).map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-0.5 bg-[#1a1814]/4 dark:bg-[#faf8f5]/6 text-[#1a1814]/70 dark:text-[#faf8f5]/70 text-xs font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-[#faf8f5]/6">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium text-[#1a1814]/70 dark:text-[#faf8f5]/70 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                  Source
+                </a>
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
               </div>
             </motion.article>
           ))}
@@ -151,17 +144,17 @@ export function FeaturedProjects() {
 
         {/* View All Link */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="mt-10"
         >
           <a
             href="#repositories"
-            className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#1a1814]/60 dark:text-[#faf8f5]/60 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
           >
             View all repositories
-            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </motion.div>
       </div>

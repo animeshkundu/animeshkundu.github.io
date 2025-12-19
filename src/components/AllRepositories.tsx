@@ -1,14 +1,14 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star, GitFork, Search, RefreshCw, Calendar, ArrowUpDown, Filter } from 'lucide-react';
+import { Github, ExternalLink, Star, GitFork, Search, RefreshCw } from 'lucide-react';
 import { useGitHubRepos } from '../hooks';
 import { getLanguageColor, filterRepositories, sortRepositories } from '../lib/github';
 import { GITHUB_USERNAME } from '../lib/constants';
 
 const LANGUAGE_FILTERS = ['All', 'TypeScript', 'Python', 'JavaScript', 'Other'];
 const SORT_OPTIONS = [
-  { value: 'updated', label: 'Recently Updated' },
-  { value: 'stars', label: 'Most Stars' },
+  { value: 'updated', label: 'Recent' },
+  { value: 'stars', label: 'Stars' },
   { value: 'name', label: 'Name' },
 ] as const;
 
@@ -36,116 +36,110 @@ export function AllRepositories() {
   }, [repos, filter, sortBy, searchQuery]);
 
   return (
-    <section id="repositories" className="py-24 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="repositories" className="py-20 lg:py-28 bg-white dark:bg-[#121110]">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-10"
         >
-          <span className="inline-block px-4 py-1.5 bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 rounded-full text-sm font-semibold mb-4">
-            Dynamic
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
+            Repositories
           </span>
-          <h2 className="section-title text-slate-900 dark:text-white mb-4">
-            All Repositories
+          <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5] mb-4">
+            All projects
           </h2>
-          <p className="section-subtitle">
-            Automatically fetched from GitHub — always up to date
+          <p className="section-subtitle text-left mx-0 max-w-lg">
+            Fetched from GitHub. Always current.
           </p>
         </motion.div>
 
         {/* Controls */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8 space-y-4"
+          transition={{ delay: 0.1 }}
+          className="mb-8 flex flex-wrap gap-4 items-center"
         >
           {/* Search */}
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <div className="relative flex-1 min-w-[200px] max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
             <input
               type="text"
-              placeholder="Search repositories..."
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-4 py-2 bg-transparent border border-[#1a1814]/10 dark:border-[#faf8f5]/10 text-[#1a1814] dark:text-[#faf8f5] placeholder-[#1a1814]/30 dark:placeholder-[#faf8f5]/30 focus:outline-none focus:border-primary-500 transition-colors text-sm"
             />
           </div>
 
-          {/* Filters and Sort */}
-          <div className="flex flex-wrap gap-4 justify-center items-center">
-            {/* Language Filters */}
-            <div className="flex flex-wrap gap-2 items-center">
-              <Filter className="w-4 h-4 text-slate-400" />
-              {LANGUAGE_FILTERS.map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setFilter(lang)}
-                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-                    filter === lang
-                      ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg shadow-primary-500/25'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-
-            {/* Sort */}
-            <div className="flex items-center gap-2">
-              <ArrowUpDown className="w-4 h-4 text-slate-400" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                className="px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary-500"
+          {/* Language Filters */}
+          <div className="flex flex-wrap gap-1">
+            {LANGUAGE_FILTERS.map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setFilter(lang)}
+                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                  filter === lang
+                    ? 'bg-[#1a1814] dark:bg-[#faf8f5] text-[#faf8f5] dark:text-[#1a1814]'
+                    : 'text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5]'
+                }`}
               >
-                {SORT_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+                {lang}
+              </button>
+            ))}
           </div>
+
+          {/* Sort */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="px-3 py-1.5 bg-transparent border border-[#1a1814]/10 dark:border-[#faf8f5]/10 text-[#1a1814] dark:text-[#faf8f5] text-xs focus:outline-none focus:border-primary-500 cursor-pointer"
+          >
+            {SORT_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </motion.div>
 
         {/* Loading State */}
         {loading && (
-          <div className="text-center py-16">
+          <div className="py-16 text-center">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               className="inline-block"
             >
-              <RefreshCw className="w-10 h-10 text-primary-500" />
+              <RefreshCw className="w-6 h-6 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
             </motion.div>
-            <p className="mt-4 text-slate-600 dark:text-slate-400">Loading repositories...</p>
+            <p className="mt-3 text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50">Loading...</p>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className="text-center py-16">
-            <p className="text-red-500 dark:text-red-400 mb-4">{error}</p>
+          <div className="py-16 text-center">
+            <p className="text-sm text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
               onClick={refetch}
-              className="btn-primary"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#1a1814] dark:bg-[#faf8f5] text-[#faf8f5] dark:text-[#1a1814]"
             >
-              <RefreshCw className="w-5 h-5" />
-              Try Again
+              <RefreshCw className="w-4 h-4" />
+              Retry
             </button>
           </div>
         )}
 
         {/* Empty State */}
         {!loading && !error && filteredAndSortedRepos.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-slate-600 dark:text-slate-400">
-              No repositories found matching your criteria.
+          <div className="py-16 text-center">
+            <p className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50">
+              No repositories match your criteria.
             </p>
           </div>
         )}
@@ -155,39 +149,39 @@ export function AllRepositories() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {filteredAndSortedRepos.map((repo, index) => (
               <motion.article
                 key={repo.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                className="group bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-xl hover:shadow-primary-500/5 transition-all duration-300 hover:-translate-y-1"
+                transition={{ delay: index * 0.03, duration: 0.3 }}
+                className="group p-5 bg-[#faf8f5] dark:bg-[#1a1814] border border-[#1a1814]/6 dark:border-[#faf8f5]/6 hover:border-[#1a1814]/12 dark:hover:border-[#faf8f5]/12 transition-colors"
               >
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   {repo.language && (
-                    <span
-                      className="px-3 py-1 rounded-full text-sm font-semibold"
-                      style={{
-                        backgroundColor: `${getLanguageColor(repo.language)}20`,
-                        color: getLanguageColor(repo.language),
-                      }}
-                    >
-                      {repo.language}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: getLanguageColor(repo.language) }}
+                      />
+                      <span className="text-xs text-[#1a1814]/50 dark:text-[#faf8f5]/50">
+                        {repo.language}
+                      </span>
+                    </div>
                   )}
-                  <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center gap-2 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40">
                     {repo.stargazers_count > 0 && (
                       <span className="flex items-center gap-1">
-                        <Star className="w-4 h-4 text-amber-400" />
+                        <Star className="w-3 h-3" />
                         {repo.stargazers_count}
                       </span>
                     )}
                     {repo.forks_count > 0 && (
                       <span className="flex items-center gap-1">
-                        <GitFork className="w-4 h-4" />
+                        <GitFork className="w-3 h-3" />
                         {repo.forks_count}
                       </span>
                     )}
@@ -195,61 +189,37 @@ export function AllRepositories() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-500 transition-colors">
+                <h3 className="text-base font-medium text-[#1a1814] dark:text-[#faf8f5] mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                   {repo.name}
                 </h3>
 
                 {/* Description */}
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
-                  {repo.description || 'No description available'}
+                <p className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mb-4 line-clamp-2">
+                  {repo.description || 'No description'}
                 </p>
 
-                {/* Topics */}
-                {repo.topics && repo.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {repo.topics.slice(0, 4).map((topic) => (
-                      <span
-                        key={topic}
-                        className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded text-xs font-medium"
-                      >
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {new Date(repo.updated_at).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })}
-                  </div>
-                  <div className="flex gap-2">
+                {/* Links */}
+                <div className="flex items-center gap-3 text-xs">
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    Source
+                  </a>
+                  {repo.has_pages && (
                     <a
-                      href={repo.html_url}
+                      href={`https://animeshkundu.github.io/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                      aria-label="View on GitHub"
+                      className="flex items-center gap-1 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
                     >
-                      <Github className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Demo
                     </a>
-                    {repo.has_pages && (
-                      <a
-                        href={`https://animeshkundu.github.io/${repo.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
-                        aria-label="View Live Demo"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
+                  )}
                 </div>
               </motion.article>
             ))}
@@ -258,13 +228,9 @@ export function AllRepositories() {
 
         {/* Count */}
         {!loading && !error && filteredAndSortedRepos.length > 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center mt-8 text-slate-500 dark:text-slate-400 text-sm"
-          >
-            Showing {filteredAndSortedRepos.length} of {repos.length} repositories
-          </motion.p>
+          <p className="mt-6 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40">
+            {filteredAndSortedRepos.length} of {repos.length} repositories
+          </p>
         )}
       </div>
     </section>

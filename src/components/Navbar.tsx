@@ -6,8 +6,8 @@ import { GITHUB_USERNAME, LINKEDIN_URL } from '../lib/constants';
 
 const navLinks = [
   { href: '#projects', label: 'Projects' },
-  { href: '#demos', label: 'Live Demos' },
-  { href: '#repositories', label: 'Repositories' },
+  { href: '#demos', label: 'Demos' },
+  { href: '#repositories', label: 'Repos' },
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -27,31 +27,29 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-lg shadow-slate-900/5'
+          ? 'bg-[#faf8f5]/95 dark:bg-[#0f0e0c]/95 backdrop-blur-sm border-b border-[#1a1814]/6 dark:border-[#faf8f5]/6'
           : 'bg-transparent'
       }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <div className="flex justify-between items-center h-16 md:h-20">
-          {/* Logo */}
-          <motion.a
+      <nav className="container mx-auto px-6 sm:px-8 lg:px-12" aria-label="Main navigation">
+        <div className="flex justify-between items-center h-14 lg:h-16">
+          {/* Logo - simple text */}
+          <a
             href="#"
-            className="text-xl md:text-2xl font-bold gradient-text"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="text-base lg:text-lg font-semibold text-[#1a1814] dark:text-[#faf8f5] tracking-tight"
           >
             Animesh Kundu
-          </motion.a>
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - minimal */}
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 text-slate-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="text-sm text-[#1a1814]/60 dark:text-[#faf8f5]/60 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
               >
                 {link.label}
               </a>
@@ -59,12 +57,12 @@ export function Navbar() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
               aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5" />
@@ -73,14 +71,14 @@ export function Navbar() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <button
               onClick={toggle}
-              className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -88,17 +86,17 @@ export function Navbar() {
           </div>
 
           {/* Mobile Actions */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-3">
             <button
               onClick={toggle}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800"
+              className="text-[#1a1814]/60 dark:text-[#faf8f5]/60"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800"
+              className="text-[#1a1814]/60 dark:text-[#faf8f5]/60"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
             >
@@ -116,34 +114,34 @@ export function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-1 border-t border-slate-200 dark:border-slate-800">
+              <div className="py-4 space-y-1 border-t border-[#1a1814]/6 dark:border-[#faf8f5]/6">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:text-primary-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
+                    className="block py-2 text-[#1a1814]/70 dark:text-[#faf8f5]/70 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </a>
                 ))}
-                <div className="flex gap-3 px-4 pt-4">
+                <div className="flex gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-[#faf8f5]/6 mt-4">
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-900 dark:bg-slate-700 text-white rounded-lg font-medium"
+                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-[#faf8f5]/70"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-4 h-4" />
                     GitHub
                   </a>
                   <a
                     href={LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-blue-600 text-white rounded-lg font-medium"
+                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-[#faf8f5]/70"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="w-4 h-4" />
                     LinkedIn
                   </a>
                 </div>

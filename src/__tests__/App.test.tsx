@@ -20,8 +20,8 @@ describe('App', () => {
 
   it('renders the main heading', () => {
     render(<App />);
-    expect(screen.getByText("Hi, I'm")).toBeInTheDocument();
-    // Name appears multiple times (nav, hero, footer), so use getAllBy
+    expect(screen.getByText(/I build tools that/)).toBeInTheDocument();
+    // Name appears multiple times (nav, footer), so use getAllBy
     expect(screen.getAllByText('Animesh Kundu').length).toBeGreaterThan(0);
   });
 
@@ -33,17 +33,17 @@ describe('App', () => {
 
   it('renders the hero section', () => {
     render(<App />);
-    expect(screen.getByText(/Full-Stack Developer/)).toBeInTheDocument();
+    expect(screen.getByText(/Full-stack developer/)).toBeInTheDocument();
   });
 
   it('renders featured projects section', () => {
     render(<App />);
-    expect(screen.getByText("Projects I'm Proud Of")).toBeInTheDocument();
+    expect(screen.getByText('Selected Projects')).toBeInTheDocument();
   });
 
   it('renders live demos section', () => {
     render(<App />);
-    expect(screen.getByText('Try It Live')).toBeInTheDocument();
+    expect(screen.getByText('Try before you clone')).toBeInTheDocument();
   });
 
   it('renders footer with copyright', () => {

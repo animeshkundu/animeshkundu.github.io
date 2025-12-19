@@ -1,118 +1,94 @@
 import { motion } from 'framer-motion';
-import { Code2, Briefcase, Coffee, Rocket } from 'lucide-react';
 import { STATS } from '../lib/constants';
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <span className="inline-block px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-4">
-                About Me
-              </span>
-              <h2 className="section-title text-slate-900 dark:text-white mb-6">
-                Building Tools That<br />
-                <span className="gradient-text">Developers Love</span>
-              </h2>
+    <section id="about" className="py-20 lg:py-28 bg-[#faf8f5] dark:bg-[#0f0e0c]">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
+              About
+            </span>
+            <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5] mb-8">
+              Crafting tools developers rely on
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="grid lg:grid-cols-3 gap-12 lg:gap-16"
+          >
+            {/* Main content */}
+            <div className="lg:col-span-2 space-y-5 text-[#1a1814]/70 dark:text-[#faf8f5]/70 leading-relaxed">
+              <p>
+                I build developer productivity tools that work entirely in the browser. 
+                No server uploads, no data collection — just powerful tools that respect your privacy.
+              </p>
+              <p>
+                From network debugging with HAR and SAZ viewers to diagramming with the Mermaid Editor, 
+                each project solves a real problem I've encountered. The youtube-audio extension alone 
+                helps thousands save bandwidth and battery.
+              </p>
+              <p className="text-[#1a1814] dark:text-[#faf8f5] font-medium">
+                Everything I build is open source.
+              </p>
               
-              <div className="space-y-4 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                <p>
-                  I'm a full-stack developer passionate about creating developer productivity tools 
-                  that are both powerful and a joy to use. With {STATS.yearsCoding}+ years of coding experience, 
-                  I focus on building applications that solve real problems.
+              {/* Technologies */}
+              <div className="pt-6">
+                <p className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mb-3">
+                  Primary stack
                 </p>
-                <p>
-                  My specialty is creating <strong className="text-slate-900 dark:text-white">privacy-first web applications</strong> that 
-                  run entirely in your browser. From network debugging tools like the SAZ and HAR viewers 
-                  to creative tools like the Mermaid Editor — I believe your data should stay yours.
-                </p>
-                <p>
-                  When I'm not coding, I enjoy contributing to open source, exploring new technologies, 
-                  and sharing knowledge with the developer community.
-                </p>
-              </div>
-
-              {/* Tech stack */}
-              <div className="mt-8">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
-                  Technologies I Work With
-                </h3>
                 <div className="flex flex-wrap gap-2">
-                  {['TypeScript', 'React', 'Python', 'Node.js', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'].map((tech) => (
+                  {['TypeScript', 'React', 'Python', 'Vite', 'Tailwind'].map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300"
+                      className="px-2 py-1 bg-[#1a1814]/4 dark:bg-[#faf8f5]/6 text-[#1a1814]/70 dark:text-[#faf8f5]/70 text-xs font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right: Stats */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-6"
-            >
-              <div className="glass-card p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Code2 className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-1">
+            {/* Stats - simple numbers */}
+            <div className="space-y-6">
+              <div>
+                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#faf8f5] tabular-nums">
                   {STATS.totalStars}+
                 </div>
-                <div className="text-slate-600 dark:text-slate-400 font-medium">
-                  GitHub Stars
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mt-1">
+                  GitHub stars
                 </div>
               </div>
-
-              <div className="glass-card p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Rocket className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-1">
+              
+              <div>
+                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#faf8f5] tabular-nums">
                   {STATS.openSourceProjects}
                 </div>
-                <div className="text-slate-600 dark:text-slate-400 font-medium">
-                  Open Source Projects
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mt-1">
+                  Open source projects
                 </div>
               </div>
-
-              <div className="glass-card p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Briefcase className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-1">
+              
+              <div>
+                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#faf8f5] tabular-nums">
                   {STATS.yearsCoding}+
                 </div>
-                <div className="text-slate-600 dark:text-slate-400 font-medium">
-                  Years Coding
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mt-1">
+                  Years building software
                 </div>
               </div>
-
-              <div className="glass-card p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-accent-400 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Coffee className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-1">
-                  ∞
-                </div>
-                <div className="text-slate-600 dark:text-slate-400 font-medium">
-                  Cups of Coffee
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
