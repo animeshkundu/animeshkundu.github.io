@@ -174,6 +174,16 @@ async function fetchRepositories() {
         
         const response = await fetch('https://api.github.com/users/animeshkundu/repos?per_page=100&sort=updated');
         
+        if (response.status === 403) {
+            // Rate limit exceeded
+            const rateLimitReset = response.headers.get('X-RateLimit-Reset');
+            const resetDate = rateLimitReset ? new Date(rateLimitReset * 1000) : null;
+            const message = resetDate 
+                ? `GitHub API rate limit exceeded. Resets at ${resetDate.toLocaleTimeString()}.`
+                : 'GitHub API rate limit exceeded. Please try again later.';
+            throw new Error(message);
+        }
+        
         if (!response.ok) {
             throw new Error('Failed to fetch repositories');
         }
@@ -192,6 +202,12 @@ async function fetchRepositories() {
         console.error('Error fetching repositories:', error);
         reposLoading.classList.add('hidden');
         reposError.classList.remove('hidden');
+        
+        // Update error message with more details if available
+        const errorParagraph = reposError.querySelector('p');
+        if (errorParagraph && error.message.includes('rate limit')) {
+            errorParagraph.textContent = error.message;
+        }
     }
 }
 
@@ -229,7 +245,7 @@ function createRepoCard(repo) {
     
     // Check if repo has GitHub Pages
     const hasPages = repo.has_pages;
-    const pagesUrl = `https://animeshkundu.github.io/${repo.name}`;
+    const pagesUrl = hasPages ? `https://animeshkundu.github.io/${repo.name}` : null;
     
     card.innerHTML = `
         <div class="flex items-center justify-between mb-4">
@@ -258,7 +274,7 @@ function createRepoCard(repo) {
             </div>
         </div>
         <h4 class="text-xl font-bold mb-2">${repo.name}</h4>
-        <p class="text-gray-600 dark:text-gray-400 mb-4" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+        <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
             ${repo.description || 'No description available'}
         </p>
         <div class="text-sm text-gray-500 dark:text-gray-500 mb-4">
