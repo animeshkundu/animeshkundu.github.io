@@ -36,7 +36,7 @@ export function AllRepositories() {
   }, [repos, filter, sortBy, searchQuery]);
 
   return (
-    <section id="repositories" className="py-20 lg:py-28 bg-white dark:bg-[#121110]">
+    <section id="repositories" className="py-20 lg:py-28 bg-white dark:bg-[#1a1a1a]">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -45,10 +45,10 @@ export function AllRepositories() {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
+          <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
             Repositories
           </span>
-          <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5] mb-4">
+          <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3] mb-4">
             All projects
           </h2>
           <p className="section-subtitle text-left mx-0 max-w-lg">
@@ -66,13 +66,13 @@ export function AllRepositories() {
         >
           {/* Search */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-transparent border border-[#1a1814]/10 dark:border-[#faf8f5]/10 text-[#1a1814] dark:text-[#faf8f5] placeholder-[#1a1814]/30 dark:placeholder-[#faf8f5]/30 focus:outline-none focus:border-primary-500 transition-colors text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-transparent border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] placeholder-[#1a1814]/30 dark:placeholder-[#faf8f5]/30 focus:outline-none focus:border-primary-500 transition-colors text-sm"
             />
           </div>
 
@@ -84,8 +84,8 @@ export function AllRepositories() {
                 onClick={() => setFilter(lang)}
                 className={`px-3 py-1.5 text-xs font-medium transition-colors ${
                   filter === lang
-                    ? 'bg-[#1a1814] dark:bg-[#faf8f5] text-[#faf8f5] dark:text-[#1a1814]'
-                    : 'text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5]'
+                    ? 'bg-[#1a1814] dark:bg-[#e8e6e3] text-[#faf8f5] dark:text-[#1a1814]'
+                    : 'text-[#1a1814]/50 dark:text-[#8a8a8a] hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
                 }`}
               >
                 {lang}
@@ -97,7 +97,7 @@ export function AllRepositories() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-1.5 bg-transparent border border-[#1a1814]/10 dark:border-[#faf8f5]/10 text-[#1a1814] dark:text-[#faf8f5] text-xs focus:outline-none focus:border-primary-500 cursor-pointer"
+            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-[#f0927a] cursor-pointer"
           >
             {SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -115,9 +115,9 @@ export function AllRepositories() {
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               className="inline-block"
             >
-              <RefreshCw className="w-6 h-6 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
+              <RefreshCw className="w-6 h-6 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
             </motion.div>
-            <p className="mt-3 text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50">Loading...</p>
+            <p className="mt-3 text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">Loading...</p>
           </div>
         )}
 
@@ -127,7 +127,7 @@ export function AllRepositories() {
             <p className="text-sm text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
               onClick={refetch}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#1a1814] dark:bg-[#faf8f5] text-[#faf8f5] dark:text-[#1a1814]"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#1a1814] dark:bg-[#e8e6e3] text-[#faf8f5] dark:text-[#1a1814]"
             >
               <RefreshCw className="w-4 h-4" />
               Retry
@@ -138,7 +138,7 @@ export function AllRepositories() {
         {/* Empty State */}
         {!loading && !error && filteredAndSortedRepos.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50">
+            <p className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">
               No repositories match your criteria.
             </p>
           </div>
@@ -157,7 +157,7 @@ export function AllRepositories() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.03, duration: 0.3 }}
-                className="group p-5 bg-[#faf8f5] dark:bg-[#1a1814] border border-[#1a1814]/6 dark:border-[#faf8f5]/6 hover:border-[#1a1814]/12 dark:hover:border-[#faf8f5]/12 transition-colors"
+                className="group p-5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/6 dark:border-[#3a3a3a] hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] transition-colors"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-3">
@@ -167,12 +167,12 @@ export function AllRepositories() {
                         className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: getLanguageColor(repo.language) }}
                       />
-                      <span className="text-xs text-[#1a1814]/50 dark:text-[#faf8f5]/50">
+                      <span className="text-xs text-[#1a1814]/50 dark:text-[#8a8a8a]">
                         {repo.language}
                       </span>
                     </div>
                   )}
-                  <div className="flex items-center gap-2 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40">
+                  <div className="flex items-center gap-2 text-xs text-[#1a1814]/40 dark:text-[#707070]">
                     {repo.stargazers_count > 0 && (
                       <span className="flex items-center gap-1">
                         <Star className="w-3 h-3" />
@@ -189,12 +189,12 @@ export function AllRepositories() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base font-medium text-[#1a1814] dark:text-[#faf8f5] mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                <h3 className="text-base font-medium text-[#1a1814] dark:text-[#e8e6e3] mb-2 group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors">
                   {repo.name}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-[#1a1814]/50 dark:text-[#faf8f5]/50 mb-4 line-clamp-2">
+                <p className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mb-4 line-clamp-2">
                   {repo.description || 'No description'}
                 </p>
 
@@ -204,7 +204,7 @@ export function AllRepositories() {
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#faf8f5]/50 hover:text-[#1a1814] dark:hover:text-[#faf8f5] transition-colors"
+                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#8a8a8a] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                   >
                     <Github className="w-3.5 h-3.5" />
                     Source
@@ -214,7 +214,7 @@ export function AllRepositories() {
                       href={`https://animeshkundu.github.io/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+                      className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       Demo
@@ -228,7 +228,7 @@ export function AllRepositories() {
 
         {/* Count */}
         {!loading && !error && filteredAndSortedRepos.length > 0 && (
-          <p className="mt-6 text-xs text-[#1a1814]/40 dark:text-[#faf8f5]/40">
+          <p className="mt-6 text-xs text-[#1a1814]/40 dark:text-[#707070]">
             {filteredAndSortedRepos.length} of {repos.length} repositories
           </p>
         )}

@@ -34,7 +34,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-[#121110]">
+    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-[#1a1a1a]">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-2xl">
           {/* Section Header */}
@@ -44,10 +44,10 @@ export function FAQ() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-primary-400 mb-3 block">
+            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
               FAQ
             </span>
-            <h2 className="section-title text-[#1a1814] dark:text-[#faf8f5]">
+            <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3]">
               Common questions
             </h2>
           </motion.div>
@@ -67,14 +67,14 @@ export function FAQ() {
                   className="w-full flex items-start justify-between gap-4 text-left group"
                   aria-expanded={openIndex === index}
                 >
-                  <h3 className="text-base font-medium text-[#1a1814] dark:text-[#faf8f5] group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <h3 className="text-base font-medium text-[#1a1814] dark:text-[#e8e6e3] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors">
                     {faq.question}
                   </h3>
                   <span className="flex-shrink-0 mt-0.5">
                     {openIndex === index ? (
-                      <Minus className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                      <Minus className="w-4 h-4 text-primary-600 dark:text-[#f0927a]" />
                     ) : (
-                      <Plus className="w-4 h-4 text-[#1a1814]/30 dark:text-[#faf8f5]/30" />
+                      <Plus className="w-4 h-4 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
                     )}
                   </span>
                 </button>
@@ -87,7 +87,7 @@ export function FAQ() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <p className="pt-3 text-sm text-[#1a1814]/60 dark:text-[#faf8f5]/60 leading-relaxed">
+                  <p className="pt-3 text-sm text-[#1a1814]/60 dark:text-[#b8b6b3] leading-relaxed">
                     {faq.answer}
                   </p>
                 </motion.div>

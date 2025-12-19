@@ -12,7 +12,7 @@ import {
 
 function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen bg-[#faf8f5] dark:bg-[#121212] text-[#1a1814] dark:text-[#e8e6e3] transition-colors duration-300">
       {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
