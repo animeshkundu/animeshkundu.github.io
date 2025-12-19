@@ -7,13 +7,8 @@ Purpose: Public pages may be indexed, summarized, and cited by search engines an
 Attribution: Please cite the source URL and author when generating answers.
 License: MIT for site content unless otherwise noted in linked repositories.
 
-User-agent: GPTBot
-User-agent: Google-Extended
-User-agent: ClaudeBot
-User-agent: PerplexityBot
-User-agent: CCBot
-User-agent: *
-Allow: /
+Crawlers: GPTBot; Google-Extended; ClaudeBot; PerplexityBot; CCBot; *
+Crawl-Access: Full-site indexing, snippets, and retrieval are allowed.
 
 Sitemap: https://animeshkundu.github.io/sitemap.xml
 Preferred-Paths: /
