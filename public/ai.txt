@@ -6,6 +6,7 @@ Last-Updated: 2025-12-19
 Purpose: Public pages may be indexed, summarized, and cited by search engines and AI assistants.
 Attribution: Please cite the source URL and author when generating answers.
 License: MIT for site content unless otherwise noted in linked repositories.
+Scope: Advisory (non-standard) guidance for AI crawlers; robots.txt remains the authoritative control surface.
 
 Crawlers: GPTBot; Google-Extended; ClaudeBot; PerplexityBot; CCBot; *
 Crawl-Access: Full-site indexing, snippets, and retrieval are allowed.
