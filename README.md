@@ -111,6 +111,30 @@ src/
     └── index.ts         # TypeScript types
 ```
 
+## Documentation
+
+Comprehensive documentation is available in the `docs/` folder:
+
+| Document | Description |
+|----------|-------------|
+| [PRD.md](./docs/PRD.md) | Product Requirements Document |
+| [ARCHITECTURE.md](./docs/ARCHITECTURE.md) | System architecture and technical decisions |
+| [DESIGN.md](./docs/DESIGN.md) | Design system and UI guidelines |
+| [AGENT.md](./docs/AGENT.md) | Instructions for LLM agents |
+| [ADR/](./docs/ADR/) | Architectural Decision Records |
+| [history/](./docs/history/) | Deprecated and removed features |
+
+### For AI Agents
+
+This repository includes configuration for GitHub Copilot and other AI coding agents:
+
+- `.github/copilot-instructions.md` - Repository-wide Copilot instructions
+- `.github/agents/` - Specialized agent definitions:
+  - `planner.md` - Planning and research agent
+  - `coder.md` - Implementation agent (TDD-focused)
+  - `reviewer.md` - Code review and testing agent
+  - `orchestrator.md` - Workflow coordination agent
+
 ## License
 
 MIT License - See [LICENSE](./LICENSE) for details.
