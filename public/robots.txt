@@ -1,4 +1,20 @@
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 User-agent: *
 Allow: /
 
 Sitemap: https://animeshkundu.github.io/sitemap.xml
+# AI policy: https://animeshkundu.github.io/ai.txt
