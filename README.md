@@ -1,118 +1,120 @@
-# Animesh Kundu - Portfolio Website
+# Animesh Kundu - Developer Portfolio
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fanimeshkundu.github.io)](https://animeshkundu.github.io)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build, Test, and Deploy](https://github.com/animeshkundu/animeshkundu.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/animeshkundu/animeshkundu.github.io/actions/workflows/deploy.yml)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
 
-Personal portfolio website showcasing my open source projects, web tools, and developer utilities.
+A modern, elegant portfolio website showcasing my open source projects and developer tools.
 
-🔗 **Live Site**: [https://animeshkundu.github.io](https://animeshkundu.github.io)
+**🚀 [Visit Live Site](https://animeshkundu.github.io)**
 
 ## Features
 
-### 🎨 Modern Design
-- Clean, professional interface with Tailwind CSS
-- Responsive design that works on all devices
-- Dark mode with system preference detection
-- Smooth animations and transitions
+- **🎨 Modern Design** - Clean, elegant UI with smooth animations
+- **🌙 Dark Mode** - Automatic theme switching based on system preference
+- **📱 Responsive** - Works beautifully on all devices
+- **⚡ Fast** - Built with Vite for blazing fast performance
+- **🔍 SEO Optimized** - Semantic HTML, structured data, and meta tags
+- **🔄 Dynamic Content** - Automatically fetches repos from GitHub API
+- **🖼️ Live Demos** - Interactive demos embedded directly in the page
+- **✅ Tested** - Comprehensive test suite with Vitest
 
-### 🚀 Dynamic Content
-- Automatic repository fetching from GitHub API
-- Real-time filtering by programming language
-- Live demo embeds for web tools
-- Session storage caching to minimize API calls
+## Tech Stack
 
-### 🔍 SEO Optimized
-- Complete meta tags for search engines
-- Open Graph and Twitter Card support
-- Schema.org structured data (Person, WebSite, SoftwareApplication, FAQPage)
-- Semantic HTML5 structure
-- Sitemap.xml and robots.txt
-
-### ♿ Accessible
-- WCAG 2.1 compliant
-- Keyboard navigation support
-- Screen reader friendly
-- Skip to main content link
-- Proper ARIA labels
+- **Framework**: React 19 with TypeScript
+- **Build Tool**: Vite 7
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Testing**: Vitest + React Testing Library
+- **Deployment**: GitHub Pages + GitHub Actions
 
 ## Featured Projects
 
-### Recent Projects (2023-2025)
-- **[Mermaid Editor](https://animeshkundu.github.io/mermaid-editor)** - Online Mermaid diagram editor with Monaco editor
-- **[Gist Preview](https://animeshkundu.github.io/gist-preview)** - GitHub Gist renderer with React/JSX support
-- **[SAZ Viewer](https://animeshkundu.github.io/saz-viewer)** - Fiddler SAZ file viewer (100% client-side)
-- **[HAR Viewer](https://animeshkundu.github.io/har-viewer)** - HAR file analyzer with waterfall charts
-- **[Bing HTTP MCP](https://github.com/animeshkundu/bing-http-mcp)** - Model Context Protocol server for Bing APIs
+### Web Tools (100% Client-Side)
+- **[Mermaid Editor](https://animeshkundu.github.io/mermaid-editor)** - Create diagrams with live preview
+- **[Gist Preview](https://animeshkundu.github.io/gist-preview)** - Render GitHub gists with React support
+- **[SAZ Viewer](https://animeshkundu.github.io/saz-viewer)** - Inspect Fiddler network captures
+- **[HAR Viewer](https://animeshkundu.github.io/har-viewer)** - Analyze HTTP archive files
 
 ### Popular Projects
-- **[YouTube Audio](https://github.com/animeshkundu/youtube-audio)** - Firefox extension (167+ stars, 39 forks)
-- **[Torrent DL](https://github.com/animeshkundu/torrent-dl)** - Python streaming torrent client (33 stars)
-- **[PyFlix](https://github.com/animeshkundu/pyflix)** - Torrent streaming library (14 stars)
+- **[YouTube Audio](https://github.com/animeshkundu/youtube-audio)** - Firefox extension (167+ ⭐)
+- **[Torrent DL](https://github.com/animeshkundu/torrent-dl)** - Streaming torrent client (33 ⭐)
+- **[PyFlix](https://github.com/animeshkundu/pyflix)** - Torrent streaming library (14 ⭐)
 
-## Technology Stack
+## Development
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: Tailwind CSS (via CDN)
-- **Fonts**: Inter (Google Fonts)
-- **APIs**: GitHub REST API
-- **Hosting**: GitHub Pages
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+### Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The site will be available at `http://localhost:5000`.
+
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm test` | Run tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | TypeScript type checking |
+
+## Deployment
+
+The site automatically deploys to GitHub Pages when changes are pushed to the `master` branch. The GitHub Actions workflow:
+
+1. Checks out the code
+2. Installs dependencies
+3. Runs type checking
+4. Runs tests
+5. Builds for production
+6. Deploys to GitHub Pages
 
 ## Project Structure
 
 ```
-/
-├── index.html          # Main portfolio page
-├── styles.css          # Custom styles beyond Tailwind
-├── app.js              # Dynamic repository fetching & interactions
-├── sitemap.xml         # SEO sitemap
-├── robots.txt          # Crawler directives
-└── README.md           # This file
+src/
+├── App.tsx              # Main app component
+├── main.tsx             # Entry point
+├── index.css            # Global styles
+├── components/
+│   ├── Navbar.tsx       # Navigation header
+│   ├── Hero.tsx         # Hero section
+│   ├── FeaturedProjects.tsx
+│   ├── LiveDemos.tsx    # Interactive demo iframe
+│   ├── AllRepositories.tsx  # Dynamic GitHub repos
+│   ├── About.tsx
+│   ├── FAQ.tsx
+│   ├── Contact.tsx
+│   └── Footer.tsx
+├── hooks/
+│   ├── useGitHubRepos.ts
+│   └── useTheme.ts
+├── lib/
+│   ├── github.ts        # GitHub API utilities
+│   └── constants.ts     # Project data
+└── types/
+    └── index.ts         # TypeScript types
 ```
-
-## Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/animeshkundu/animeshkundu.github.io.git
-cd animeshkundu.github.io
-```
-
-2. Open `index.html` in your browser or use a local server:
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-```
-
-3. Visit `http://localhost:8000` in your browser
-
-## Performance
-
-- **Load Time**: < 3 seconds
-- **Lazy Loading**: iframes and images below the fold
-- **Caching**: Repository data cached for 1 hour
-- **Optimization**: Preconnect to external domains
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
-
-## Contact
-
-- **GitHub**: [@animeshkundu](https://github.com/animeshkundu)
-- **LinkedIn**: [animeshkundu](https://www.linkedin.com/in/animeshkundu)
-- **Email**: anik.edu@gmail.com
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+MIT License - See [LICENSE](./LICENSE) for details.
 
 ---
 
-Built with ❤️ using Tailwind CSS
+Built with ❤️ by [Animesh Kundu](https://github.com/animeshkundu)

@@ -1,0 +1,9 @@
+export { Navbar } from './Navbar';
+export { Hero } from './Hero';
+export { FeaturedProjects } from './FeaturedProjects';
+export { LiveDemos } from './LiveDemos';
+export { AllRepositories } from './AllRepositories';
+export { About } from './About';
+export { Contact } from './Contact';
+export { FAQ } from './FAQ';
+export { Footer } from './Footer';
