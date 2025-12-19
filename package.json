@@ -1,0 +1,48 @@
+{
+  "name": "animeshkundu.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5000",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules/.vite"
+  },
+  "keywords": [
+    "portfolio",
+    "github-pages",
+    "react",
+    "typescript",
+    "developer"
+  ],
+  "author": "Animesh Kundu",
+  "license": "MIT",
+  "description": "Personal portfolio website showcasing open source projects and developer tools",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.562.0",
+    "postcss": "^8.5.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^27.3.0",
+    "vitest": "^4.0.16"
+  }
+}
