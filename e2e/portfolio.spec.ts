@@ -41,10 +41,10 @@ test.describe('Portfolio E2E Tests', () => {
     // Scroll to projects section
     await page.getByRole('link', { name: 'Projects' }).first().click();
     
-    // Check that project cards are visible
-    await expect(page.getByText('Mermaid Editor')).toBeVisible();
-    await expect(page.getByText('Gist Preview')).toBeVisible();
-    await expect(page.getByText('SAZ Viewer')).toBeVisible();
+    // Check that project cards are visible using more specific selectors
+    await expect(page.locator('#projects').getByRole('heading', { name: 'Mermaid Editor' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'Gist Preview' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'SAZ Viewer' })).toBeVisible();
     
     // Check Source links are present
     const sourceLinks = page.getByRole('link', { name: /Source/i });
@@ -70,8 +70,8 @@ test.describe('Portfolio E2E Tests', () => {
     // Navigate to repositories
     await page.getByRole('link', { name: 'Repos' }).first().click();
     
-    // Check section header
-    await expect(page.getByText('All projects')).toBeVisible();
+    // Check section header using role selector
+    await expect(page.getByRole('heading', { name: 'All projects' })).toBeVisible();
     
     // Check filter buttons
     await expect(page.getByRole('button', { name: 'All' })).toBeVisible();
