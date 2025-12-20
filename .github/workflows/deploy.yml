@@ -11,8 +11,8 @@ permissions:
   pull-requests: read
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: "gh-pages-deploy"
+  cancel-in-progress: false
 
 jobs:
   lint-and-test:
@@ -117,6 +117,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           keep_files: true
+          force_orphan: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy production build from ${{ github.ref }}'

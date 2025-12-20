@@ -13,8 +13,8 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: "preview-${{ github.ref }}"
-  cancel-in-progress: true
+  group: "gh-pages-deploy"
+  cancel-in-progress: false
 
 jobs:
   lint-and-test:
@@ -97,6 +97,7 @@ jobs:
           publish_dir: ./dist
           destination_dir: ${{ steps.extract_branch.outputs.deploy_path }}
           keep_files: true
+          force_orphan: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
