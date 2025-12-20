@@ -2,6 +2,17 @@
 
 This repository automatically deploys preview environments for all branches (except `main`/`master`) to GitHub Pages.
 
+## ⚠️ Initial Setup Required
+
+**Important**: For preview deployments to work, GitHub Pages must be configured to serve from the `gh-pages` branch:
+
+1. Go to repository **Settings** → **Pages**
+2. Under **Source**, select **Deploy from a branch**
+3. Choose **gh-pages** branch and **/ (root)** folder
+4. Click **Save**
+
+After this one-time setup, both production (from main) and preview deployments will work automatically.
+
 ## How It Works
 
 ### Automatic Deployment
