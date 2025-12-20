@@ -1,0 +1,156 @@
+name: Preview Deployment
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - main
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: "preview-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm test
+
+  build-and-deploy-preview:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          # Get the branch name from the ref
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BRANCH_NAME="${{ github.head_ref }}"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
+          
+          # Sanitize branch name for URL (replace slashes and special chars with hyphens)
+          SANITIZED_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g' | tr '[:upper:]' '[:lower:]')
+          
+          # Create the deployment path with test- prefix
+          DEPLOY_PATH="test-${SANITIZED_BRANCH}"
+          
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "deploy_path=${DEPLOY_PATH}" >> $GITHUB_OUTPUT
+          echo "preview_url=https://animeshkundu.github.io/${DEPLOY_PATH}/" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with base path
+        run: npm run build
+        env:
+          VITE_BASE_PATH: /${{ steps.extract_branch.outputs.deploy_path }}/
+
+      - name: Update base path in built files
+        run: |
+          # Update the base path in index.html
+          sed -i 's|base href="/"|base href="/${{ steps.extract_branch.outputs.deploy_path }}/"|g' dist/index.html
+          # Update asset paths
+          find dist -name "*.html" -exec sed -i 's|src="/assets/|src="/${{ steps.extract_branch.outputs.deploy_path }}/assets/|g' {} +
+          find dist -name "*.html" -exec sed -i 's|href="/assets/|href="/${{ steps.extract_branch.outputs.deploy_path }}/assets/|g' {} +
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          destination_dir: ${{ steps.extract_branch.outputs.deploy_path }}
+          keep_files: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Comment PR with preview link
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const previewUrl = '${{ steps.extract_branch.outputs.preview_url }}';
+            const branchName = '${{ steps.extract_branch.outputs.branch_name }}';
+            const deployPath = '${{ steps.extract_branch.outputs.deploy_path }}';
+            
+            const comment = `## 🚀 Preview Deployment
+            
+            Branch \`${branchName}\` has been deployed to a preview environment!
+            
+            **Preview URL:** ${previewUrl}
+            **Deploy Path:** \`/${deployPath}/\`
+            
+            The preview will be automatically updated with each push to this branch.
+            
+            ---
+            <sub>Deployed via GitHub Actions</sub>`;
+            
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Preview Deployment')
+            );
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
+
+      - name: Output preview URL
+        run: |
+          echo "::notice::Preview deployed to ${{ steps.extract_branch.outputs.preview_url }}"
