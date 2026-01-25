@@ -66,13 +66,13 @@ export function AllRepositories() {
         >
           {/* Search */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#a0a0a0]" />
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-transparent border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] placeholder-[#1a1814]/30 dark:placeholder-[#faf8f5]/30 focus:outline-none focus:border-primary-500 transition-colors text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-transparent border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] placeholder-[#1a1814]/30 dark:placeholder-[#8a8a8a] focus:outline-none focus:border-primary-500 dark:focus:ring-1 dark:focus:ring-primary-500/50 transition-colors text-sm"
             />
           </div>
 
@@ -85,7 +85,7 @@ export function AllRepositories() {
                 className={`px-3 py-1.5 text-xs font-medium transition-colors ${
                   filter === lang
                     ? 'bg-[#1a1814] dark:bg-[#e8e6e3] text-[#faf8f5] dark:text-[#1a1814]'
-                    : 'text-[#1a1814]/50 dark:text-[#8a8a8a] hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
+                    : 'text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
                 }`}
               >
                 {lang}
@@ -97,7 +97,7 @@ export function AllRepositories() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-dark-primary cursor-pointer"
+            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-dark-primary dark:focus:ring-1 dark:focus:ring-primary-500/50 cursor-pointer"
           >
             {SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -117,7 +117,7 @@ export function AllRepositories() {
             >
               <RefreshCw className="w-6 h-6 text-[#1a1814]/30 dark:text-[#5a5a5a]" />
             </motion.div>
-            <p className="mt-3 text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">Loading...</p>
+            <p className="mt-3 text-sm text-[#1a1814]/50 dark:text-[#a0a0a0]">Loading...</p>
           </div>
         )}
 
@@ -138,7 +138,7 @@ export function AllRepositories() {
         {/* Empty State */}
         {!loading && !error && filteredAndSortedRepos.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]">
+            <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0]">
               No repositories match your criteria.
             </p>
           </div>
@@ -167,7 +167,7 @@ export function AllRepositories() {
                         className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: getLanguageColor(repo.language) }}
                       />
-                      <span className="text-xs text-[#1a1814]/50 dark:text-[#8a8a8a]">
+                      <span className="text-xs text-[#1a1814]/50 dark:text-[#a0a0a0]">
                         {repo.language}
                       </span>
                     </div>
@@ -194,7 +194,7 @@ export function AllRepositories() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mb-4 line-clamp-2">
+                <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mb-4 line-clamp-2">
                   {repo.description || 'No description'}
                 </p>
 
@@ -204,7 +204,7 @@ export function AllRepositories() {
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#8a8a8a] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                   >
                     <Github className="w-3.5 h-3.5" />
                     Source

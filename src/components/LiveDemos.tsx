@@ -58,7 +58,7 @@ export function LiveDemos() {
                 <h3 className="font-medium text-[#1a1814] dark:text-dark-text-primary">
                   {activeDemo.title}
                 </h3>
-                <p className="text-xs text-[#1a1814]/50 dark:text-[#8a8a8a] mt-0.5">
+                <p className="text-xs text-[#1a1814]/50 dark:text-[#a0a0a0] mt-0.5">
                   {activeDemo.description}
                 </p>
               </div>
@@ -67,7 +67,7 @@ export function LiveDemos() {
                   href={`https://github.com/animeshkundu/${activeDemo.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#1a1814]/50 dark:text-[#8a8a8a] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="text-xs text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                 >
                   Source
                 </a>
@@ -75,7 +75,7 @@ export function LiveDemos() {
                   href={activeDemo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 dark:bg-[#d97959] text-white dark:text-[#121212] text-xs font-medium hover:bg-primary-700 dark:hover:bg-[#e6916f] transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-primary-600 dark:bg-[#d97959] text-white dark:text-white text-xs font-medium hover:bg-primary-700 dark:hover:bg-[#e6916f] transition-colors"
                 >
                   Open <ExternalLink className="w-3 h-3" />
                 </a>

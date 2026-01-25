@@ -69,7 +69,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap gap-6 text-sm text-[#1a1814]/50 dark:text-[#8a8a8a]"
+            className="flex flex-wrap gap-6 text-sm text-[#1a1814]/50 dark:text-[#a0a0a0]"
           >
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4" />

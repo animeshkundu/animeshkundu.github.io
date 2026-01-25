@@ -65,7 +65,7 @@ export function FeaturedProjects() {
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: getLanguageColor(project.language) }}
                   />
-                  <span className="text-xs font-medium text-[#1a1814]/50 dark:text-[#8a8a8a] uppercase tracking-wide">
+                  <span className="text-xs font-medium text-[#1a1814]/50 dark:text-[#a0a0a0] uppercase tracking-wide">
                     {project.language}
                   </span>
                 </div>
@@ -97,7 +97,7 @@ export function FeaturedProjects() {
 
               {/* Highlights as inline text */}
               {project.highlights && (
-                <p className="text-sm text-[#1a1814]/40 dark:text-[#8a8a8a] mb-6">
+                <p className="text-sm text-[#1a1814]/40 dark:text-[#a0a0a0] mb-6">
                   {project.highlights.slice(0, 3).join(' · ')}
                 </p>
               )}

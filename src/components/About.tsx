@@ -43,7 +43,7 @@ export function About() {
               
               {/* Technologies */}
               <div className="pt-6">
-                <p className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mb-3">
+                <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mb-3">
                   Primary stack
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -65,7 +65,7 @@ export function About() {
                 <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
                   {STATS.totalStars}+
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mt-1">
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
                   GitHub stars
                 </div>
               </div>
@@ -74,7 +74,7 @@ export function About() {
                 <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
                   {STATS.openSourceProjects}
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mt-1">
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
                   Open source projects
                 </div>
               </div>
@@ -83,7 +83,7 @@ export function About() {
                 <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
                   {STATS.yearsCoding}+
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#8a8a8a] mt-1">
+                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
                   Years building software
                 </div>
               </div>

@@ -40,7 +40,7 @@ export default {
         'dark-bg-elevated': '#2a2a2a',
         'dark-text-primary': '#e8e6e3',
         'dark-text-secondary': '#b8b6b3',
-        'dark-text-tertiary': '#8a8a8a',
+        'dark-text-tertiary': '#a0a0a0',
         'dark-border': '#3a3a3a',
         'dark-border-hover': '#4a4a4a',
         'dark-primary': '#f0927a',
