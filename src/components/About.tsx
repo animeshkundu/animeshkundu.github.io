@@ -30,7 +30,7 @@ export function About() {
             <div className="lg:col-span-2 space-y-5 text-[#1a1814]/70 dark:text-dark-text-secondary leading-relaxed">
               <p>
                 I build developer productivity tools that work entirely in the browser. 
-                No server uploads, no data collection — just powerful tools that respect your privacy.
+                No server uploads, no data collection. Just powerful tools that respect your privacy.
               </p>
               <p>
                 From network debugging with HAR and SAZ viewers to diagramming with the Mermaid Editor, 

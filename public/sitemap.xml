@@ -1,11 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Pages -->
   <url>
     <loc>https://animeshkundu.github.io/</loc>
-    <lastmod>2025-12-19</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://animeshkundu.github.io/projects</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Web Tools Project Pages -->
+  <url>
+    <loc>https://animeshkundu.github.io/project/mermaid-editor</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/har-viewer</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/saz-viewer</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/gist-preview</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/pdf-viewer</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Browser Extensions -->
+  <url>
+    <loc>https://animeshkundu.github.io/project/youtube-audio</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CLI Tools -->
+  <url>
+    <loc>https://animeshkundu.github.io/project/oops</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Python Utilities -->
+  <url>
+    <loc>https://animeshkundu.github.io/project/torrent-dl</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/pyflix</loc>
+    <lastmod>2025-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/pyscrape</loc>
+    <lastmod>2023-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/file-dl</loc>
+    <lastmod>2022-11-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/media-server</loc>
+    <lastmod>2022-11-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/yt-flask</loc>
+    <lastmod>2024-03-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/msp_scraper_lib</loc>
+    <lastmod>2016-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/msp_api</loc>
+    <lastmod>2016-10-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Other Projects -->
+  <url>
+    <loc>https://animeshkundu.github.io/project/funnel</loc>
+    <lastmod>2014-04-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/flake</loc>
+    <lastmod>2019-12-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/ml</loc>
+    <lastmod>2014-04-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/html5_game</loc>
+    <lastmod>2016-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/project/collabedit</loc>
+    <lastmod>2017-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Live Demo Apps (external) -->
   <url>
     <loc>https://animeshkundu.github.io/mermaid-editor</loc>
     <lastmod>2025-12-19</lastmod>
@@ -29,5 +168,17 @@
     <lastmod>2025-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/pdf-viewer</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://animeshkundu.github.io/html5_game</loc>
+    <lastmod>2016-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

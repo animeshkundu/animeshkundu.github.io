@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   Navbar,
   Hero,
@@ -8,9 +9,11 @@ import {
   Contact,
   FAQ,
   Footer,
+  ProjectPage,
+  ProjectsIndex,
 } from './components';
 
-function App() {
+function HomePage() {
   return (
     <div className="min-h-screen bg-[#faf8f5] dark:bg-dark-bg-base text-[#1a1814] dark:text-dark-text-primary transition-colors duration-300">
       {/* Skip to main content link for accessibility */}
@@ -35,6 +38,18 @@ function App() {
       {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<ProjectsIndex />} />
+        <Route path="/project/:slug" element={<ProjectPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
