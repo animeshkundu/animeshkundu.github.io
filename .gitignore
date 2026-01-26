@@ -39,6 +39,8 @@ build
 # Testing
 coverage
 *.lcov
+test-results/
+playwright-report/
 
 # TypeScript
 *.tsbuildinfo
