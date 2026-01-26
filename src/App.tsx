@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import {
   Navbar,
   Hero,
@@ -14,9 +14,9 @@ import {
 } from './components';
 
 // Get the base path from the environment variable (set during build)
-// Remove trailing slash and return undefined for root path (BrowserRouter expects undefined, not empty string)
+// Remove trailing slash and return undefined for root path
 const rawBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const basePath = rawBasePath === '' ? undefined : rawBasePath;
+const isSubdirectory = rawBasePath !== '';
 
 function HomePage() {
   return (
@@ -46,14 +46,30 @@ function HomePage() {
   );
 }
 
-function App() {
+function AppRoutes() {
   return (
-    <BrowserRouter basename={basePath}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projects" element={<ProjectsIndex />} />
-        <Route path="/project/:slug" element={<ProjectPage />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/projects" element={<ProjectsIndex />} />
+      <Route path="/project/:slug" element={<ProjectPage />} />
+    </Routes>
+  );
+}
+
+function App() {
+  // Use HashRouter for subdirectory deployments (preview builds) to handle GitHub Pages 404 limitation
+  // Use BrowserRouter for root deployments (production) for cleaner URLs
+  if (isSubdirectory) {
+    return (
+      <HashRouter>
+        <AppRoutes />
+      </HashRouter>
+    );
+  }
+
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

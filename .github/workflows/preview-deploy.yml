@@ -13,8 +13,8 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: "gh-pages-deploy"
-  cancel-in-progress: false
+  group: "preview-deploy-${{ github.head_ref || github.ref_name }}"
+  cancel-in-progress: true
 
 jobs:
   lint-and-test:

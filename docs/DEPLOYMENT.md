@@ -29,21 +29,38 @@ This ensures all asset paths (CSS, JS, images) are correctly prefixed.
 
 ### React Router Configuration
 
-Since the website uses React Router for client-side routing, the `BrowserRouter` needs to know the base path:
+The website uses different routing strategies based on deployment location:
+
+**Production (root path `/`)**: Uses `BrowserRouter` for clean URLs
+```
+https://animeshkundu.github.io/projects
+https://animeshkundu.github.io/project/youtube-audio
+```
+
+**Preview (subdirectory `/test-{branch}/`)**: Uses `HashRouter` to work around GitHub Pages limitations
+```
+https://animeshkundu.github.io/test-branch/#/projects
+https://animeshkundu.github.io/test-branch/#/project/youtube-audio
+```
 
 ```typescript
 // In src/App.tsx
 const rawBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const basePath = rawBasePath === '' ? undefined : rawBasePath;
+const isSubdirectory = rawBasePath !== '';
 
 function App() {
+  // Use HashRouter for subdirectory deployments (preview builds)
+  // Use BrowserRouter for root deployments (production)
+  if (isSubdirectory) {
+    return (
+      <HashRouter>
+        <AppRoutes />
+      </HashRouter>
+    );
+  }
   return (
-    <BrowserRouter basename={basePath}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projects" element={<ProjectsIndex />} />
-        <Route path="/project/:slug" element={<ProjectPage />} />
-      </Routes>
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
@@ -51,12 +68,14 @@ function App() {
 
 Key points:
 - `import.meta.env.BASE_URL` is set by Vite from `VITE_BASE_PATH`
-- For root deployments, `basePath` is `undefined` (not empty string)
-- For subpath deployments, `basePath` is `/test-{branch-name}`
+- Production uses BrowserRouter for SEO-friendly URLs
+- Preview uses HashRouter because GitHub Pages 404.html only works at repository root
 
-### SPA Routing on GitHub Pages
+### Why HashRouter for Previews?
 
-GitHub Pages is a static file server and doesn't support server-side routing. When a user navigates directly to `/projects` or refreshes on a route, GitHub Pages looks for a file at that path.
+GitHub Pages is a static file server. The `404.html` trick (copying `index.html` to `404.html`) only works at the repository root. For subdirectory deployments like `/test-branch/projects`, GitHub Pages will serve the root `404.html`, not the subdirectory's.
+
+HashRouter solves this by putting the route after a `#` symbol, which browsers don't send to the server. The URL `/test-branch/#/projects` always loads `/test-branch/index.html` and React Router handles the routing client-side.
 
 To handle this, we copy `index.html` to `404.html`:
 
