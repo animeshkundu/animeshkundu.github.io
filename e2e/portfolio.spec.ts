@@ -18,8 +18,8 @@ test.describe('Portfolio E2E Tests', () => {
   });
 
   test('should navigate to sections via nav links', async ({ page }) => {
-    // Click on Projects link
-    await page.getByRole('link', { name: 'Projects' }).first().click();
+    // Click on Featured link (which navigates to #projects section)
+    await page.getByRole('link', { name: 'Featured' }).first().click();
     await expect(page).toHaveURL(/#projects/);
     
     // Check Projects section is visible
@@ -38,8 +38,8 @@ test.describe('Portfolio E2E Tests', () => {
   });
 
   test('should display featured projects with working links', async ({ page }) => {
-    // Scroll to projects section
-    await page.getByRole('link', { name: 'Projects' }).first().click();
+    // Scroll to projects section by clicking Featured link
+    await page.getByRole('link', { name: 'Featured' }).first().click();
     
     // Check that project cards are visible using more specific selectors
     await expect(page.locator('#projects').getByRole('heading', { name: 'Mermaid Editor' })).toBeVisible();
@@ -138,7 +138,8 @@ test.describe('Portfolio E2E Tests', () => {
     // Open mobile menu
     await menuButton.click();
     
-    // Check mobile nav links
-    await expect(page.getByRole('link', { name: 'Projects' }).first()).toBeVisible();
+    // Check mobile nav links - should show Home, All Projects, and Featured on homepage
+    await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'All Projects' })).toBeVisible();
   });
 });

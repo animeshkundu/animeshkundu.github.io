@@ -89,6 +89,8 @@ jobs:
           # Update asset paths
           find dist -name "*.html" -exec sed -i 's|src="/assets/|src="/${{ steps.extract_branch.outputs.deploy_path }}/assets/|g' {} +
           find dist -name "*.html" -exec sed -i 's|href="/assets/|href="/${{ steps.extract_branch.outputs.deploy_path }}/assets/|g' {} +
+          # Copy index.html to 404.html for SPA routing on GitHub Pages
+          cp dist/index.html dist/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
