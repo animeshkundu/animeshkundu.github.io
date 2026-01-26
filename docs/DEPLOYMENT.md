@@ -162,6 +162,14 @@ GitHub Pages serves `404.html` for unknown paths. By making it identical to `ind
 - **Build-time configuration**: No runtime detection needed
 - **Vite integration**: Works seamlessly with Vite's built-in base path handling
 
+### Why use shared concurrency group?
+
+Both `deploy.yml` and `preview-deploy.yml` use the same concurrency group `"gh-pages-deploy"` with `cancel-in-progress: false`. This means:
+
+- Workflows queue and run sequentially (never cancel each other)
+- Prevents concurrent writes to the `gh-pages` branch
+- Safe for GitHub Pages which could have issues with concurrent deployments
+
 ## Related Documentation
 
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
