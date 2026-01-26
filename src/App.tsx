@@ -14,8 +14,9 @@ import {
 } from './components';
 
 // Get the base path from the environment variable (set during build)
-// Remove trailing slash for basename
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+// Remove trailing slash and return undefined for root path (BrowserRouter expects undefined, not empty string)
+const rawBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const basePath = rawBasePath === '' ? undefined : rawBasePath;
 
 function HomePage() {
   return (
