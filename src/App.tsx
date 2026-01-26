@@ -13,6 +13,10 @@ import {
   ProjectsIndex,
 } from './components';
 
+// Get the base path from the environment variable (set during build)
+// Remove trailing slash for basename
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-[#faf8f5] dark:bg-dark-bg-base text-[#1a1814] dark:text-dark-text-primary transition-colors duration-300">
@@ -43,7 +47,7 @@ function HomePage() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basePath}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsIndex />} />
