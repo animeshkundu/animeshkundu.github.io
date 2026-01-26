@@ -157,7 +157,7 @@ export function AllRepositories() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-4"
           >
             {filteredAndSortedRepos.map((repo, index) => {
-              const demoUrl = getRepositoryDemoUrl(repo);
+              const demoUrl = getRepositoryDemoUrl(repo, GITHUB_USERNAME);
 
               return (
                 <motion.article

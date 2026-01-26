@@ -35,7 +35,7 @@ We recently enabled GitHub Pages on several repositories. The portfolio should s
 
 ### API/Interface
 ```ts
-export function getRepositoryDemoUrl(repo: Repository): string | null;
+export function getRepositoryDemoUrl(repo: Repository, username: string): string | null;
 ```
 
 ### Data Flow

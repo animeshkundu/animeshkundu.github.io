@@ -175,20 +175,20 @@ describe('github utilities', () => {
 
   describe('getRepositoryDemoUrl', () => {
     it('returns homepage when provided with protocol', () => {
-      expect(getRepositoryDemoUrl(mockRepos[0])).toBe('https://example.com/repo-one');
+      expect(getRepositoryDemoUrl(mockRepos[0], 'testuser')).toBe('https://example.com/repo-one');
     });
 
     it('adds https protocol when homepage is missing it', () => {
-      expect(getRepositoryDemoUrl(mockRepos[1])).toBe('https://repo-two.example.com');
+      expect(getRepositoryDemoUrl(mockRepos[1], 'testuser')).toBe('https://repo-two.example.com');
     });
 
     it('falls back to GitHub Pages when homepage is empty and has_pages is true', () => {
-      expect(getRepositoryDemoUrl(mockRepos[2])).toBe('https://animeshkundu.github.io/alpha-repo');
+      expect(getRepositoryDemoUrl(mockRepos[2], 'testuser')).toBe('https://testuser.github.io/alpha-repo');
     });
 
     it('returns null when homepage is empty and has_pages is false', () => {
       const repoWithoutPages = { ...mockRepos[2], has_pages: false };
-      expect(getRepositoryDemoUrl(repoWithoutPages)).toBeNull();
+      expect(getRepositoryDemoUrl(repoWithoutPages, 'testuser')).toBeNull();
     });
   });
 });
