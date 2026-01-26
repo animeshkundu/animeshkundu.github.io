@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star, GitFork, Search, RefreshCw } from 'lucide-react';
+import { Github, ExternalLink, Star, GitFork, Search, RefreshCw, ArrowRight } from 'lucide-react';
 import { useGitHubRepos } from '../hooks';
 import { getLanguageColor, filterRepositories, sortRepositories } from '../lib/github';
 import { GITHUB_USERNAME } from '../lib/constants';
+import { getProjectBySlug } from '../lib/projects';
 
 const LANGUAGE_FILTERS = ['All', 'TypeScript', 'Python', 'JavaScript', 'Other'];
 const SORT_OPTIONS = [
@@ -200,6 +202,16 @@ export function AllRepositories() {
 
                 {/* Links */}
                 <div className="flex items-center gap-3 text-xs">
+                  {/* Link to project page if exists */}
+                  {getProjectBySlug(repo.name) && (
+                    <Link
+                      to={`/project/${repo.name}`}
+                      className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors font-medium"
+                    >
+                      Learn more
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
                   <a
                     href={repo.html_url}
                     target="_blank"
@@ -214,7 +226,7 @@ export function AllRepositories() {
                       href={`https://animeshkundu.github.io/${repo.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-primary-600 dark:text-dark-primary hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors"
+                      className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       Demo

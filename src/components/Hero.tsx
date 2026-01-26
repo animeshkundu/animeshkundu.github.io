@@ -45,7 +45,7 @@ export function Hero() {
             className="text-lg md:text-xl text-[#1a1814]/60 dark:text-dark-text-secondary max-w-xl mb-10 leading-relaxed"
           >
             Full-stack developer crafting privacy-first web applications. 
-            From diagram editors to network analyzers — running entirely in your browser.
+            From diagram editors to network analyzers, all running entirely in your browser.
           </motion.p>
 
           {/* CTA Buttons */}

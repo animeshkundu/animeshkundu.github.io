@@ -98,7 +98,7 @@ export function LiveDemos() {
           {/* Privacy note */}
           <p className="mt-4 text-xs text-[#1a1814]/40 dark:text-[#707070] flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-            Data stays in your browser — nothing uploaded
+            Data stays in your browser, nothing uploaded
           </p>
         </motion.div>
       </div>

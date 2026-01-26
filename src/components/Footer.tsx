@@ -1,30 +1,41 @@
+import { Link, useLocation } from 'react-router-dom';
 import { Github } from 'lucide-react';
 import { GITHUB_USERNAME, LINKEDIN_URL, EMAIL } from '../lib/constants';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   return (
     <footer className="py-12 bg-[#1a1814] dark:bg-[#0a0a0a] text-[#faf8f5]/60 dark:text-dark-text-tertiary">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-4xl">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
-            <a href="#" className="text-base font-semibold text-[#faf8f5] dark:text-dark-text-primary">
+            <Link to="/" className="text-base font-semibold text-[#faf8f5] dark:text-dark-text-primary">
               Animesh Kundu
-            </a>
+            </Link>
             <div className="flex items-center gap-6 text-sm">
-              <a href="#projects" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+              <Link to="/projects" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
                 Projects
-              </a>
-              <a href="#demos" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
-                Demos
-              </a>
-              <a href="#about" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
-                About
-              </a>
-              <a href="#contact" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
-                Contact
-              </a>
+              </Link>
+              {isHomePage ? (
+                <>
+                  <a href="#demos" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                    Demos
+                  </a>
+                  <a href="#about" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                    About
+                  </a>
+                  <a href="#contact" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                    Contact
+                  </a>
+                </>
+              ) : (
+                <Link to="/" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                  Home
+                </Link>
+              )}
             </div>
           </div>
 

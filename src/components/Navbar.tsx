@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun, Github, Linkedin } from 'lucide-react';
 import { useTheme } from '../hooks';
 import { GITHUB_USERNAME, LINKEDIN_URL } from '../lib/constants';
 
-const navLinks = [
-  { href: '#projects', label: 'Projects' },
+interface NavLink {
+  href: string;
+  label: string;
+  isExternal?: boolean;
+}
+
+const homeNavLinks: NavLink[] = [
+  { href: '#projects', label: 'Featured' },
   { href: '#demos', label: 'Demos' },
   { href: '#repositories', label: 'Repos' },
   { href: '#about', label: 'About' },
@@ -16,6 +23,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { isDark, toggle } = useTheme();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,24 +45,53 @@ export function Navbar() {
       <nav className="container mx-auto px-6 sm:px-8 lg:px-12" aria-label="Main navigation">
         <div className="flex justify-between items-center h-14 lg:h-16">
           {/* Logo - simple text */}
-          <a
-            href="#"
+          <Link
+            to="/"
             className="text-base lg:text-lg font-semibold text-[#1a1814] dark:text-[#e8e6e3] tracking-tight"
           >
             Animesh Kundu
-          </a>
+          </Link>
 
           {/* Desktop Navigation - minimal */}
           <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {isHomePage ? (
+              <>
+                {homeNavLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <Link
+                  to="/projects"
+                  className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                >
+                  All Projects
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/"
+                  className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/projects"
+                  className={`text-sm transition-colors ${
+                    location.pathname.startsWith('/project')
+                      ? 'text-primary-600 dark:text-[#f0927a]'
+                      : 'text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
+                  }`}
+                >
+                  All Projects
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Desktop Actions */}
@@ -115,16 +153,34 @@ export function Navbar() {
               className="md:hidden overflow-hidden"
             >
               <div className="py-4 space-y-1 border-t border-[#1a1814]/6 dark:border-dark-border/80">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                <Link
+                  to="/"
+                  className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/projects"
+                  className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  All Projects
+                </Link>
+                {isHomePage && (
+                  <>
+                    {homeNavLinks.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </>
+                )}
                 <div className="flex gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-dark-border/80 mt-4">
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}`}
