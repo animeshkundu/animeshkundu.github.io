@@ -1,6 +1,21 @@
 # GitHub Copilot Instructions
 
+> **This file is synchronized with `claude.md` in the repository root.**
+
 This file provides repository-specific instructions for GitHub Copilot to ensure consistent, high-quality code generation.
+
+## Pre-Task Protocol (MANDATORY)
+
+**Before responding to ANY request, you MUST:**
+
+1. **Read Agent Instructions**: Review `docs/agent-instructions/` for core protocols
+   - `00-core-philosophy.md` - Fundamental principles
+   - `01-research-and-web.md` - Research requirements
+   - `02-testing-and-validation.md` - Testing standards
+   - `03-tooling-and-pipelines.md` - Automation guidelines
+2. **Check ADRs**: Examine `docs/ADR/` for past architectural decisions
+3. **Review Specs**: Look for existing specifications in `docs/specs/`
+4. **If Unsure, Search**: Use web search to verify best practices - do NOT hallucinate APIs
 
 ## Project Overview
 
@@ -11,7 +26,42 @@ This is a React 19 + TypeScript portfolio website using:
 - **Testing**: Vitest, React Testing Library, Playwright
 - **Deployment**: GitHub Pages via GitHub Actions
 
-## Documentation First
+## Documentation Hierarchy
+
+```
+docs/
+├── agent-instructions/     # 🔴 READ FIRST - Agent protocols
+│   ├── 00-core-philosophy.md
+│   ├── 01-research-and-web.md
+│   ├── 02-testing-and-validation.md
+│   └── 03-tooling-and-pipelines.md
+├── specs/                  # Technical specifications (write before code)
+├── architecture/           # System diagrams & patterns
+├── ADR/                    # Architectural Decision Records
+├── history/                # Deprecated feature documentation
+├── PRD.md                  # Product requirements
+├── ARCHITECTURE.md         # System architecture
+├── DESIGN.md               # Design system
+└── AGENT.md                # Detailed agent workflow
+```
+
+## Core Principles
+
+### 1. Docs = Code
+- **Never** write code without updating documentation first
+- Create specs in `docs/specs/` before implementation
+- Update `docs/architecture/` for structural changes
+- Create ADRs in `docs/ADR/` for significant decisions
+
+### 2. Research First
+- **If unsure, search the internet** - do not hallucinate APIs or patterns
+- Verify library versions before using examples
+- Research until you reach information saturation
+
+### 3. Test Everything
+- Maintain **>90% code coverage**
+- Write tests before or alongside implementation (TDD)
+- Run `./scripts/validate.sh` before committing
 
 Before making changes, read relevant documentation:
 - `docs/PRD.md` - Product requirements
@@ -46,6 +96,9 @@ npm run build
 
 # E2E tests
 npm run test:e2e
+
+# Full Validation (run before committing)
+./scripts/validate.sh
 ```
 
 ## Quality Requirements
@@ -146,8 +199,22 @@ src/
 └── __tests__/           # Unit tests
 
 e2e/                     # E2E tests
+scripts/                 # Automation scripts
 docs/                    # Documentation
 ```
+
+## Modification Protocol
+
+When modifying code:
+
+1. **Identify Affected Docs**: What documentation needs updating?
+2. **Check for Specs**: Does a spec exist? Follow it or update it
+3. **Verify No ADR Conflicts**: Ensure changes don't contradict past decisions
+4. **Update Docs First**: Documentation before implementation
+5. **Write Tests**: TDD approach - tests first or alongside
+6. **Implement**: Make the code changes
+7. **Validate**: Run `./scripts/validate.sh`
+8. **Document Changes**: Update any remaining documentation
 
 ## Security
 
@@ -162,6 +229,13 @@ docs/                    # Documentation
 - Use lazy loading appropriately
 - Optimize images
 - Monitor Core Web Vitals
+
+## When Uncertain
+
+1. **Search** - Look it up, don't guess
+2. **Reference** - Check official documentation
+3. **Ask** - Request clarification if needed
+4. **Document** - Note the source of information
 
 ---
 

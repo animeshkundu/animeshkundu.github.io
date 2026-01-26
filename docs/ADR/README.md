@@ -45,11 +45,12 @@ YYYY-MM-DD
 
 | ID | Title | Status | Date |
 |----|-------|--------|------|
+| [0000](./0000-template.md) | Template | Template | - |
 | [0001](./0001-initial-tech-stack.md) | Initial Technology Stack Selection | Accepted | 2024-12 |
 
 ## Creating a New ADR
 
-1. Copy the template above
+1. Copy the template from `0000-template.md`
 2. Create a new file: `XXXX-descriptive-title.md`
 3. Fill in all sections
 4. Update this README with the new entry
