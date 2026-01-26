@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Star, GitFork, Search, RefreshCw, ArrowRight } from 'lucide-react';
 import { useGitHubRepos } from '../hooks';
-import { getLanguageColor, filterRepositories, sortRepositories } from '../lib/github';
+import { getLanguageColor, filterRepositories, sortRepositories, getRepositoryDemoUrl } from '../lib/github';
 import { GITHUB_USERNAME } from '../lib/constants';
 import { getProjectBySlug } from '../lib/projects';
 
@@ -64,10 +64,10 @@ export function AllRepositories() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-8 flex flex-wrap gap-4 items-center"
+          className="mb-8 flex flex-col gap-4 items-start md:flex-row md:flex-wrap md:items-center"
         >
           {/* Search */}
-          <div className="relative flex-1 min-w-[200px] max-w-sm">
+          <div className="relative w-full md:flex-1 md:min-w-[200px] md:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1a1814]/30 dark:text-[#a0a0a0]" />
             <input
               type="text"
@@ -84,7 +84,7 @@ export function AllRepositories() {
               <button
                 key={lang}
                 onClick={() => setFilter(lang)}
-                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                className={`px-3 py-2 sm:py-1.5 text-xs font-medium transition-colors ${
                   filter === lang
                     ? 'bg-[#1a1814] dark:bg-[#e8e6e3] text-[#faf8f5] dark:text-[#1a1814]'
                     : 'text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
@@ -96,17 +96,20 @@ export function AllRepositories() {
           </div>
 
           {/* Sort */}
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-dark-primary dark:focus:ring-1 dark:focus:ring-primary-500/50 cursor-pointer"
-          >
-            {SORT_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <label className="flex items-center gap-2 text-xs text-[#1a1814]/50 dark:text-[#a0a0a0]">
+            <span className="lg:hidden">Sort</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+              className="px-3 py-2 sm:py-1.5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/10 dark:border-[#3a3a3a] text-[#1a1814] dark:text-[#e8e6e3] text-xs focus:outline-none focus:border-primary-500 dark:focus:border-dark-primary dark:focus:ring-1 dark:focus:ring-primary-500/50 cursor-pointer"
+            >
+              {SORT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
         </motion.div>
 
         {/* Loading State */}
@@ -151,90 +154,94 @@ export function AllRepositories() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-4"
           >
-            {filteredAndSortedRepos.map((repo, index) => (
-              <motion.article
-                key={repo.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.03, duration: 0.3 }}
-                className="group p-5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/6 dark:border-[#3a3a3a] hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] transition-colors"
-              >
-                {/* Header */}
-                <div className="flex items-center justify-between mb-3">
-                  {repo.language && (
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: getLanguageColor(repo.language) }}
-                      />
-                      <span className="text-xs text-[#1a1814]/50 dark:text-[#a0a0a0]">
-                        {repo.language}
-                      </span>
+            {filteredAndSortedRepos.map((repo, index) => {
+              const demoUrl = getRepositoryDemoUrl(repo);
+
+              return (
+                <motion.article
+                  key={repo.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.03, duration: 0.3 }}
+                  className="group p-6 sm:p-5 bg-[#faf8f5] dark:bg-[#1e1e1e] border border-[#1a1814]/6 dark:border-[#3a3a3a] hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] transition-colors"
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    {repo.language && (
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: getLanguageColor(repo.language) }}
+                        />
+                        <span className="text-xs text-[#1a1814]/50 dark:text-[#a0a0a0]">
+                          {repo.language}
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2 text-xs text-[#1a1814]/40 dark:text-[#707070]">
+                      {repo.stargazers_count > 0 && (
+                        <span className="flex items-center gap-1">
+                          <Star className="w-3 h-3" />
+                          {repo.stargazers_count}
+                        </span>
+                      )}
+                      {repo.forks_count > 0 && (
+                        <span className="flex items-center gap-1">
+                          <GitFork className="w-3 h-3" />
+                          {repo.forks_count}
+                        </span>
+                      )}
                     </div>
-                  )}
-                  <div className="flex items-center gap-2 text-xs text-[#1a1814]/40 dark:text-[#707070]">
-                    {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1">
-                        <Star className="w-3 h-3" />
-                        {repo.stargazers_count}
-                      </span>
-                    )}
-                    {repo.forks_count > 0 && (
-                      <span className="flex items-center gap-1">
-                        <GitFork className="w-3 h-3" />
-                        {repo.forks_count}
-                      </span>
-                    )}
                   </div>
-                </div>
 
-                {/* Title */}
-                <h3 className="text-base font-medium text-[#1a1814] dark:text-[#e8e6e3] mb-2 group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors">
-                  {repo.name}
-                </h3>
+                  {/* Title */}
+                  <h3 className="text-base font-medium text-[#1a1814] dark:text-[#e8e6e3] mb-2 group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors">
+                    {repo.name}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mb-4 line-clamp-2">
-                  {repo.description || 'No description'}
-                </p>
+                  {/* Description */}
+                  <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mb-4 line-clamp-2">
+                    {repo.description || 'No description'}
+                  </p>
 
-                {/* Links */}
-                <div className="flex items-center gap-3 text-xs">
-                  {/* Link to project page if exists */}
-                  {getProjectBySlug(repo.name) && (
-                    <Link
-                      to={`/project/${repo.name}`}
-                      className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors font-medium"
-                    >
-                      Learn more
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  )}
-                  <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
-                  >
-                    <Github className="w-3.5 h-3.5" />
-                    Source
-                  </a>
-                  {repo.has_pages && (
+                  {/* Links */}
+                  <div className="flex flex-wrap items-center gap-3 text-sm sm:text-xs">
+                    {/* Link to project page if exists */}
+                    {getProjectBySlug(repo.name) && (
+                      <Link
+                        to={`/project/${repo.name}`}
+                        className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors font-medium"
+                      >
+                        Learn more
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    )}
                     <a
-                      href={`https://animeshkundu.github.io/${repo.name}`}
+                      href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Demo
+                      <Github className="w-3.5 h-3.5" />
+                      Source
                     </a>
-                  )}
-                </div>
-              </motion.article>
-            ))}
+                    {demoUrl && (
+                      <a
+                        href={demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-[#1a1814]/50 dark:text-[#a0a0a0] hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Demo
+                      </a>
+                    )}
+                  </div>
+                </motion.article>
+              );
+            })}
           </motion.div>
         )}
 

@@ -102,7 +102,7 @@ interface FeatureProps {
 
 | ID | Name | Status | Date |
 |----|------|--------|------|
-| - | - | - | No specifications yet |
+| 2026-01-github-pages-links | GitHub Pages Links & Mobile All Projects Layout | Implemented | 2026-01-26 |
 
 ## Workflow
 

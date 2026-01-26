@@ -4,6 +4,7 @@ import {
   getLanguageColor,
   filterRepositories,
   sortRepositories,
+  getRepositoryDemoUrl,
 } from '../lib/github';
 import type { Repository } from '../types';
 
@@ -21,7 +22,7 @@ const mockRepos: Repository[] = [
     updated_at: '2025-12-01T00:00:00Z',
     created_at: '2024-01-01T00:00:00Z',
     has_pages: true,
-    homepage: null,
+    homepage: 'https://example.com/repo-one',
     topics: ['react', 'typescript'],
     fork: false,
     archived: false,
@@ -39,7 +40,7 @@ const mockRepos: Repository[] = [
     updated_at: '2025-11-01T00:00:00Z',
     created_at: '2024-02-01T00:00:00Z',
     has_pages: false,
-    homepage: null,
+    homepage: 'repo-two.example.com',
     topics: ['python'],
     fork: false,
     archived: false,
@@ -57,7 +58,7 @@ const mockRepos: Repository[] = [
     updated_at: '2025-10-01T00:00:00Z',
     created_at: '2024-03-01T00:00:00Z',
     has_pages: true,
-    homepage: null,
+    homepage: '',
     topics: [],
     fork: false,
     archived: false,
@@ -169,6 +170,25 @@ describe('github utilities', () => {
       }) as unknown as typeof fetch;
 
       await expect(fetchRepositories('testuser')).rejects.toThrow(/Failed to fetch/);
+    });
+  });
+
+  describe('getRepositoryDemoUrl', () => {
+    it('returns homepage when provided with protocol', () => {
+      expect(getRepositoryDemoUrl(mockRepos[0])).toBe('https://example.com/repo-one');
+    });
+
+    it('adds https protocol when homepage is missing it', () => {
+      expect(getRepositoryDemoUrl(mockRepos[1])).toBe('https://repo-two.example.com');
+    });
+
+    it('falls back to GitHub Pages when homepage is empty and has_pages is true', () => {
+      expect(getRepositoryDemoUrl(mockRepos[2])).toBe('https://animeshkundu.github.io/alpha-repo');
+    });
+
+    it('returns null when homepage is empty and has_pages is false', () => {
+      const repoWithoutPages = { ...mockRepos[2], has_pages: false };
+      expect(getRepositoryDemoUrl(repoWithoutPages)).toBeNull();
     });
   });
 });

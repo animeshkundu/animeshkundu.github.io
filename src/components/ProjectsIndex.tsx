@@ -31,7 +31,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
   return (
     <motion.article
       variants={item}
-      className="group p-5 bg-white dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a] hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] transition-colors"
+      className="group p-6 sm:p-5 bg-white dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a] hover:border-[#1a1814]/12 dark:hover:border-[#4a4a4a] transition-colors"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
       </div>
 
       {/* Links */}
-      <div className="flex items-center gap-4 text-xs pt-3 border-t border-[#1a1814]/6 dark:border-[#3a3a3a]">
+      <div className="flex flex-wrap items-center gap-4 text-sm sm:text-xs pt-3 border-t border-[#1a1814]/6 dark:border-[#3a3a3a]">
         <Link
           to={`/project/${project.id}`}
           className="flex items-center gap-1 text-primary-600 dark:text-[#f0927a] hover:text-primary-700 dark:hover:text-[#ffb399] transition-colors font-medium"
@@ -143,7 +143,7 @@ function CategorySection({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4"
       >
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />

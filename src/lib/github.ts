@@ -144,3 +144,18 @@ export function sortRepositories(
     }
   });
 }
+
+export function getRepositoryDemoUrl(repo: Repository): string | null {
+  if (repo.homepage) {
+    const trimmed = repo.homepage.trim();
+    if (trimmed) {
+      return trimmed.startsWith('http') ? trimmed : `https://${trimmed}`;
+    }
+  }
+
+  if (repo.has_pages) {
+    return `https://animeshkundu.github.io/${repo.name}`;
+  }
+
+  return null;
+}

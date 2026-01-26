@@ -29,7 +29,7 @@ export interface FeaturedProject {
   stars?: number;
   forks?: number;
   featured: boolean;
-  category: 'web-tools' | 'browser-extensions' | 'python-utilities' | 'other';
+  category: 'web-tools' | 'browser-extensions' | 'python-utilities' | 'cli-tools' | 'other';
   highlights?: string[];
 }
 
