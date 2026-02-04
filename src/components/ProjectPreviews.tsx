@@ -121,7 +121,8 @@ export function TerminalAnimation({ lines, title = 'terminal' }: TerminalAnimati
 export function OopsTerminalAnimation() {
   const lines = [
     { prompt: '$', command: 'git psuh', delay: 800 },
-    { output: "git: 'psuh' is not a git command.", delay: 500 },
+    { output: "git: 'psuh' is not a git command.", delay: 400 },
+    { output: "Did you mean 'push'?", delay: 500 },
     { prompt: '$', command: 'oops', delay: 600 },
     { output: 'git push [enter/↑/↓/ctrl+c]', delay: 1500 },
   ];
