@@ -44,7 +44,7 @@ test.describe('Portfolio E2E Tests', () => {
     // Check that project cards are visible using more specific selectors
     await expect(page.locator('#projects').getByRole('heading', { name: 'Mermaid Editor' })).toBeVisible();
     await expect(page.locator('#projects').getByRole('heading', { name: 'Gist Preview' })).toBeVisible();
-    await expect(page.locator('#projects').getByRole('heading', { name: 'SAZ Viewer' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'Oops' })).toBeVisible();
     
     // Check Source links are present
     const sourceLinks = page.getByRole('link', { name: /Source/i });
