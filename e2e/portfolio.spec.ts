@@ -43,8 +43,9 @@ test.describe('Portfolio E2E Tests', () => {
     
     // Check that project cards are visible using more specific selectors
     await expect(page.locator('#projects').getByRole('heading', { name: 'Mermaid Editor' })).toBeVisible();
-    await expect(page.locator('#projects').getByRole('heading', { name: 'Gist Preview' })).toBeVisible();
     await expect(page.locator('#projects').getByRole('heading', { name: 'Oops' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'PDF Viewer & Editor' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'YouTube Audio' })).toBeVisible();
     
     // Check Source links are present
     const sourceLinks = page.getByRole('link', { name: /Source/i });
@@ -60,7 +61,7 @@ test.describe('Portfolio E2E Tests', () => {
     
     // Check demo tabs
     await expect(page.getByRole('button', { name: 'Mermaid Editor' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Gist Preview' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'PDF Editor' })).toBeVisible();
     
     // Click different demo tab
     await page.getByRole('button', { name: 'SAZ Viewer' }).click();

@@ -2,6 +2,7 @@ import type { FeaturedProject, Demo } from '../types';
 
 export const GITHUB_USERNAME = 'animeshkundu';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/animeshkundu';
+export const FACEBOOK_URL = 'https://www.facebook.com/animesh.kundu';
 export const EMAIL = 'anik.edu@gmail.com';
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
@@ -19,6 +20,45 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     highlights: ['Live Preview', 'Dark Mode', 'Keyboard Shortcuts', '20+ Diagram Types'],
   },
   {
+    id: 'oops',
+    name: 'oops',
+    title: 'Oops',
+    description: 'Lightning-fast Rust CLI that fixes command-line typos with 175+ correction rules and sub-50ms startup. 10x faster than Python alternatives with cross-platform support.',
+    language: 'Rust',
+    technologies: ['Rust', 'CLI', 'Cross-Platform'],
+    githubUrl: 'https://github.com/animeshkundu/oops',
+    featured: true,
+    category: 'cli-tools',
+    highlights: ['175+ Rules', 'Sub-50ms Startup', 'Shell Integration', '10x Faster'],
+  },
+  {
+    id: 'pdf-viewer',
+    name: 'pdf-viewer',
+    title: 'PDF Viewer & Editor',
+    description: 'Client-side PDF viewer and editor inspired by macOS Preview. View, annotate, highlight, draw, and edit PDFs entirely in your browser. Zero server dependency, complete privacy.',
+    language: 'TypeScript',
+    technologies: ['React 19', 'PDF.js', 'pdf-lib', 'Tailwind CSS'],
+    demoUrl: 'https://animeshkundu.github.io/pdf-viewer',
+    githubUrl: 'https://github.com/animeshkundu/pdf-viewer',
+    featured: true,
+    category: 'web-tools',
+    highlights: ['100% Client-Side', 'Annotations', 'Page Editing', 'Privacy-First'],
+  },
+  {
+    id: 'youtube-audio',
+    name: 'youtube-audio',
+    title: 'YouTube Audio',
+    description: 'Firefox extension to disable video playback on YouTube and listen to audio only. Save bandwidth, battery life, and reduce CPU usage - perfect for music listening while working.',
+    language: 'JavaScript',
+    technologies: ['WebExtensions API', 'Firefox Add-ons'],
+    githubUrl: 'https://github.com/animeshkundu/youtube-audio',
+    stars: 167,
+    forks: 39,
+    featured: true,
+    category: 'browser-extensions',
+    highlights: ['167+ Stars', 'Save Bandwidth', 'Battery Efficient', 'Firefox Add-on'],
+  },
+  {
     id: 'gist-preview',
     name: 'gist-preview',
     title: 'Gist Preview',
@@ -27,21 +67,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     technologies: ['React 19', 'Babel', 'Tailwind CSS', 'Framer Motion'],
     demoUrl: 'https://animeshkundu.github.io/gist-preview',
     githubUrl: 'https://github.com/animeshkundu/gist-preview',
-    featured: true,
+    featured: false,
     category: 'web-tools',
     highlights: ['React/JSX Execution', 'Multi-file Support', 'Shareable URLs'],
-  },
-  {
-    id: 'oops',
-    name: 'oops',
-    title: 'Oops',
-    description: 'Lightning-fast Rust CLI that fixes command-line typos with 175+ correction rules and sub-50ms startup.',
-    language: 'Rust',
-    technologies: ['Rust', 'CLI'],
-    githubUrl: 'https://github.com/animeshkundu/oops',
-    featured: true,
-    category: 'cli-tools',
-    highlights: ['175+ Rules', 'Sub-50ms Startup', 'Cross-Platform'],
   },
   {
     id: 'saz-viewer',
@@ -68,20 +96,6 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     featured: false,
     category: 'web-tools',
     highlights: ['Waterfall Charts', '90%+ Test Coverage', 'Web Worker Parsing'],
-  },
-  {
-    id: 'youtube-audio',
-    name: 'youtube-audio',
-    title: 'YouTube Audio',
-    description: 'Firefox extension to disable video playback on YouTube and listen to audio only. Save bandwidth, battery life, and reduce CPU usage - perfect for music listening while working.',
-    language: 'JavaScript',
-    technologies: ['WebExtensions API', 'Firefox Add-ons'],
-    githubUrl: 'https://github.com/animeshkundu/youtube-audio',
-    stars: 167,
-    forks: 39,
-    featured: false,
-    category: 'browser-extensions',
-    highlights: ['167+ Stars', 'Save Bandwidth', 'Battery Efficient'],
   },
   {
     id: 'torrent-dl',
@@ -133,6 +147,13 @@ export const LIVE_DEMOS: Demo[] = [
     title: 'Mermaid Editor',
     url: 'https://animeshkundu.github.io/mermaid-editor',
     description: 'Create beautiful diagrams with live preview',
+  },
+  {
+    id: 'pdf-viewer',
+    name: 'pdf-viewer',
+    title: 'PDF Editor',
+    url: 'https://animeshkundu.github.io/pdf-viewer',
+    description: 'View, annotate, and edit PDFs in your browser',
   },
   {
     id: 'gist-preview',
