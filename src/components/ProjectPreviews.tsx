@@ -142,25 +142,23 @@ export function FixTerminalAnimation() {
           <div className="flex items-center gap-2">
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: 2 }}
+              transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
               className="text-purple-400"
             >
               ✨
             </motion.div>
             <span className="text-[#a0a0a0]">fix</span>
             <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
               className="text-purple-400"
             >
               thinking...
             </motion.span>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
+            animate={{ opacity: [0, 0, 1, 1, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
             className="text-green-400"
           >
             → kubectl get pods [y/n]
@@ -287,9 +285,8 @@ export function PyFlixPreview() {
 
       <div className="p-3 h-[140px] font-mono text-xs overflow-hidden">
         <motion.div
-          initial={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: [0.7, 1, 1, 0.7] }}
+          transition={{ duration: 4, repeat: Infinity }}
           className="space-y-1"
         >
           <div><span className="text-purple-400">from</span> <span className="text-green-400">pyflix</span> <span className="text-purple-400">import</span> <span className="text-yellow-300">Torrent</span></div>
