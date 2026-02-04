@@ -72,7 +72,7 @@ jobs:
           
           echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           echo "deploy_path=${DEPLOY_PATH}" >> $GITHUB_OUTPUT
-          echo "preview_url=https://animesh.kundu.in/${DEPLOY_PATH}/" >> $GITHUB_OUTPUT
+          echo "preview_url=https://animesh.kundus.in/${DEPLOY_PATH}/" >> $GITHUB_OUTPUT
 
       - name: Install dependencies
         run: npm ci

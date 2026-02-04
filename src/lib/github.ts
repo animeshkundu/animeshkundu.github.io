@@ -155,7 +155,7 @@ export function getRepositoryDemoUrl(repo: Repository, _username: string): strin
 
   if (repo.has_pages) {
     // Use the new domain for demo URLs
-    return `https://animesh.kundu.in/${repo.name}`;
+    return `https://animesh.kundus.in/${repo.name}`;
   }
 
   return null;

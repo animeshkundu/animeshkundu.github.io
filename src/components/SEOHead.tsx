@@ -14,7 +14,7 @@ interface SEOHeadProps {
  */
 export function SEOHead({ project, title, description, url }: SEOHeadProps) {
   useEffect(() => {
-    const baseUrl = 'https://animesh.kundu.in';
+    const baseUrl = 'https://animesh.kundus.in';
     
     // Determine page-specific values
     const pageTitle = project 
@@ -105,7 +105,7 @@ export function SEOHead({ project, title, description, url }: SEOHeadProps) {
         author: {
           '@type': 'Person',
           name: 'Animesh Kundu',
-          url: 'https://animesh.kundu.in'
+          url: 'https://animesh.kundus.in'
         }
       };
 

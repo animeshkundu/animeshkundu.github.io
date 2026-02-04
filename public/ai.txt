@@ -1,4 +1,4 @@
-AI-Crawler-Policy: https://animesh.kundu.in
+AI-Crawler-Policy: https://animesh.kundus.in
 Owner: Animesh Kundu
 Contact: anik.edu@gmail.com
 Last-Updated: 2025-12-19
@@ -11,7 +11,7 @@ Scope: Advisory (non-standard) guidance for AI crawlers; robots.txt remains the 
 Crawlers: GPTBot, Google-Extended, ClaudeBot, PerplexityBot, CCBot, *
 Crawl-Access: Full-site indexing, snippets, and retrieval are allowed.
 
-Sitemap: https://animesh.kundu.in/sitemap.xml
+Sitemap: https://animesh.kundus.in/sitemap.xml
 Preferred-Paths: /
 Preferred-Paths: /mermaid-editor
 Preferred-Paths: /gist-preview

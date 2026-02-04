@@ -183,8 +183,8 @@ describe('github utilities', () => {
     });
 
     it('falls back to custom domain when homepage is empty and has_pages is true', () => {
-      // Note: Demo URLs now use the custom domain animesh.kundu.in
-      expect(getRepositoryDemoUrl(mockRepos[2], 'testuser')).toBe('https://animesh.kundu.in/alpha-repo');
+      // Note: Demo URLs now use the custom domain animesh.kundus.in
+      expect(getRepositoryDemoUrl(mockRepos[2], 'testuser')).toBe('https://animesh.kundus.in/alpha-repo');
     });
 
     it('returns null when homepage is empty and has_pages is false', () => {

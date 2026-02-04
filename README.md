@@ -1,13 +1,13 @@
 # Animesh Kundu - Developer Portfolio
 
-[![Build, Test, and Deploy](https://github.com/animeshkundu/animesh.kundu.in/actions/workflows/deploy.yml/badge.svg)](https://github.com/animeshkundu/animesh.kundu.in/actions/workflows/deploy.yml)
+[![Build, Test, and Deploy](https://github.com/animeshkundu/animesh.kundus.in/actions/workflows/deploy.yml/badge.svg)](https://github.com/animeshkundu/animesh.kundus.in/actions/workflows/deploy.yml)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
 
 A modern, elegant portfolio website showcasing my open source projects and developer tools.
 
-**🚀 [Visit Live Site](https://animesh.kundu.in)**
+**🚀 [Visit Live Site](https://animesh.kundus.in)**
 
 ## Features
 
@@ -33,10 +33,10 @@ A modern, elegant portfolio website showcasing my open source projects and devel
 ## Featured Projects
 
 ### Web Tools (100% Client-Side)
-- **[Mermaid Editor](https://animesh.kundu.in/mermaid-editor)** - Create diagrams with live preview
-- **[Gist Preview](https://animesh.kundu.in/gist-preview)** - Render GitHub gists with React support
-- **[SAZ Viewer](https://animesh.kundu.in/saz-viewer)** - Inspect Fiddler network captures
-- **[HAR Viewer](https://animesh.kundu.in/har-viewer)** - Analyze HTTP archive files
+- **[Mermaid Editor](https://animesh.kundus.in/mermaid-editor)** - Create diagrams with live preview
+- **[Gist Preview](https://animesh.kundus.in/gist-preview)** - Render GitHub gists with React support
+- **[SAZ Viewer](https://animesh.kundus.in/saz-viewer)** - Inspect Fiddler network captures
+- **[HAR Viewer](https://animesh.kundus.in/har-viewer)** - Analyze HTTP archive files
 
 ### Popular Projects
 - **[YouTube Audio](https://github.com/animeshkundu/youtube-audio)** - Firefox extension (167+ ⭐)

@@ -16,5 +16,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://animesh.kundu.in/sitemap.xml
-# AI policy: https://animesh.kundu.in/ai.txt
+Sitemap: https://animesh.kundus.in/sitemap.xml
+# AI policy: https://animesh.kundus.in/ai.txt

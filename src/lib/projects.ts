@@ -60,7 +60,7 @@ Share diagrams via encoded URLs without any server. Supports 20+ diagram types i
       'npm run dev'
     ],
     usage: 'Open the editor, write Mermaid syntax in the left panel, see the diagram render in real-time on the right. Use the toolbar to export or share.',
-    demoUrl: 'https://animesh.kundu.in/mermaid-editor',
+    demoUrl: 'https://animesh.kundus.in/mermaid-editor',
     githubUrl: 'https://github.com/animeshkundu/mermaid-editor',
     stars: 0,
     forks: 0,
@@ -101,7 +101,7 @@ Built with privacy in mind: all processing happens in your browser using Web Wor
       'npm run dev'
     ],
     usage: 'Drag and drop a .har file onto the dropzone. Use filters to narrow down requests. Click any request to view detailed information.',
-    demoUrl: 'https://animesh.kundu.in/har-viewer',
+    demoUrl: 'https://animesh.kundus.in/har-viewer',
     githubUrl: 'https://github.com/animeshkundu/har-viewer',
     stars: 0,
     forks: 0,
@@ -142,7 +142,7 @@ Fast and responsive, handles large files with async parsing. Perfect for develop
       'npm run dev'
     ],
     usage: 'Drag and drop a .saz file. Browse sessions in the grid. Click a session to inspect its headers, body, and raw content.',
-    demoUrl: 'https://animesh.kundu.in/saz-viewer',
+    demoUrl: 'https://animesh.kundus.in/saz-viewer',
     githubUrl: 'https://github.com/animeshkundu/saz-viewer',
     stars: 0,
     forks: 0,
@@ -183,7 +183,7 @@ Share gist previews with permanent links. When opened via shared link, the previ
       'npm run dev'
     ],
     usage: 'Paste a GitHub Gist URL or ID, click Preview. Use viewport controls to test responsive layouts. Share the URL for others to see.',
-    demoUrl: 'https://animesh.kundu.in/gist-preview',
+    demoUrl: 'https://animesh.kundus.in/gist-preview',
     githubUrl: 'https://github.com/animeshkundu/gist-preview',
     stars: 0,
     forks: 0,
@@ -227,7 +227,7 @@ Edit documents by reordering, deleting, and rotating pages. Export modified PDFs
       'npm run dev'
     ],
     usage: 'Open the app and drop a PDF file. Navigate pages, zoom in/out, add annotations, and export the modified PDF.',
-    demoUrl: 'https://animesh.kundu.in/pdf-viewer',
+    demoUrl: 'https://animesh.kundus.in/pdf-viewer',
     githubUrl: 'https://github.com/animeshkundu/pdf-viewer',
     stars: 0,
     forks: 0,
@@ -686,7 +686,7 @@ Simple, fun, and addictive. Play directly in your browser.`,
       'Open index.html in browser'
     ],
     usage: 'Click colors to flood fill from the top-left corner. Try to fill the board in minimum moves.',
-    demoUrl: 'https://animesh.kundu.in/html5_game',
+    demoUrl: 'https://animesh.kundus.in/html5_game',
     githubUrl: 'https://github.com/animeshkundu/html5_game',
     stars: 0,
     forks: 0,

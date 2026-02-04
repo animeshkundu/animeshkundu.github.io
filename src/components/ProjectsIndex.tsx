@@ -177,7 +177,7 @@ export function ProjectsIndex() {
       <SEOHead 
         title="All Projects | Animesh Kundu"
         description={`Browse ${totalProjects} open source projects by Animesh Kundu. Web tools, browser extensions, Python utilities, and more.`}
-        url="https://animesh.kundu.in/projects"
+        url="https://animesh.kundus.in/projects"
       />
       <Navbar />
 
