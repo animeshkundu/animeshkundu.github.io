@@ -10,3 +10,4 @@ export { Footer } from './Footer';
 export { ProjectPage } from './ProjectPage';
 export { ProjectsIndex } from './ProjectsIndex';
 export { SEOHead } from './SEOHead';
+export { OopsTerminalAnimation, YouTubeAudioPreview, TerminalAnimation, FixTerminalAnimation, TorrentDLPreview, PyFlixPreview, MediaServerPreview } from './ProjectPreviews';

@@ -21,7 +21,7 @@ When you push to any branch other than `main`/`master`:
 
 1. **Tests Run**: TypeScript, ESLint, and unit tests are executed
 2. **Build**: The site is built with a base path specific to your branch
-3. **Deploy**: The built site is deployed to `https://animeshkundu.github.io/test-{branch-name}/`
+3. **Deploy**: The built site is deployed to `https://animesh.kundus.in/test-{branch-name}/`
 
 ### Branch Name Sanitization
 
@@ -31,9 +31,9 @@ Branch names are automatically sanitized for URLs:
 - Slashes become hyphens
 
 **Examples:**
-- Branch `feature/dark-mode` → `https://animeshkundu.github.io/test-feature-dark-mode/`
-- Branch `fix-bug-123` → `https://animeshkundu.github.io/test-fix-bug-123/`
-- Branch `copilot/improve-dark-mode-design` → `https://animeshkundu.github.io/test-copilot-improve-dark-mode-design/`
+- Branch `feature/dark-mode` → `https://animesh.kundus.in/test-feature-dark-mode/`
+- Branch `fix-bug-123` → `https://animesh.kundus.in/test-fix-bug-123/`
+- Branch `copilot/improve-dark-mode-design` → `https://animesh.kundus.in/test-copilot-improve-dark-mode-design/`
 
 ### Pull Request Comments
 
@@ -48,7 +48,7 @@ When a branch is deleted, its preview deployment is automatically removed from G
 
 ## Production Deployment
 
-The `main`/`master` branch deploys to the root: `https://animeshkundu.github.io/`
+The `main`/`master` branch deploys to the root: `https://animesh.kundus.in/`
 
 Only production builds are deployed after:
 - ✅ All tests pass
@@ -66,7 +66,7 @@ Only production builds are deployed after:
 
 3. **Visit your preview**
    ```
-   https://animeshkundu.github.io/test-your-branch-name/
+   https://animesh.kundus.in/test-your-branch-name/
    ```
 
 4. **Check PR comments** for the direct link (if working in a PR)

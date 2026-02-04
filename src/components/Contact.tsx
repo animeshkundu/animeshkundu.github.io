@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
-import { GITHUB_USERNAME, LINKEDIN_URL, EMAIL } from '../lib/constants';
+import { Github, Linkedin, Mail, ArrowUpRight, Facebook } from 'lucide-react';
+import { GITHUB_USERNAME, LINKEDIN_URL, FACEBOOK_URL, EMAIL } from '../lib/constants';
 
 export function Contact() {
   return (
@@ -74,6 +74,22 @@ export function Contact() {
                 <div>
                   <div className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">LinkedIn</div>
                   <div className="text-sm text-[#1a1814]/50 dark:text-dark-text-tertiary">Connect professionally</div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-[#1a1814]/30 dark:text-[#5a5a5a] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
+            </a>
+
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-4 border-b border-[#1a1814]/8 dark:border-dark-border hover:border-primary-500 dark:hover:border-[#f0927a] transition-colors"
+            >
+              <div className="flex items-center gap-4">
+                <Facebook className="w-5 h-5 text-[#1a1814]/40 dark:text-[#707070] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />
+                <div>
+                  <div className="font-medium text-[#1a1814] dark:text-[#e8e6e3]">Facebook</div>
+                  <div className="text-sm text-[#1a1814]/50 dark:text-dark-text-tertiary">Personal updates</div>
                 </div>
               </div>
               <ArrowUpRight className="w-5 h-5 text-[#1a1814]/30 dark:text-[#5a5a5a] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors" />

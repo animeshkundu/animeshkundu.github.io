@@ -145,7 +145,7 @@ export function sortRepositories(
   });
 }
 
-export function getRepositoryDemoUrl(repo: Repository, username: string): string | null {
+export function getRepositoryDemoUrl(repo: Repository, _username: string): string | null {
   if (repo.homepage) {
     const trimmed = repo.homepage.trim();
     if (trimmed) {
@@ -154,7 +154,8 @@ export function getRepositoryDemoUrl(repo: Repository, username: string): string
   }
 
   if (repo.has_pages) {
-    return `https://${username}.github.io/${repo.name}`;
+    // Use the new domain for demo URLs
+    return `https://animesh.kundus.in/${repo.name}`;
   }
 
   return null;

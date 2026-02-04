@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Moon, Sun, Github, Linkedin } from 'lucide-react';
+import { Menu, X, Moon, Sun, Github, Linkedin, Facebook } from 'lucide-react';
 import { useTheme } from '../hooks';
-import { GITHUB_USERNAME, LINKEDIN_URL } from '../lib/constants';
+import { GITHUB_USERNAME, LINKEDIN_URL, FACEBOOK_URL } from '../lib/constants';
 
 interface NavLink {
   href: string;
@@ -114,6 +114,15 @@ export function Navbar() {
             >
               <Linkedin className="w-5 h-5" />
             </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              aria-label="Facebook Profile"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
             <button
               onClick={toggle}
               className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
@@ -199,6 +208,15 @@ export function Navbar() {
                   >
                     <Linkedin className="w-4 h-4" />
                     LinkedIn
+                  </a>
+                  <a
+                    href={FACEBOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    Facebook
                   </a>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Github } from 'lucide-react';
-import { GITHUB_USERNAME, LINKEDIN_URL, EMAIL } from '../lib/constants';
+import { Github, Facebook } from 'lucide-react';
+import { GITHUB_USERNAME, LINKEDIN_URL, FACEBOOK_URL, EMAIL } from '../lib/constants';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -60,6 +60,15 @@ export function Footer() {
                 className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors"
               >
                 LinkedIn
+              </a>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors inline-flex items-center gap-2"
+              >
+                <Facebook className="w-4 h-4" />
+                Facebook
               </a>
               <a
                 href={`mailto:${EMAIL}`}

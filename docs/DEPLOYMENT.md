@@ -6,8 +6,8 @@ This document explains how the website is deployed to GitHub Pages, including bo
 
 The website uses GitHub Pages for hosting with two deployment modes:
 
-1. **Production Deployment**: Deploys from `master`/`main` branch to `https://animeshkundu.github.io/`
-2. **Preview Deployment**: Deploys feature branches to `https://animeshkundu.github.io/test-{branch-name}/`
+1. **Production Deployment**: Deploys from `master`/`main` branch to `https://animesh.kundus.in/`
+2. **Preview Deployment**: Deploys feature branches to `https://animesh.kundus.in/test-{branch-name}/`
 
 ## How It Works
 
@@ -33,14 +33,14 @@ The website uses different routing strategies based on deployment location:
 
 **Production (root path `/`)**: Uses `BrowserRouter` for clean URLs
 ```
-https://animeshkundu.github.io/projects
-https://animeshkundu.github.io/project/youtube-audio
+https://animesh.kundus.in/projects
+https://animesh.kundus.in/project/youtube-audio
 ```
 
 **Preview (subdirectory `/test-{branch}/`)**: Uses `HashRouter` to work around GitHub Pages limitations
 ```
-https://animeshkundu.github.io/test-branch/#/projects
-https://animeshkundu.github.io/test-branch/#/project/youtube-audio
+https://animesh.kundus.in/test-branch/#/projects
+https://animesh.kundus.in/test-branch/#/project/youtube-audio
 ```
 
 ```typescript
@@ -120,7 +120,7 @@ Triggered on push to any non-main branch or PRs:
 
 1. Push to any branch (not `master`/`main`)
 2. Wait for CI to complete (~2 minutes)
-3. Visit `https://animeshkundu.github.io/test-{branch-name}/`
+3. Visit `https://animesh.kundus.in/test-{branch-name}/`
 
 Branch names are sanitized:
 - `feature/dark-mode` becomes `test-feature-dark-mode`

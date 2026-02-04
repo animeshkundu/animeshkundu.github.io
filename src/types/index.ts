@@ -31,6 +31,8 @@ export interface FeaturedProject {
   featured: boolean;
   category: 'web-tools' | 'browser-extensions' | 'python-utilities' | 'cli-tools' | 'other';
   highlights?: string[];
+  previewType?: 'screenshot' | 'terminal' | 'animation';
+  previewContent?: string; // SVG content for terminal animations, or image URL
 }
 
 export interface Demo {
