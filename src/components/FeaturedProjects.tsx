@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { FEATURED_PROJECTS } from '../lib/constants';
 import { getLanguageColor } from '../lib/github';
-import { OopsTerminalAnimation, YouTubeAudioPreview, FixTerminalAnimation, TorrentStreamPreview, MediaServerPreview } from './ProjectPreviews';
+import { OopsTerminalAnimation, YouTubeAudioPreview, FixTerminalAnimation, TorrentDLPreview, PyFlixPreview, MediaServerPreview } from './ProjectPreviews';
 
 const container = {
   hidden: { opacity: 0 },
@@ -19,7 +19,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-// Get preview component for a project
+// Get unique preview component for each project
 function getProjectPreview(projectId: string) {
   switch (projectId) {
     case 'oops':
@@ -29,8 +29,9 @@ function getProjectPreview(projectId: string) {
     case 'fix':
       return <FixTerminalAnimation />;
     case 'torrent-dl':
+      return <TorrentDLPreview />;
     case 'pyflix':
-      return <TorrentStreamPreview />;
+      return <PyFlixPreview />;
     case 'media-server':
       return <MediaServerPreview />;
     default:
@@ -70,16 +71,14 @@ export function FeaturedProjects() {
           viewport={{ once: true }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6"
         >
-          {featuredProjects.map((project, index) => {
+          {featuredProjects.map((project) => {
             const preview = getProjectPreview(project.id);
             
             return (
               <motion.article
                 key={project.id}
                 variants={item}
-                className={`group relative bg-[#faf8f5] dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a] p-6 lg:p-8 transition-all duration-200 hover:border-[#1a1814]/12 dark:hover:border-dark-border-hover ${
-                  index === 0 ? 'lg:row-span-2' : ''
-                }`}
+                className="group relative bg-[#faf8f5] dark:bg-dark-bg-surface border border-[#1a1814]/6 dark:border-[#3a3a3a] p-6 lg:p-8 transition-all duration-200 hover:border-[#1a1814]/12 dark:hover:border-dark-border-hover"
               >
                 {/* Preview Animation for all featured projects */}
                 {preview && (
