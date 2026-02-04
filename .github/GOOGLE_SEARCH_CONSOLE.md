@@ -13,7 +13,7 @@ The `index.html` file includes a placeholder for Google Search Console verificat
 1. **Get Your Verification Token** from Google Search Console:
    - Go to [Google Search Console](https://search.google.com/search-console)
    - Click "Add property"
-   - Enter your site URL: `https://animeshkundu.github.io`
+   - Enter your site URL: `https://animesh.kundu.in`
    - Choose "HTML tag" verification method
    - Copy the `content` value from the meta tag provided
 
