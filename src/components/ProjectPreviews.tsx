@@ -15,13 +15,13 @@ export function TerminalAnimation({ lines, title = 'terminal' }: TerminalAnimati
   const [visibleLines, setVisibleLines] = useState<number>(0);
   const [currentTyping, setCurrentTyping] = useState<string>('');
   const [typingIndex, setTypingIndex] = useState(0);
-  const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Clean up on unmount
     return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
       }
     };
   }, []);
@@ -29,7 +29,7 @@ export function TerminalAnimation({ lines, title = 'terminal' }: TerminalAnimati
   useEffect(() => {
     if (visibleLines >= lines.length) {
       // Reset and loop after delay
-      animationRef.current = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setVisibleLines(0);
         setCurrentTyping('');
         setTypingIndex(0);
@@ -41,20 +41,20 @@ export function TerminalAnimation({ lines, title = 'terminal' }: TerminalAnimati
     
     if (currentLine?.command && typingIndex < currentLine.command.length) {
       // Type out character by character
-      animationRef.current = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setCurrentTyping(currentLine.command!.slice(0, typingIndex + 1));
         setTypingIndex(typingIndex + 1);
       }, 50);
     } else if (currentLine?.command && typingIndex >= currentLine.command.length) {
       // Finished typing, show the line and move to next
-      animationRef.current = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setVisibleLines(visibleLines + 1);
         setCurrentTyping('');
         setTypingIndex(0);
       }, currentLine.delay || 500);
     } else {
       // No command, just show output
-      animationRef.current = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setVisibleLines(visibleLines + 1);
       }, currentLine?.delay || 500);
     }
