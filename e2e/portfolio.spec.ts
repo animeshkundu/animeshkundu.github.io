@@ -42,10 +42,11 @@ test.describe('Portfolio E2E Tests', () => {
     await page.getByRole('link', { name: 'Featured' }).first().click();
     
     // Check that project cards are visible using more specific selectors
-    await expect(page.locator('#projects').getByRole('heading', { name: 'Mermaid Editor' })).toBeVisible();
+    // Featured projects are now: oops, youtube-audio, fix, torrent-dl, pyflix, media-server
     await expect(page.locator('#projects').getByRole('heading', { name: 'Oops' })).toBeVisible();
-    await expect(page.locator('#projects').getByRole('heading', { name: 'PDF Viewer & Editor' })).toBeVisible();
     await expect(page.locator('#projects').getByRole('heading', { name: 'YouTube Audio' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'Fix' })).toBeVisible();
+    await expect(page.locator('#projects').getByRole('heading', { name: 'Torrent DL' })).toBeVisible();
     
     // Check Source links are present
     const sourceLinks = page.getByRole('link', { name: /Source/i });
@@ -59,9 +60,10 @@ test.describe('Portfolio E2E Tests', () => {
     // Check section header
     await expect(page.getByText('Try before you clone')).toBeVisible();
     
-    // Check demo tabs
+    // Check demo tabs - now includes html5_game
     await expect(page.getByRole('button', { name: 'Mermaid Editor' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'PDF Editor' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Flood Fill Game' })).toBeVisible();
     
     // Click different demo tab
     await page.getByRole('button', { name: 'SAZ Viewer' }).click();

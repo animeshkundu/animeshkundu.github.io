@@ -182,8 +182,9 @@ describe('github utilities', () => {
       expect(getRepositoryDemoUrl(mockRepos[1], 'testuser')).toBe('https://repo-two.example.com');
     });
 
-    it('falls back to GitHub Pages when homepage is empty and has_pages is true', () => {
-      expect(getRepositoryDemoUrl(mockRepos[2], 'testuser')).toBe('https://testuser.github.io/alpha-repo');
+    it('falls back to custom domain when homepage is empty and has_pages is true', () => {
+      // Note: Demo URLs now use the custom domain animesh.kundu.in
+      expect(getRepositoryDemoUrl(mockRepos[2], 'testuser')).toBe('https://animesh.kundu.in/alpha-repo');
     });
 
     it('returns null when homepage is empty and has_pages is false', () => {

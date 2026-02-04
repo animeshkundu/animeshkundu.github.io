@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, GitFork, ArrowUpRight } from 'lucide-react';
 import { FEATURED_PROJECTS } from '../lib/constants';
 import { getLanguageColor } from '../lib/github';
-import { OopsTerminalAnimation, YouTubeAudioPreview } from './ProjectPreviews';
+import { OopsTerminalAnimation, YouTubeAudioPreview, FixTerminalAnimation, TorrentStreamPreview, MediaServerPreview } from './ProjectPreviews';
 
 const container = {
   hidden: { opacity: 0 },
@@ -26,6 +26,13 @@ function getProjectPreview(projectId: string) {
       return <OopsTerminalAnimation />;
     case 'youtube-audio':
       return <YouTubeAudioPreview />;
+    case 'fix':
+      return <FixTerminalAnimation />;
+    case 'torrent-dl':
+    case 'pyflix':
+      return <TorrentStreamPreview />;
+    case 'media-server':
+      return <MediaServerPreview />;
     default:
       return null;
   }
@@ -65,7 +72,6 @@ export function FeaturedProjects() {
         >
           {featuredProjects.map((project, index) => {
             const preview = getProjectPreview(project.id);
-            const hasDemo = !!project.demoUrl;
             
             return (
               <motion.article
@@ -75,8 +81,8 @@ export function FeaturedProjects() {
                   index === 0 ? 'lg:row-span-2' : ''
                 }`}
               >
-                {/* Preview Animation for non-demo projects */}
-                {preview && !hasDemo && (
+                {/* Preview Animation for all featured projects */}
+                {preview && (
                   <div className="mb-5">
                     {preview}
                   </div>
