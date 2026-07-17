@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Star, GitFork, ArrowRight } from 'lucide-react';
@@ -154,6 +155,8 @@ function CategorySection({
 }
 
 export function ProjectsIndex() {
+  const [selected, setSelected] = useState<ProjectData['category'] | 'all'>('all');
+
   // Group projects by category
   const categories: ProjectData['category'][] = [
     'web-tools',
@@ -168,6 +171,11 @@ export function ProjectsIndex() {
     acc[category] = ALL_PROJECTS.filter(p => p.category === category);
     return acc;
   }, {} as Record<ProjectData['category'], ProjectData[]>);
+
+  const filterCategories: Array<ProjectData['category'] | 'all'> = [
+    'all',
+    ...categories.filter((category) => projectsByCategory[category].length > 0),
+  ];
 
   const totalProjects = ALL_PROJECTS.length;
   const totalStars = ALL_PROJECTS.reduce((sum, p) => sum + p.stars, 0);
@@ -227,13 +235,37 @@ export function ProjectsIndex() {
         {/* Projects by Category */}
         <section className="py-12 lg:py-16">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-            {categories.map((category) => (
-              <CategorySection
-                key={category}
-                category={category}
-                projects={projectsByCategory[category]}
-              />
-            ))}
+            <div className="flex flex-wrap gap-2 mb-10">
+              {filterCategories.map((category) => {
+                const isSelected = selected === category;
+
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => setSelected(category)}
+                    className={`min-h-11 px-4 py-2 border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 dark:focus-visible:ring-[#f0927a] dark:focus-visible:ring-offset-dark-bg-base ${
+                      isSelected
+                        ? 'bg-primary-600 border-primary-600 text-white dark:bg-[#f0927a] dark:border-[#f0927a] dark:text-[#1a1814]'
+                        : 'bg-white border-[#1a1814]/10 text-[#1a1814]/60 hover:border-[#1a1814]/25 hover:text-[#1a1814] dark:bg-dark-bg-surface dark:border-[#3a3a3a] dark:text-[#a0a0a0] dark:hover:border-[#4a4a4a] dark:hover:text-[#e8e6e3]'
+                    }`}
+                  >
+                    {category === 'all' ? 'All' : CATEGORY_LABELS[category]}
+                  </button>
+                );
+              })}
+            </div>
+
+            {categories.map((category) =>
+              selected === 'all' || selected === category ? (
+                <CategorySection
+                  key={category}
+                  category={category}
+                  projects={projectsByCategory[category]}
+                />
+              ) : null
+            )}
           </div>
         </section>
       </main>
