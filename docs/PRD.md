@@ -39,6 +39,7 @@ Developers need a professional online presence to showcase their work, demonstra
   - Include live demo links where applicable
   - Display GitHub stars count
   - Support for project categorization (Web Tools, Libraries, Extensions)
+  - Provide accessible category filter controls on the All Projects catalog
 
 ### 3. Live Demos
 - **Description:** Interactive embedded demos of web tools
