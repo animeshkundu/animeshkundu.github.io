@@ -149,7 +149,7 @@ export function getRepositoryDemoUrl(repo: Repository, _username: string): strin
   if (repo.homepage) {
     const trimmed = repo.homepage.trim();
     if (trimmed) {
-      return trimmed.startsWith('http') ? trimmed : `https://${trimmed}`;
+      return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
     }
   }
 
