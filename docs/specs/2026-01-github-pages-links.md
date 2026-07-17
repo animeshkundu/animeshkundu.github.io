@@ -51,6 +51,7 @@ export function getRepositoryDemoUrl(repo: Repository, username: string): string
 ### Error Handling
 - If demo URL is missing, omit the Demo link.
 - If homepage lacks protocol, prepend `https://`.
+- Detect an existing protocol by an `http://` or `https://` URL-scheme prefix, not by the literal letters `http`.
 
 ## Security Considerations
 - Only render user-provided URLs with `rel="noopener noreferrer"` (already in use).
