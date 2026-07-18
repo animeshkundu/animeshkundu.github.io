@@ -158,19 +158,30 @@ Using Tailwind's default spacing scale based on 4px grid:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│                     Hi, I'm Animesh 👋                      │
+│                  180+ stars on GitHub                       │
 │                                                             │
-│              Developer & Open Source Creator                │
+│                  I build tools that                         │
+│                    developers love                           │
 │                                                             │
-│    I build tools that make developers' lives easier.        │
-│    Check out my projects below or say hello!                │
+│    Full-stack developer crafting privacy-first web          │
+│    applications and developer tools that run in-browser.    │
 │                                                             │
-│       ┌─────────────┐    ┌─────────────┐                   │
-│       │ View Work   │    │  Contact    │                   │
-│       └─────────────┘    └─────────────┘                   │
+│   ┌──────────────────┐    ┌──────────────────┐              │
+│   │ Explore Projects │    │  Try Live Demos  │              │
+│   └──────────────────┘    └──────────────────┘              │
 │                                                             │
+│   TypeScript & React   Privacy-first   High performance      │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+**Hero Specifications:**
+- First section in the homepage main content
+- Minimum height of one viewport
+- Single responsive level-one headline
+- Concise introduction with a readable maximum line length
+- Primary CTA links to `#projects`; secondary CTA links to `#demos`
+- Subtle texture, accent glow, and entrance motion support visual prominence
+- Accessible name and description derived from visible hero content
 
 ## Animation Guidelines
 

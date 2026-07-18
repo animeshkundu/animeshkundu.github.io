@@ -4,12 +4,23 @@ import { STATS } from '../lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-[#faf8f5] dark:bg-dark-bg-base">
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      aria-describedby="hero-introduction"
+      className="relative isolate min-h-screen overflow-hidden flex items-center bg-[#faf8f5] dark:bg-dark-bg-base"
+    >
       {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" 
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
         style={{ 
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }} 
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -right-24 top-24 h-72 w-72 rounded-full bg-primary-400/10 blur-3xl dark:bg-accent-500/10 sm:h-96 sm:w-96"
       />
 
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-24 lg:py-32 relative z-10">
@@ -27,6 +38,7 @@ export function Hero() {
 
           {/* Main heading - editorial style */}
           <motion.h1
+            id="hero-heading"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -39,13 +51,14 @@ export function Hero() {
 
           {/* Subtitle */}
           <motion.p
+            id="hero-introduction"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-[#1a1814]/60 dark:text-dark-text-secondary max-w-xl mb-10 leading-relaxed"
           >
-            Full-stack developer crafting privacy-first web applications. 
-            From diagram editors to network analyzers, all running entirely in your browser.
+            Full-stack developer crafting privacy-first web applications and developer
+            tools that run entirely in your browser.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -88,7 +101,10 @@ export function Hero() {
       </div>
 
       {/* Side accent - geometric element */}
-      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-48 bg-gradient-to-b from-primary-400 to-accent-500" />
+      <div
+        aria-hidden="true"
+        className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-48 bg-gradient-to-b from-primary-400 to-accent-500"
+      />
     </section>
   );
 }
