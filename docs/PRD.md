@@ -4,7 +4,7 @@
 
 **Product Name:** Animesh Kundu Developer Portfolio  
 **Version:** 1.0.0  
-**Last Updated:** December 2024
+**Last Updated:** July 2026
 
 ### Vision Statement
 
@@ -26,10 +26,12 @@ Developers need a professional online presence to showcase their work, demonstra
 ### 1. Hero Section
 - **Description:** Eye-catching introduction with professional branding
 - **Requirements:**
-  - Display name and professional title
-  - Brief tagline summarizing expertise
-  - Call-to-action buttons for key actions
+  - Render as the first section in the homepage main content
+  - Display one clear level-one headline and a concise professional introduction
+  - Provide prominent calls to action for featured projects and live demos
+  - Include supporting proof points without competing with the primary message
   - Smooth entrance animations
+  - Preserve accessible semantics and reduced-motion support
 
 ### 2. Featured Projects
 - **Description:** Highlight showcase of top open source projects

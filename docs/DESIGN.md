@@ -156,21 +156,31 @@ Using Tailwind's default spacing scale based on 4px grid:
 ### Hero Section
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│                     Hi, I'm Animesh 👋                      │
-│                                                             │
-│              Developer & Open Source Creator                │
-│                                                             │
-│    I build tools that make developers' lives easier.        │
-│    Check out my projects below or say hello!                │
-│                                                             │
-│       ┌─────────────┐    ┌─────────────┐                   │
-│       │ View Work   │    │  Contact    │                   │
-│       └─────────────┘    └─────────────┘                   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  220+ stars on GitHub                                            │
+│                                                                  │
+│  I build tools that                 ┌──────────────────────────┐  │
+│  developers love                    │ Browser-first software   │  │
+│                                     │ Privacy / Speed / Craft  │  │
+│  Full-stack developer crafting      └──────────────────────────┘  │
+│  privacy-first web applications.                                  │
+│                                                                  │
+│  ┌──────────────────┐  ┌──────────────────┐                      │
+│  │ Explore Projects │  │ Try Live Demos   │                      │
+│  └──────────────────┘  └──────────────────┘                      │
+│                                                                  │
+│  TypeScript & React  /  Privacy-first  /  High performance       │
+└──────────────────────────────────────────────────────────────────┘
 ```
+
+**Hero Specifications:**
+- First section in the homepage main content, filling the initial viewport
+- One editorial level-one heading with a restrained accent treatment
+- Concise introduction constrained to a readable line length
+- Primary project CTA and secondary demo CTA with minimum 44px touch targets
+- Responsive split layout on large screens and single-column flow on smaller screens
+- Supporting capability panel and proof points remain subordinate to the headline
+- Semantic region labeling; decorative textures and accents are hidden from assistive technology
 
 ## Animation Guidelines
 
