@@ -34,43 +34,43 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-white dark:bg-dark-bg-alt">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="max-w-2xl">
-          {/* Section Header */}
+    <section id="faq" className="section-space bg-[#fffdfa] dark:bg-[#151412]">
+      <div className="section-wrap">
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
           >
-            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-dark-primary mb-3 block">
-              FAQ
-            </span>
-            <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3]">
+            <span className="eyebrow mb-4">FAQ</span>
+            <h2 className="section-title text-[#1a1814] dark:text-[#f2efea]">
               Common questions
             </h2>
+            <p className="section-subtitle mt-6 max-w-sm">
+              A few details about the tools, the process, and how to get involved.
+            </p>
           </motion.div>
 
-          {/* FAQ Items */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="divide-y divide-[#1a1814]/8 dark:divide-[#faf8f5]/8"
+            className="divide-y divide-[#1a1814]/[0.08] border-y border-[#1a1814]/[0.08] dark:divide-white/[0.08] dark:border-white/[0.08]"
           >
             {faqs.map((faq, index) => (
-              <div key={index} className="py-5">
+              <div key={index}>
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full flex items-start justify-between gap-4 text-left group"
+                  className="group flex min-h-16 w-full items-center justify-between gap-4 py-5 text-left"
                   aria-expanded={openIndex === index}
+                  aria-controls={`faq-panel-${index}`}
+                  id={`faq-trigger-${index}`}
                 >
-                  <h3 className="text-base font-medium text-[#1a1814] dark:text-[#e8e6e3] group-hover:text-primary-600 dark:group-hover:text-[#f0927a] transition-colors">
+                  <h3 className="text-base font-medium tracking-[-0.015em] text-[#1a1814] transition-colors group-hover:text-primary-700 dark:text-[#f2efea] dark:group-hover:text-[#ef8b70] sm:text-lg">
                     {faq.question}
                   </h3>
-                  <span className="flex-shrink-0 mt-0.5">
+                  <span className="flex size-9 flex-shrink-0 items-center justify-center rounded-full border border-[#1a1814]/[0.08] bg-[#f6f3ee] dark:border-white/[0.08] dark:bg-white/[0.04]">
                     {openIndex === index ? (
                       <Minus className="w-4 h-4 text-primary-600 dark:text-dark-primary" />
                     ) : (
@@ -86,8 +86,12 @@ export function FAQ() {
                   }}
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-hidden={openIndex !== index}
+                  aria-labelledby={`faq-trigger-${index}`}
                 >
-                  <p className="pt-3 text-sm text-[#1a1814]/60 dark:text-[#b8b6b3] leading-relaxed">
+                  <p className="max-w-2xl pb-6 pr-12 text-base leading-relaxed text-[#6f6a62] dark:text-[#b7b1a9]">
                     {faq.answer}
                   </p>
                 </motion.div>

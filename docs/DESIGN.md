@@ -2,14 +2,16 @@
 
 ## Design Philosophy
 
-This portfolio follows a **minimal, modern, and functional** design philosophy. The focus is on content—letting the projects speak for themselves while providing a polished, professional presentation.
+This portfolio follows a **calm, tactile, and product-focused** design philosophy. The interface uses editorial scale, generous negative space, quiet material depth, and precise interaction feedback so the projects remain the focus.
 
 ### Core Principles
 
 1. **Clarity Over Decoration** - Every element serves a purpose
-2. **Content First** - Design supports the content, not the other way around
-3. **Progressive Disclosure** - Show essential info first, details on demand
-4. **Consistent Experience** - Same feel across all devices and themes
+2. **Material Restraint** - Depth comes from subtle surfaces, hairlines, and light
+3. **Content First** - Design supports the work rather than competing with it
+4. **Progressive Disclosure** - Show essential information first and details on demand
+5. **Inclusive by Default** - Contrast, focus, touch targets, and reduced motion are foundational
+6. **Consistent Experience** - The same hierarchy works across devices and themes
 
 ## Design System
 
@@ -17,40 +19,41 @@ This portfolio follows a **minimal, modern, and functional** design philosophy. 
 
 #### Light Theme
 ```css
---background:       #ffffff    /* Pure white */
---foreground:       #0f172a    /* Slate 900 */
---muted:            #f1f5f9    /* Slate 100 */
---muted-foreground: #64748b    /* Slate 500 */
---accent:           #3b82f6    /* Blue 500 */
---accent-hover:     #2563eb    /* Blue 600 */
+--background:       #f6f3ee    /* Warm canvas */
+--surface:          #fffdfa    /* Elevated surface */
+--foreground:       #1a1814    /* Warm ink */
+--muted-foreground: #6f6a62    /* Secondary ink */
+--primary:          #c84f32    /* Terracotta action */
+--accent:           #0f766e    /* Privacy/status teal */
+--border:           #ded8cf    /* Hairline */
 ```
 
 #### Dark Theme
 ```css
---background:       #0f172a    /* Slate 900 */
---foreground:       #f8fafc    /* Slate 50 */
---muted:            #1e293b    /* Slate 800 */
---muted-foreground: #94a3b8    /* Slate 400 */
---accent:           #60a5fa    /* Blue 400 */
---accent-hover:     #3b82f6    /* Blue 500 */
+--background:       #11100f    /* Near-black canvas */
+--surface:          #1b1a18    /* Graphite surface */
+--foreground:       #f2efea    /* Warm white */
+--muted-foreground: #b7b1a9    /* Secondary warm gray */
+--primary:          #ef8b70    /* Light terracotta */
+--accent:           #5eead4    /* Privacy/status teal */
+--border:           #393633    /* Hairline */
 ```
 
 ### Typography
 
 #### Font Stack
 ```css
-font-family: system-ui, -apple-system, BlinkMacSystemFont, 
-             'Segoe UI', Roboto, 'Helvetica Neue', 
-             Arial, sans-serif;
+font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+             'Segoe UI', sans-serif;
 ```
 
 #### Type Scale
 | Level | Size | Weight | Line Height | Usage |
 |-------|------|--------|-------------|-------|
-| H1 | 3rem (48px) | 700 | 1.2 | Hero title |
-| H2 | 2.25rem (36px) | 600 | 1.3 | Section headers |
-| H3 | 1.5rem (24px) | 600 | 1.4 | Card titles |
-| Body | 1rem (16px) | 400 | 1.6 | Paragraphs |
+| H1 | clamp(3rem, 8vw, 7.5rem) | 600 | 0.94 | Hero statement |
+| H2 | clamp(2.25rem, 5vw, 4.75rem) | 600 | 1.0 | Section headers |
+| H3 | 1.5rem–2rem | 600 | 1.2 | Card titles |
+| Body | 1rem–1.25rem | 400 | 1.65 | Paragraphs |
 | Small | 0.875rem (14px) | 400 | 1.5 | Captions, meta |
 
 ### Spacing
@@ -62,27 +65,27 @@ Using Tailwind's default spacing scale based on 4px grid:
 | 1 | 4px | Tight spacing |
 | 2 | 8px | Related elements |
 | 4 | 16px | Standard gap |
-| 6 | 24px | Section padding |
+| 6 | 24px | Mobile gutters |
 | 8 | 32px | Component spacing |
-| 12 | 48px | Section margins |
-| 16 | 64px | Large sections |
+| 12 | 48px | Card padding |
+| 24 | 96px | Mobile section rhythm |
+| 32 | 128px | Desktop section rhythm |
 
 ### Border Radius
 
 ```css
---radius-sm:  0.25rem  /* 4px - buttons, inputs */
---radius-md:  0.5rem   /* 8px - cards */
---radius-lg:  1rem     /* 16px - containers */
+--radius-sm:  0.75rem  /* 12px - compact controls */
+--radius-md:  1.25rem  /* 20px - inputs and compact cards */
+--radius-lg:  2rem     /* 32px - feature surfaces */
 --radius-full: 9999px  /* circular */
 ```
 
 ### Shadows
 
 ```css
---shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.05);
---shadow-md:  0 4px 6px -1px rgba(0, 0, 0, 0.1);
---shadow-lg:  0 10px 15px -3px rgba(0, 0, 0, 0.1);
---shadow-xl:  0 20px 25px -5px rgba(0, 0, 0, 0.1);
+--shadow-sm:  0 1px 2px rgba(26, 24, 20, 0.04);
+--shadow-md:  0 18px 50px -30px rgba(26, 24, 20, 0.28);
+--shadow-lg:  0 32px 90px -42px rgba(26, 24, 20, 0.32);
 ```
 
 ## Component Design
@@ -92,9 +95,9 @@ Using Tailwind's default spacing scale based on 4px grid:
 #### Primary Button
 ```
 ┌─────────────────────────┐
-│   View Projects  →      │  Blue background, white text
+│   Explore Projects  →   │  Terracotta background, white text
 └─────────────────────────┘
-- Rounded corners (8px)
+- Pill-shaped control
 - Hover: darken 10%
 - Active: scale 98%
 - Padding: 12px 24px
@@ -132,11 +135,11 @@ Using Tailwind's default spacing scale based on 4px grid:
 ```
 
 **Card Specifications:**
-- Background: muted color
-- Border radius: 12px
-- Padding: 24px
-- Shadow: subtle on hover
-- Transition: 200ms ease
+- Background: elevated semantic surface
+- Border radius: 24–32px
+- Padding: 24–32px
+- Shadow: soft ambient depth on hover
+- Transition: 200ms ease-out
 
 ### Navigation
 
@@ -147,9 +150,9 @@ Using Tailwind's default spacing scale based on 4px grid:
 ```
 
 **Navbar Specifications:**
-- Fixed position (sticky)
-- Backdrop blur effect
-- Height: 64px
+- Fixed floating capsule on desktop, edge-to-edge glass bar on mobile
+- Backdrop blur and low-contrast border
+- Minimum control size: 44px
 - Links: smooth scroll
 - Mobile: hamburger menu
 
@@ -158,15 +161,14 @@ Using Tailwind's default spacing scale based on 4px grid:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
-│                     Hi, I'm Animesh 👋                      │
-│                                                             │
-│              Developer & Open Source Creator                │
-│                                                             │
-│    I build tools that make developers' lives easier.        │
-│    Check out my projects below or say hello!                │
+│    I build tools that          ┌───────────────────────┐     │
+│    developers love             │ Browser-first tools   │     │
+│                                │ Privacy / Speed / OSS  │     │
+│    Privacy-first developer     └───────────────────────┘     │
+│    tools that run locally.                                   │
 │                                                             │
 │       ┌─────────────┐    ┌─────────────┐                   │
-│       │ View Work   │    │  Contact    │                   │
+│       │ Explore Work│    │ Live Demos  │                   │
 │       └─────────────┘    └─────────────┘                   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -269,8 +271,15 @@ All text must meet WCAG 2.1 AA standards:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  * {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
@@ -297,6 +306,8 @@ Using Lucide React icon library for consistency:
 2. Apply saved preference if exists
 3. Toggle updates localStorage
 4. CSS variables switch instantly
+5. Theme controls expose their pressed state and retain tested accessible labels
+6. Motion follows the operating-system reduced-motion preference through `MotionConfig`
 
 ### Theme Toggle
 ```
