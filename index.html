@@ -3,6 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        if (typeof window === 'undefined') return;
+
+        let savedTheme = null;
+        try {
+          if (typeof window.localStorage !== 'undefined') {
+            savedTheme = window.localStorage.getItem('theme');
+          }
+        } catch (error) {
+          console.warn('Unable to read the saved theme preference.', error);
+        }
+
+        const prefersDark =
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark =
+          savedTheme === 'dark' || (savedTheme !== 'light' && prefersDark);
+
+        document.documentElement.classList.toggle('dark', isDark);
+      })();
+    </script>
     
     <!-- Primary Meta Tags -->
     <title>Animesh Kundu - Full-Stack Developer & Open Source Creator</title>
