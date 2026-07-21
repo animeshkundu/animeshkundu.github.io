@@ -293,10 +293,10 @@ Using Lucide React icon library for consistency:
 ## Dark Mode Implementation
 
 ### Toggle Behavior
-1. Check system preference on initial load
-2. Apply saved preference if exists
-3. Toggle updates localStorage
-4. CSS variables switch instantly
+1. Apply a valid saved preference before paint
+2. Fall back to `prefers-color-scheme` when no saved preference exists
+3. Follow system changes until the user explicitly selects a theme
+4. Toggle updates `localStorage` and the root `dark` class instantly
 
 ### Theme Toggle
 ```

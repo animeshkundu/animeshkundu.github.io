@@ -1,40 +1,84 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+const THEME_STORAGE_KEY = 'theme';
+const DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
+
+type ThemePreference = 'dark' | 'light';
+
+interface ThemeState {
+  isDark: boolean;
+  preference: ThemePreference | null;
+}
+
+function readStoredTheme(): ThemePreference | null {
+  if (typeof window === 'undefined') return null;
+
+  try {
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+  } catch (error) {
+    console.warn('Unable to read the saved theme preference.', error);
+    return null;
+  }
+}
+
+function systemPrefersDark(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia(DARK_MODE_QUERY).matches
+  );
+}
+
+function getInitialTheme(): ThemeState {
+  const preference = readStoredTheme();
+  return {
+    isDark: preference ? preference === 'dark' : systemPrefersDark(),
+    preference,
+  };
+}
+
+function saveTheme(preference: ThemePreference): void {
+  try {
+    window.localStorage.setItem(THEME_STORAGE_KEY, preference);
+  } catch (error) {
+    console.warn('Unable to save the theme preference.', error);
+  }
+}
 
 export function useTheme() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      return saved === 'dark';
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+  const [{ isDark, preference }, setTheme] = useState<ThemeState>(getInitialTheme);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    document.documentElement.classList.toggle('dark', isDark);
+    if (preference) {
+      saveTheme(preference);
     }
-  }, [isDark]);
+  }, [isDark, preference]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return;
+
+    const mediaQuery = window.matchMedia(DARK_MODE_QUERY);
     const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem('theme')) {
-        setIsDark(e.matches);
-      }
+      setTheme((current) =>
+        current.preference === null ? { ...current, isDark: e.matches } : current,
+      );
     };
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const toggle = () => setIsDark((prev) => !prev);
+  const toggle = () => {
+    setTheme((current) => {
+      const nextIsDark = !current.isDark;
+      return {
+        isDark: nextIsDark,
+        preference: nextIsDark ? 'dark' : 'light',
+      };
+    });
+  };
 
   return { isDark, toggle };
 }
