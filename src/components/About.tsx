@@ -3,18 +3,15 @@ import { STATS } from '../lib/constants';
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-[#faf8f5] dark:bg-dark-bg-base">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="max-w-4xl">
+    <section id="about" className="section-space bg-[#f6f3ee] dark:bg-[#11100f]">
+      <div className="section-wrap">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-xs font-semibold tracking-widest uppercase text-primary-600 dark:text-[#f0927a] mb-3 block">
-              About
-            </span>
-            <h2 className="section-title text-[#1a1814] dark:text-[#e8e6e3] mb-8">
+            <span className="eyebrow mb-4">About</span>
+            <h2 className="section-title mb-12 max-w-4xl text-[#1a1814] dark:text-[#f2efea] lg:mb-16">
               Crafting tools developers rely on
             </h2>
           </motion.div>
@@ -24,10 +21,9 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="grid lg:grid-cols-3 gap-12 lg:gap-16"
+            className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16"
           >
-            {/* Main content */}
-            <div className="lg:col-span-2 space-y-5 text-[#1a1814]/70 dark:text-dark-text-secondary leading-relaxed">
+            <div className="space-y-6 text-lg leading-relaxed text-[#625d56] dark:text-[#b7b1a9]">
               <p>
                 I build developer productivity tools that work entirely in the browser. 
                 No server uploads, no data collection. Just powerful tools that respect your privacy.
@@ -37,20 +33,19 @@ export function About() {
                 each project solves a real problem I've encountered. The youtube-audio extension alone 
                 helps thousands save bandwidth and battery.
               </p>
-              <p className="text-[#1a1814] dark:text-[#e8e6e3] font-medium">
+              <p className="font-medium text-[#1a1814] dark:text-[#f2efea]">
                 Everything I build is open source.
               </p>
               
-              {/* Technologies */}
-              <div className="pt-6">
-                <p className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mb-3">
+              <div className="pt-4">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#6f6a62] dark:text-[#908a82]">
                   Primary stack
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {['TypeScript', 'React', 'Python', 'Vite', 'Tailwind'].map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-[#1a1814]/4 dark:bg-[#2a2a2a] text-[#1a1814]/70 dark:text-dark-text-secondary text-xs font-medium"
+                      className="rounded-full border border-[#1a1814]/[0.08] bg-white/50 px-3 py-1.5 text-xs font-medium text-[#625d56] dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-[#b7b1a9]"
                     >
                       {tech}
                     </span>
@@ -59,37 +54,35 @@ export function About() {
               </div>
             </div>
 
-            {/* Stats - simple numbers */}
-            <div className="space-y-6">
-              <div>
-                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
+            <div className="grid gap-px overflow-hidden rounded-[2rem] border border-[#1a1814]/[0.08] bg-[#d8d2ca] dark:border-white/[0.08] dark:bg-white/[0.08] sm:grid-cols-3 lg:grid-cols-1">
+              <div className="bg-[#fffdfa] p-6 dark:bg-[#1b1a18] lg:p-8">
+                <div className="text-4xl font-semibold tracking-[-0.04em] text-[#1a1814] tabular-nums dark:text-[#f2efea] lg:text-5xl">
                   {STATS.totalStars}+
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
+                <div className="mt-2 text-sm text-[#6f6a62] dark:text-[#aaa49c]">
                   GitHub stars
                 </div>
               </div>
               
-              <div>
-                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
+              <div className="bg-[#fffdfa] p-6 dark:bg-[#1b1a18] lg:p-8">
+                <div className="text-4xl font-semibold tracking-[-0.04em] text-[#1a1814] tabular-nums dark:text-[#f2efea] lg:text-5xl">
                   {STATS.openSourceProjects}
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
+                <div className="mt-2 text-sm text-[#6f6a62] dark:text-[#aaa49c]">
                   Open source projects
                 </div>
               </div>
               
-              <div>
-                <div className="text-3xl lg:text-4xl font-semibold text-[#1a1814] dark:text-[#e8e6e3] tabular-nums">
+              <div className="bg-[#fffdfa] p-6 dark:bg-[#1b1a18] lg:p-8">
+                <div className="text-4xl font-semibold tracking-[-0.04em] text-[#1a1814] tabular-nums dark:text-[#f2efea] lg:text-5xl">
                   {STATS.yearsCoding}+
                 </div>
-                <div className="text-sm text-[#1a1814]/50 dark:text-[#a0a0a0] mt-1">
+                <div className="mt-2 text-sm text-[#6f6a62] dark:text-[#aaa49c]">
                   Years building software
                 </div>
               </div>
             </div>
           </motion.div>
-        </div>
       </div>
     </section>
   );

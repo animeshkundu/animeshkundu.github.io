@@ -8,47 +8,46 @@ export function Footer() {
   const isHomePage = location.pathname === '/';
 
   return (
-    <footer className="py-12 bg-[#1a1814] dark:bg-[#0a0a0a] text-[#faf8f5]/60 dark:text-dark-text-tertiary">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="max-w-4xl">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
-            <Link to="/" className="text-base font-semibold text-[#faf8f5] dark:text-dark-text-primary">
+    <footer className="border-t border-[#1a1814]/[0.08] bg-[#f6f3ee] py-10 text-[#6f6a62] dark:border-white/[0.08] dark:bg-[#11100f] dark:text-[#aaa49c]">
+      <div className="section-wrap">
+          <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <Link to="/" className="inline-flex min-h-11 items-center text-base font-semibold tracking-[-0.02em] text-[#1a1814] transition-opacity hover:opacity-60 dark:text-[#f2efea]">
               Animesh Kundu
             </Link>
-            <div className="flex items-center gap-6 text-sm">
-              <Link to="/projects" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+            <div className="flex flex-wrap items-center gap-x-5 text-sm">
+              <Link to="/projects" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]">
                 Projects
               </Link>
               {isHomePage ? (
                 <>
-                  <a href="#demos" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                  <a href="#demos" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]">
                     Demos
                   </a>
-                  <a href="#about" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                  <a href="#about" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]">
                     About
                   </a>
-                  <a href="#contact" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                  <a href="#contact" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]">
                     Contact
                   </a>
                 </>
               ) : (
-                <Link to="/" className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors">
+                <Link to="/" className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]">
                   Home
                 </Link>
               )}
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-8 border-t border-[#faf8f5]/10 dark:border-[#2a2a2a]">
+          <div className="flex flex-col gap-4 border-t border-[#1a1814]/[0.08] pt-7 dark:border-white/[0.08] sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm">
               © {currentYear} Animesh Kundu
             </p>
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex flex-wrap items-center gap-x-5 text-sm">
               <a
                 href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors inline-flex items-center gap-2"
+                className="inline-flex min-h-11 min-w-11 items-center gap-2 transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]"
               >
                 <Github className="w-4 h-4" />
                 GitHub
@@ -57,7 +56,7 @@ export function Footer() {
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors"
+                className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]"
               >
                 LinkedIn
               </a>
@@ -65,19 +64,18 @@ export function Footer() {
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors inline-flex items-center gap-2"
+                className="inline-flex min-h-11 min-w-11 items-center gap-2 transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]"
               >
                 <Facebook className="w-4 h-4" />
                 Facebook
               </a>
               <a
                 href={`mailto:${EMAIL}`}
-                className="hover:text-[#faf8f5] dark:hover:text-[#e8e6e3] transition-colors"
+                className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-[#1a1814] dark:hover:text-[#f2efea]"
               >
                 Email
               </a>
             </div>
-          </div>
         </div>
       </div>
     </footer>

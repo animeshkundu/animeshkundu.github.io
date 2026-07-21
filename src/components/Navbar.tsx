@@ -36,38 +36,42 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
-        scrolled
-          ? 'bg-[#faf8f5]/95 dark:bg-[#121212]/95 backdrop-blur-sm border-b border-[#1a1814]/6 dark:border-dark-border/80'
-          : 'bg-transparent'
-      }`}
+      className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
     >
-      <nav className="container mx-auto px-6 sm:px-8 lg:px-12" aria-label="Main navigation">
-        <div className="flex justify-between items-center h-14 lg:h-16">
-          {/* Logo - simple text */}
+      <nav
+        className={`mx-auto max-w-7xl overflow-hidden rounded-[1.35rem] border backdrop-blur-xl transition-all duration-300 ${
+          scrolled || isOpen
+            ? 'border-[#1a1814]/10 bg-[#fffdfa]/[0.92] shadow-[0_18px_50px_-30px_rgba(26,24,20,0.45)] dark:border-white/10 dark:bg-[#171614]/[0.92] dark:shadow-[0_18px_50px_-30px_rgba(0,0,0,0.8)]'
+            : 'border-[#1a1814]/[0.07] bg-[#fffdfa]/75 dark:border-white/[0.07] dark:bg-[#171614]/75'
+        }`}
+        aria-label="Main navigation"
+      >
+        <div className="flex h-14 items-center justify-between px-3 sm:h-16 sm:px-5">
           <Link
             to="/"
-            className="text-base lg:text-lg font-semibold text-[#1a1814] dark:text-[#e8e6e3] tracking-tight"
+            className="inline-flex min-h-11 items-center gap-2.5 rounded-full px-2 text-sm font-semibold tracking-[-0.02em] text-[#1a1814] transition-opacity hover:opacity-65 dark:text-[#f2efea] sm:text-base"
           >
+            <span className="flex size-7 items-center justify-center rounded-full bg-[#1a1814] text-[0.625rem] font-semibold text-[#fffdfa] dark:bg-[#f2efea] dark:text-[#11100f]">
+              AK
+            </span>
             Animesh Kundu
           </Link>
 
-          {/* Desktop Navigation - minimal */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden items-center rounded-full bg-[#1a1814]/[0.035] p-1 dark:bg-white/[0.05] md:flex">
             {isHomePage ? (
               <>
                 {homeNavLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                    className="inline-flex min-h-11 items-center rounded-full px-3 text-xs font-medium text-[#1a1814]/60 transition-colors hover:bg-white/70 hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea] lg:px-4 lg:text-sm"
                   >
                     {link.label}
                   </a>
                 ))}
                 <Link
                   to="/projects"
-                  className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="inline-flex min-h-11 items-center rounded-full px-3 text-xs font-medium text-[#1a1814]/60 transition-colors hover:bg-white/70 hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea] lg:px-4 lg:text-sm"
                 >
                   All Projects
                 </Link>
@@ -76,16 +80,16 @@ export function Navbar() {
               <>
                 <Link
                   to="/"
-                  className="text-sm text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-[#1a1814]/60 transition-colors hover:bg-white/70 hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea]"
                 >
                   Home
                 </Link>
                 <Link
                   to="/projects"
-                  className={`text-sm transition-colors ${
+                  className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium transition-colors ${
                     location.pathname.startsWith('/project')
-                      ? 'text-primary-600 dark:text-[#f0927a]'
-                      : 'text-[#1a1814]/60 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3]'
+                      ? 'bg-white/70 text-primary-700 dark:bg-white/[0.07] dark:text-[#ef8b70]'
+                      : 'text-[#1a1814]/60 hover:bg-white/70 hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea]'
                   }`}
                 >
                   All Projects
@@ -94,13 +98,12 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden items-center gap-1 md:flex">
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="inline-flex size-11 items-center justify-center rounded-full text-[#6f6a62] transition-colors hover:bg-[#1a1814]/[0.05] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea]"
               aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5" />
@@ -109,7 +112,7 @@ export function Navbar() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="hidden size-11 items-center justify-center rounded-full text-[#6f6a62] transition-colors hover:bg-[#1a1814]/[0.05] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea] lg:inline-flex"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5" />
@@ -118,34 +121,36 @@ export function Navbar() {
               href={FACEBOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="hidden size-11 items-center justify-center rounded-full text-[#6f6a62] transition-colors hover:bg-[#1a1814]/[0.05] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07] dark:hover:text-[#f2efea] xl:inline-flex"
               aria-label="Facebook Profile"
             >
               <Facebook className="w-5 h-5" />
             </a>
             <button
               onClick={toggle}
-              className="text-[#1a1814]/50 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+              className="ml-1 inline-flex size-11 items-center justify-center rounded-full border border-[#1a1814]/10 bg-white/60 text-[#1a1814]/60 transition-all hover:border-[#1a1814]/20 hover:text-[#1a1814] dark:border-white/10 dark:bg-white/[0.06] dark:text-[#b7b1a9] dark:hover:border-white/20 dark:hover:text-[#f2efea]"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-pressed={isDark}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex items-center gap-1 md:hidden">
             <button
               onClick={toggle}
-              className="text-[#1a1814]/60 dark:text-dark-text-secondary"
+              className="inline-flex size-11 items-center justify-center rounded-full text-[#1a1814]/60 transition-colors hover:bg-[#1a1814]/[0.05] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07]"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-pressed={isDark}
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#1a1814]/60 dark:text-dark-text-secondary"
+              className="inline-flex size-11 items-center justify-center rounded-full text-[#1a1814]/60 transition-colors hover:bg-[#1a1814]/[0.05] dark:text-[#b7b1a9] dark:hover:bg-white/[0.07]"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -159,19 +164,20 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
+              id="mobile-navigation"
+              className="max-h-[calc(100svh-5.5rem)] overflow-y-auto overscroll-contain md:hidden"
             >
-              <div className="py-4 space-y-1 border-t border-[#1a1814]/6 dark:border-dark-border/80">
+              <div className="space-y-1 border-t border-[#1a1814]/[0.07] px-3 py-3 dark:border-white/[0.07]">
                 <Link
                   to="/"
-                  className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-[#1a1814]/70 transition-colors hover:bg-[#1a1814]/[0.04] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.06] dark:hover:text-[#f2efea]"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   to="/projects"
-                  className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                  className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-[#1a1814]/70 transition-colors hover:bg-[#1a1814]/[0.04] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.06] dark:hover:text-[#f2efea]"
                   onClick={() => setIsOpen(false)}
                 >
                   All Projects
@@ -182,7 +188,7 @@ export function Navbar() {
                       <a
                         key={link.href}
                         href={link.href}
-                        className="block py-2 text-[#1a1814]/70 dark:text-dark-text-secondary hover:text-[#1a1814] dark:hover:text-[#e8e6e3] transition-colors"
+                        className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-[#1a1814]/70 transition-colors hover:bg-[#1a1814]/[0.04] hover:text-[#1a1814] dark:text-[#b7b1a9] dark:hover:bg-white/[0.06] dark:hover:text-[#f2efea]"
                         onClick={() => setIsOpen(false)}
                       >
                         {link.label}
@@ -190,12 +196,12 @@ export function Navbar() {
                     ))}
                   </>
                 )}
-                <div className="flex gap-4 pt-4 border-t border-[#1a1814]/6 dark:border-dark-border/80 mt-4">
+                <div className="mt-3 flex flex-wrap gap-1 border-t border-[#1a1814]/[0.07] pt-3 dark:border-white/[0.07]">
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
+                    className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-[#1a1814]/70 dark:text-[#b7b1a9]"
                   >
                     <Github className="w-4 h-4" />
                     GitHub
@@ -204,7 +210,7 @@ export function Navbar() {
                     href={LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
+                    className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-[#1a1814]/70 dark:text-[#b7b1a9]"
                   >
                     <Linkedin className="w-4 h-4" />
                     LinkedIn
@@ -213,7 +219,7 @@ export function Navbar() {
                     href={FACEBOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#1a1814]/70 dark:text-dark-text-secondary"
+                    className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-[#1a1814]/70 dark:text-[#b7b1a9]"
                   >
                     <Facebook className="w-4 h-4" />
                     Facebook

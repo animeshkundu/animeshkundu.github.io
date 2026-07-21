@@ -1,4 +1,5 @@
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import {
   Navbar,
   Hero,
@@ -20,7 +21,7 @@ const isSubdirectory = rawBasePath !== '';
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-[#faf8f5] dark:bg-dark-bg-base text-[#1a1814] dark:text-dark-text-primary transition-colors duration-300">
+    <div className="page-shell min-h-screen transition-colors duration-300">
       {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
@@ -59,18 +60,14 @@ function AppRoutes() {
 function App() {
   // Use HashRouter for subdirectory deployments (preview builds) to handle GitHub Pages 404 limitation
   // Use BrowserRouter for root deployments (production) for cleaner URLs
-  if (isSubdirectory) {
-    return (
-      <HashRouter>
-        <AppRoutes />
-      </HashRouter>
-    );
-  }
+  const Router = isSubdirectory ? HashRouter : BrowserRouter;
 
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <AppRoutes />
+      </Router>
+    </MotionConfig>
   );
 }
 
