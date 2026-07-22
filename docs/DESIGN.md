@@ -15,24 +15,27 @@ This portfolio follows a **minimal, modern, and functional** design philosophy. 
 
 ### Color Palette
 
+The current interface uses a warm neutral foundation with terracotta for primary
+actions and teal as a restrained secondary accent.
+
 #### Light Theme
 ```css
---background:       #ffffff    /* Pure white */
---foreground:       #0f172a    /* Slate 900 */
---muted:            #f1f5f9    /* Slate 100 */
---muted-foreground: #64748b    /* Slate 500 */
---accent:           #3b82f6    /* Blue 500 */
---accent-hover:     #2563eb    /* Blue 600 */
+--background:       #faf8f5    /* Warm cream */
+--surface:          #ffffff    /* Elevated surface */
+--foreground:       #1a1814    /* Warm ink */
+--muted-foreground: #746f67    /* Warm gray */
+--primary:          #cc4e2d    /* Terracotta */
+--accent:           #10b9a8    /* Teal */
 ```
 
 #### Dark Theme
 ```css
---background:       #0f172a    /* Slate 900 */
---foreground:       #f8fafc    /* Slate 50 */
---muted:            #1e293b    /* Slate 800 */
---muted-foreground: #94a3b8    /* Slate 400 */
---accent:           #60a5fa    /* Blue 400 */
---accent-hover:     #3b82f6    /* Blue 500 */
+--background:       #121212    /* Near black */
+--surface:          #1e1e1e    /* Elevated surface */
+--foreground:       #e8e6e3    /* Warm white */
+--muted-foreground: #b8b6b3    /* Warm gray */
+--primary:          #f0927a    /* Soft terracotta */
+--accent:           #29d6c4    /* Bright teal */
 ```
 
 ### Typography
@@ -47,7 +50,7 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont,
 #### Type Scale
 | Level | Size | Weight | Line Height | Usage |
 |-------|------|--------|-------------|-------|
-| H1 | 3rem (48px) | 700 | 1.2 | Hero title |
+| H1 | clamp(3rem, 7vw, 7rem) | 700 | 0.95 | Hero title |
 | H2 | 2.25rem (36px) | 600 | 1.3 | Section headers |
 | H3 | 1.5rem (24px) | 600 | 1.4 | Card titles |
 | Body | 1rem (16px) | 400 | 1.6 | Paragraphs |
@@ -171,6 +174,19 @@ Using Tailwind's default spacing scale based on 4px grid:
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+On large screens, the hero pairs the editorial introduction with a compact
+proof-of-work panel. The panel is decorative support for the real project
+content below and must not be required to understand the page.
+
+### Featured Project Grid
+
+- Mobile: one column.
+- Tablet: two columns.
+- Desktop: three-column bento grid with selected cards spanning two columns.
+- Card placement may be derived from array position, but all content must come
+  from the shared project constants.
+- Preview media uses a consistent aspect ratio so the grid remains stable.
 
 ## Animation Guidelines
 

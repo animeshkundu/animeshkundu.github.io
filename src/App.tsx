@@ -1,4 +1,5 @@
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import {
   Navbar,
   Hero,
@@ -61,16 +62,20 @@ function App() {
   // Use BrowserRouter for root deployments (production) for cleaner URLs
   if (isSubdirectory) {
     return (
-      <HashRouter>
-        <AppRoutes />
-      </HashRouter>
+      <MotionConfig reducedMotion="user">
+        <HashRouter>
+          <AppRoutes />
+        </HashRouter>
+      </MotionConfig>
     );
   }
 
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <MotionConfig reducedMotion="user">
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </MotionConfig>
   );
 }
 
