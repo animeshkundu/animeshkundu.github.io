@@ -161,7 +161,7 @@ jobs:
                 core.notice('Requested a GitHub Pages build.');
                 return;
               } catch (error) {
-                if (error.status === 403 || error.status === 404) {
+                if ((error.status === 403 || error.status === 404) && attempt === 1) {
                   await ensureBranchSource();
                 }
                 if (attempt === 3) {
