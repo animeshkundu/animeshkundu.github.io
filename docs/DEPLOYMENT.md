@@ -55,7 +55,7 @@ Each branch owns one collision-resistant directory. The workflow combines a boun
 rsync -a --delete dist/ "$WORKTREE/test-$BRANCH_SLUG-$BRANCH_HASH/"
 ```
 
-The production and preview jobs must share a `gh-pages-deploy` concurrency group so worktree writes are serialized. They must use Node.js 24, install all three Playwright engines with `--with-deps`, and run `./scripts/validate.sh`.
+The production and preview jobs must share a `gh-pages-deploy` concurrency group so worktree writes are serialized. They must use Node.js 24, install all three Playwright engines with `--with-deps`, and run `./scripts/validate.sh`. The preview `deploy-preview` job additionally installs the Playwright engines because it re-runs the browser contract against the built preview artifact at its configured `VITE_BASE_PATH` before publishing.
 
 ## Independent same-origin apps
 
