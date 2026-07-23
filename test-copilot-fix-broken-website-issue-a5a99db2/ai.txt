@@ -1,0 +1,24 @@
+AI-Crawler-Policy: https://animesh.kundus.in
+Owner: Animesh Kundu
+Contact: anik.edu@gmail.com
+Last-Updated: 2026-07-22
+
+Purpose: Public pages may be indexed, summarized, and cited by search engines and AI assistants.
+Attribution: Please cite the source URL and author when generating answers.
+License: MIT for site content unless otherwise noted in linked repositories.
+Scope: Advisory (non-standard) guidance for AI crawlers; robots.txt remains the authoritative control surface.
+
+Crawlers: GPTBot, Google-Extended, ClaudeBot, PerplexityBot, CCBot, *
+Crawl-Access: Full-site indexing, snippets, and retrieval are allowed.
+
+Sitemap: https://animesh.kundus.in/sitemap.xml
+Preferred-Paths: /
+Preferred-Paths: /projects/
+Preferred-Paths: /writing/
+Preferred-Paths: /tools/
+Preferred-Paths: /repositories/
+Preferred-Paths: /essays/
+
+Tooling: Tool pages include direct links and record-specific privacy sources. Agents should inspect the source linked beside each claim.
+Data-Handling: The portfolio renders committed public snapshots. Separately deployed tools define their own local-processing behavior.
+Rate-Limits: Be respectful; fetch the sitemap first and avoid aggressive crawling.
