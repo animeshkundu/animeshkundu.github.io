@@ -1,190 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->
   <url>
     <loc>https://animesh.kundus.in/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/projects</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Web Tools Project Pages -->
-  <url>
-    <loc>https://animesh.kundus.in/project/mermaid-editor</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/projects/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/har-viewer</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/writing/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/saz-viewer</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/tools/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/gist-preview</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/repositories/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/pdf-viewer</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Browser Extensions -->
-  <url>
-    <loc>https://animesh.kundus.in/project/youtube-audio</loc>
-    <lastmod>2025-09-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- CLI Tools -->
-  <url>
-    <loc>https://animesh.kundus.in/project/oops</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/contact/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/fix</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Python Utilities -->
-  <url>
-    <loc>https://animesh.kundus.in/project/torrent-dl</loc>
-    <lastmod>2026-01-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://animesh.kundus.in/project/youtube-audio/</loc>
+    <lastmod>2026-07-18</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/pyflix</loc>
-    <lastmod>2025-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://animesh.kundus.in/project/fix/</loc>
+    <lastmod>2026-02-09</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/pyscrape</loc>
+    <loc>https://animesh.kundus.in/project/oops/</loc>
+    <lastmod>2026-02-07</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/condukt/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/github-router/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/ai-or-die/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/kusto-mcp/</loc>
+    <lastmod>2026-02-11</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/runnerize/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/mermaid-editor/</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/pdf-viewer/</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/gist-preview/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/har-viewer/</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/saz-viewer/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/sanger-viewer/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/media-tools/</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/file-tools/</loc>
+    <lastmod>2026-07-14</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/photo-tools/</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/torrent-dl/</loc>
+    <lastmod>2026-02-20</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/pyflix/</loc>
+    <lastmod>2026-02-20</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/media-server/</loc>
+    <lastmod>2026-01-26</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/project/pyscrape/</loc>
     <lastmod>2023-06-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/file-dl</loc>
-    <lastmod>2022-11-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://animesh.kundus.in/project/file-dl/</loc>
+    <lastmod>2026-01-26</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/media-server</loc>
-    <lastmod>2022-11-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://animesh.kundus.in/project/yt-flask/</loc>
+    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/yt-flask</loc>
-    <lastmod>2024-03-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://animesh.kundus.in/project/funnel/</loc>
+    <lastmod>2026-01-26</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/msp_scraper_lib</loc>
-    <lastmod>2016-09-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <loc>https://animesh.kundus.in/project/flake/</loc>
+    <lastmod>2026-01-26</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/msp_api</loc>
-    <lastmod>2016-10-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <!-- Other Projects -->
-  <url>
-    <loc>https://animesh.kundus.in/project/funnel</loc>
-    <lastmod>2014-04-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://animesh.kundus.in/project/flake</loc>
-    <lastmod>2019-12-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://animesh.kundus.in/project/ml</loc>
+    <loc>https://animesh.kundus.in/project/ml/</loc>
     <lastmod>2014-04-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/html5_game</loc>
-    <lastmod>2016-10-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://animesh.kundus.in/project/msp_api/</loc>
+    <lastmod>2016-10-12</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/project/collabedit</loc>
-    <lastmod>2017-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <!-- Live Demo Apps (external) -->
-  <url>
-    <loc>https://animesh.kundus.in/mermaid-editor</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://animesh.kundus.in/project/msp_scraper_lib/</loc>
+    <lastmod>2016-09-14</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/gist-preview</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://animesh.kundus.in/project/html5_game/</loc>
+    <lastmod>2026-01-26</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/saz-viewer</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://animesh.kundus.in/ai-or-die/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/har-viewer</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://animesh.kundus.in/essays/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/pdf-viewer</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://animesh.kundus.in/file-tools/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
   <url>
-    <loc>https://animesh.kundus.in/html5_game</loc>
-    <lastmod>2016-10-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://animesh.kundus.in/fix/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/gist-preview/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/github-router/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/har-viewer/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/kusto-mcp/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/media-tools/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/mermaid-editor/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/oops/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/pdf-viewer/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/photo-tools/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/runnerize/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/sanger-viewer/</loc>
+    <lastmod>2026-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://animesh.kundus.in/saz-viewer/</loc>
+    <lastmod>2026-07-22</lastmod>
   </url>
 </urlset>
