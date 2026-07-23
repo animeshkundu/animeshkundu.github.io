@@ -83,6 +83,10 @@ Canonical, Open Graph, and sitemap URLs always use `https://animesh.kundus.in`, 
 
 `VITE_BASE_PATH` controls local links and assets only. Production uses `/`. A branch preview uses `/test-<branch>-<hash>/`, where the hash disambiguates branch names that normalize to the same readable slug. Base-safe route helpers add the preview prefix while canonical helpers never do.
 
+Production, preview, and cleanup workflows update the shared `gh-pages` source branch and then explicitly request a GitHub Pages build. A workflow-authored branch commit does not itself start another workflow, so publication is part of the same deployment contract rather than an assumed side effect. The build request is best effort: it enables the `gh-pages` branch source when the site is reported missing, retries, and treats a persistent failure as a warning because the built bytes are already committed to `gh-pages`.
+
+Preview validation serves the preview artifact at its configured base path and runs the browser contract against those prefixed routes before publishing. The screenshot command follows the same base-path rule so root and preview artifacts can be reviewed with identical route coverage.
+
 ## Durable data contract
 
 Repository and same-origin surface inventories are committed dated snapshots. Optional browser refresh may add information, but it may not remove, replace, or blank published content.

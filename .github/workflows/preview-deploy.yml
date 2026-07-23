@@ -57,6 +57,11 @@ jobs:
           node-version: '24'
           cache: npm
 
+      - name: Configure gh-pages push transport
+        uses: ./.github/actions/setup-pages-push
+        with:
+          deploy-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
       - name: Resolve preview path
         id: branch
         env:
@@ -84,6 +89,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
       - name: Build preview
         run: npm run build
         env:
@@ -94,13 +102,18 @@ jobs:
           npm run check:static
           npm run check:copy
 
+      - name: Test preview base path
+        run: npm run test:e2e
+        env:
+          VITE_BASE_PATH: /${{ steps.branch.outputs.deploy_path }}/
+
       - name: Clean-sync preview directory
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch_name }}
           DEPLOY_PATH: ${{ steps.branch.outputs.deploy_path }}
         run: |
           set -euo pipefail
-          git fetch origin gh-pages:refs/remotes/origin/gh-pages
+          git fetch "$PAGES_PUSH_REMOTE" gh-pages:refs/remotes/origin/gh-pages
           WORKTREE="$(mktemp -d)"
           trap 'git worktree remove --force "$WORKTREE"' EXIT
           git worktree add --detach "$WORKTREE" origin/gh-pages
@@ -113,10 +126,19 @@ jobs:
           git -C "$WORKTREE" add -A -- "$DEPLOY_PATH"
 
           if git -C "$WORKTREE" diff --cached --quiet; then
-            echo "::notice::Preview Pages output is already current."
+            if [ "$PAGES_PUSH_REMOTE" != "origin" ]; then
+              # Content is already on gh-pages, but GitHub only rebuilds Pages
+              # on a new push. Push an empty commit over the deploy key so the
+              # preview reflects the current gh-pages tree.
+              echo "::notice::Preview Pages output unchanged; pushing empty commit to trigger a Pages rebuild."
+              git -C "$WORKTREE" commit --allow-empty -m "Rebuild preview for ${BRANCH_NAME}"
+              git -C "$WORKTREE" push "$PAGES_PUSH_REMOTE" HEAD:gh-pages
+            else
+              echo "::notice::Preview Pages output is already current."
+            fi
           else
             git -C "$WORKTREE" commit -m "Deploy preview for ${BRANCH_NAME}"
-            git -C "$WORKTREE" push origin HEAD:gh-pages
+            git -C "$WORKTREE" push "$PAGES_PUSH_REMOTE" HEAD:gh-pages
           fi
 
       - name: Comment on pull request

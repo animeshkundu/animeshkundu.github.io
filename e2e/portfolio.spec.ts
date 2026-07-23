@@ -2,6 +2,9 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Browser, type Page } from '@playwright/test';
 
 const productionOrigin = 'https://animesh.kundus.in';
+const basePath = `/${(process.env.VITE_BASE_PATH || '/').replace(/^\/|\/$/g, '')}`;
+const localPath = (path: string) =>
+  basePath === '/' ? path : `${basePath}${path}`;
 const toolCount = 6;
 const projects = [
   ['youtube-audio', 'SoftwareApplication'],
@@ -77,7 +80,7 @@ test.describe('static portfolio contract', () => {
     const descriptions = new Set<string>();
 
     for (const { path, project } of routeRecords) {
-      const response = await request.get(path);
+      const response = await request.get(localPath(path));
       expect(response.status(), path).toBe(200);
       const html = await response.text();
 
@@ -176,7 +179,9 @@ test.describe('static portfolio contract', () => {
     });
 
     for (const { path } of routeRecords) {
-      const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const response = await page.goto(localPath(path), {
+        waitUntil: 'domcontentloaded',
+      });
       expect(response?.status(), path).toBe(200);
       await expect(page.locator('main')).toBeVisible();
       await expect(page.locator('main')).toContainText(/\S{20,}/);
@@ -199,13 +204,13 @@ test.describe('static portfolio contract', () => {
       expect(hasHorizontalOverflow, `${path} horizontal overflow`).toBe(false);
     }
 
-    await page.goto('/');
+    await page.goto(localPath('/'));
     const menu = page.locator('.mobile-menu');
     await menu.locator('summary').click();
     await expect(menu).toHaveAttribute('open', '');
     await expect(menu.getByRole('link', { name: 'Work' })).toBeVisible();
 
-    await page.goto('/tools/');
+    await page.goto(localPath('/tools/'));
     await expect(page.getByRole('link', { name: 'Open in a new tab' })).toHaveCount(
       toolCount,
     );
@@ -223,7 +228,7 @@ test.describe('static portfolio contract', () => {
       });
 
       for (const { path } of routeRecords) {
-        await page.goto(path, { waitUntil: 'domcontentloaded' });
+        await page.goto(localPath(path), { waitUntil: 'domcontentloaded' });
         await expect(page.locator('main')).toBeVisible();
         expect(
           await page.evaluate(() =>
@@ -255,7 +260,7 @@ test.describe('static portfolio contract', () => {
     page,
   }) => {
     await blockRemoteSurfaces(page);
-    await page.goto('/');
+    await page.goto(localPath('/'));
     await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
     const focusStyle = await page
@@ -266,20 +271,22 @@ test.describe('static portfolio contract', () => {
       });
     expect(focusStyle).not.toMatch(/^none 0px none$/);
 
-    await page.goto('/tools/');
+    await page.goto(localPath('/tools/'));
     const fallbacks = page.getByRole('link', { name: 'Open in a new tab' });
     await expect(fallbacks).toHaveCount(toolCount);
     await expect(fallbacks.first()).toBeVisible();
 
-    await page.goto('/404.html');
+    await page.goto(localPath('/404.html'));
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
       'This path has no current record.',
     );
 
-    const redirect = await page.request.get('/project/collabedit/');
+    const redirect = await page.request.get(localPath('/project/collabedit/'));
     expect(redirect.status()).toBe(200);
     const redirectHtml = await redirect.text();
-    expect(redirectHtml).toContain('http-equiv="refresh" content="0; url=/projects/"');
+    expect(redirectHtml).toContain(
+      `http-equiv="refresh" content="0; url=${localPath('/projects/')}"`,
+    );
     expect(redirectHtml).toContain(
       '<link rel="canonical" href="https://animesh.kundus.in/projects/">',
     );

@@ -1,0 +1,60 @@
+name: Configure gh-pages push transport
+description: >-
+  Selects an authenticated git transport for pushing to the gh-pages branch.
+  When an SSH deploy key is provided the push is made over SSH so that GitHub
+  Pages rebuilds automatically. Without a key it falls back to the workflow
+  token, which still commits the content but cannot trigger a Pages rebuild.
+
+inputs:
+  deploy-key:
+    description: >-
+      SSH private key registered on the repository as a deploy key with write
+      access. Supply the ACTIONS_DEPLOY_KEY secret here.
+    required: false
+    default: ''
+
+outputs:
+  push-remote:
+    description: Git remote (name or URL) that later steps must push to.
+    value: ${{ steps.select.outputs.push-remote }}
+  triggers-build:
+    description: '"true" when the selected transport triggers a Pages rebuild.'
+    value: ${{ steps.select.outputs.triggers-build }}
+
+runs:
+  using: composite
+  steps:
+    - id: select
+      shell: bash
+      env:
+        DEPLOY_KEY: ${{ inputs.deploy-key }}
+        REPOSITORY: ${{ github.repository }}
+      run: |
+        set -euo pipefail
+
+        # Treat a whitespace-only secret as unset.
+        if [ -n "${DEPLOY_KEY//[[:space:]]/}" ]; then
+          install -m 700 -d "$HOME/.ssh"
+          key_file="$HOME/.ssh/gh_pages_deploy"
+          printf '%s\n' "$DEPLOY_KEY" > "$key_file"
+          chmod 600 "$key_file"
+          ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> "$HOME/.ssh/known_hosts" 2>/dev/null
+
+          push_remote="git@github.com:${REPOSITORY}.git"
+          {
+            echo "GIT_SSH_COMMAND=ssh -i $key_file -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
+            echo "PAGES_PUSH_REMOTE=$push_remote"
+          } >> "$GITHUB_ENV"
+          {
+            echo "push-remote=$push_remote"
+            echo "triggers-build=true"
+          } >> "$GITHUB_OUTPUT"
+          echo "::notice::gh-pages pushes will use the SSH deploy key; GitHub Pages will rebuild automatically."
+        else
+          echo "PAGES_PUSH_REMOTE=origin" >> "$GITHUB_ENV"
+          {
+            echo "push-remote=origin"
+            echo "triggers-build=false"
+          } >> "$GITHUB_OUTPUT"
+          echo "::warning::ACTIONS_DEPLOY_KEY is not set. Output will be committed to gh-pages with the workflow token, but GitHub Pages will NOT rebuild automatically because the default token cannot trigger a Pages build. Add an SSH deploy key to enable publishing - see docs/DEPLOYMENT.md."
+        fi

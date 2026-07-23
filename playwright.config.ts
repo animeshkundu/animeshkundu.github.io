@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const origin = 'http://127.0.0.1:5000';
+const basePath = `/${(process.env.VITE_BASE_PATH || '/').replace(/^\/|\/$/g, '')}`;
+const serverUrl = new URL(basePath === '/' ? '/' : `${basePath}/`, origin).toString();
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -9,7 +13,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['line'], ['html', { open: 'never' }]] : 'line',
   timeout: 300000,
   use: {
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: origin,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -30,7 +34,7 @@ export default defineConfig({
   webServer: {
     command:
       'npm run preview -- --port 5000 --strictPort --host 127.0.0.1',
-    url: 'http://127.0.0.1:5000',
+    url: serverUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
   },

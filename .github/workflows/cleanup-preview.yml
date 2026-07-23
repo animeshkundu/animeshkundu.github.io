@@ -14,18 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.ref_type == 'branch'
     steps:
-      - name: Checkout gh-pages
+      - name: Checkout repository history
         uses: actions/checkout@v7
         with:
-          ref: gh-pages
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Configure gh-pages push transport
+        uses: ./.github/actions/setup-pages-push
         with:
-          node-version: '24'
+          deploy-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 
-      - name: Extract branch name and remove preview
+      - name: Remove preview deployment
         env:
           BRANCH_NAME: ${{ github.event.ref }}
         run: |
@@ -44,13 +43,19 @@ jobs:
           DEPLOY_PATH="test-${SANITIZED_BRANCH}-${BRANCH_HASH}"
           echo "Cleaning up preview deployment at: ${DEPLOY_PATH}"
 
-          if [ -d "${DEPLOY_PATH}" ]; then
-            git config user.name 'github-actions[bot]'
-            git config user.email 'github-actions[bot]@users.noreply.github.com'
-            git rm -r --ignore-unmatch -- "${DEPLOY_PATH}"
-            git commit -m "Clean up preview deployment for deleted branch: ${BRANCH_NAME}"
-            git push origin gh-pages
-            echo "::notice::Removed preview deployment at /${DEPLOY_PATH}/"
-          else
+          git fetch "$PAGES_PUSH_REMOTE" gh-pages:refs/remotes/origin/gh-pages
+          WORKTREE="$(mktemp -d)"
+          trap 'git worktree remove --force "$WORKTREE"' EXIT
+          git worktree add --detach "$WORKTREE" origin/gh-pages
+
+          if [ ! -d "$WORKTREE/$DEPLOY_PATH" ]; then
             echo "::notice::No preview deployment found at /${DEPLOY_PATH}/"
+            exit 0
           fi
+
+          git -C "$WORKTREE" config user.name 'github-actions[bot]'
+          git -C "$WORKTREE" config user.email 'github-actions[bot]@users.noreply.github.com'
+          git -C "$WORKTREE" rm -r --quiet -- "$DEPLOY_PATH"
+          git -C "$WORKTREE" commit -m "Clean up preview deployment for deleted branch: ${BRANCH_NAME}"
+          git -C "$WORKTREE" push "$PAGES_PUSH_REMOTE" HEAD:gh-pages
+          echo "::notice::Removed preview deployment at /${DEPLOY_PATH}/"
