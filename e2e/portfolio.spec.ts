@@ -284,7 +284,9 @@ test.describe('static portfolio contract', () => {
     const redirect = await page.request.get(localPath('/project/collabedit/'));
     expect(redirect.status()).toBe(200);
     const redirectHtml = await redirect.text();
-    expect(redirectHtml).toContain('http-equiv="refresh" content="0; url=/projects/"');
+    expect(redirectHtml).toContain(
+      `http-equiv="refresh" content="0; url=${localPath('/projects/')}"`,
+    );
     expect(redirectHtml).toContain(
       '<link rel="canonical" href="https://animesh.kundus.in/projects/">',
     );
