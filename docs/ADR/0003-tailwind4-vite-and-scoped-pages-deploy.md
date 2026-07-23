@@ -26,11 +26,12 @@ Production deployment clean-syncs `dist/` into the `gh-pages` worktree root usin
 
 The checked-in production, preview, and cleanup workflows implement this decision:
 
-1. All jobs use Node.js 22 and `npm ci --ignore-scripts`.
+1. All jobs use Node.js 24 and `npm ci --ignore-scripts`.
 2. CI installs Chromium, Firefox, and WebKit with their operating-system dependencies before running the multi-browser gate.
 3. Production checks out `gh-pages` into a worktree and runs `rsync -a --delete --exclude '/test-*' --exclude '/.git' dist/ "$WORKTREE/"`.
 4. Preview clean-syncs only `dist/` into its `test-<branch>-<hash>` directory. The readable branch slug is bounded and an eight-character SHA-256 suffix prevents distinct branch names from colliding.
 5. Astro's generated `404.html` is deployed unchanged.
 6. Production, preview, and cleanup writes share the `gh-pages-deploy` concurrency group.
+7. Production artifact upload includes hidden files, and the static contract requires `dist/.nojekyll`, so GitHub Pages serves Astro's `_astro` assets without Jekyll filtering.
 
 Because these files control repository publishing, changes to `.github/workflows/` require human review before merge.
