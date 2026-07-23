@@ -4,7 +4,7 @@ import { expect, test, type Browser, type Page } from '@playwright/test';
 const productionOrigin = 'https://animesh.kundus.in';
 const basePath = `/${(process.env.VITE_BASE_PATH || '/').replace(/^\/|\/$/g, '')}`;
 const localPath = (path: string) =>
-  basePath === '/' ? path : `${basePath}${path.replace(/^\//, '/')}`;
+  basePath === '/' ? path : `${basePath}${path}`;
 const toolCount = 6;
 const projects = [
   ['youtube-audio', 'SoftwareApplication'],
