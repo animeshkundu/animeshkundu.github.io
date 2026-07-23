@@ -1,0 +1,62 @@
+---
+import { essays, essaysAsOf, essaysSourceUrl } from '../../data/essays';
+import { formatDate } from '../../lib/format';
+import { writingSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Writing | Animesh Kundu';
+const description =
+  'Essays by Animesh Kundu on coding agents, AI-native organizations, attention, privacy, systems, cities, health, and everyday technology.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/writing/"
+  jsonLd={writingSchema(essays)}
+  ogType="article"
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">WRITING / CANONICAL ESSAYS</p>
+        <h1>Follow the consequence past the demo.</h1>
+        <p class="page-lede">
+          Notes on agents, organizations, attention, privacy, work, cities, health,
+          and the bargains hidden inside convenient systems.
+        </p>
+      </div>
+      <aside class="page-meta">
+        <dl>
+          <div><dt>Essays</dt><dd>{essays.length}</dd></div>
+          <div><dt>Snapshot</dt><dd>{formatDate(essaysAsOf)}</dd></div>
+          <div><dt>Source</dt><dd><a href={essaysSourceUrl}>RSS</a></dd></div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="essay-index-title">
+    <div class="site-frame">
+      <div class="category-heading">
+        <h2 id="essay-index-title">Essay index</h2>
+        <a href="https://animesh.kundus.in/essays/">Open the essays site</a>
+      </div>
+      <div class="essay-list">
+        {
+          essays.map((essay, index) => (
+            <article class="essay-row">
+              <span class="evidence-index">N-{String(index + 1).padStart(2, '0')}</span>
+              <h2><a href={essay.url}>{essay.title}</a></h2>
+              <p>{essay.summary}</p>
+              <div>
+                <time datetime={essay.publishedAt}>{formatDate(essay.publishedAt)}</time>
+                <p class="source-mark">{essay.category}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

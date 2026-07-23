@@ -1,0 +1,214 @@
+{
+  "asOf": "2026-07-22",
+  "sourceUrl": "https://api.github.com/users/animeshkundu/repos?per_page=100",
+  "count": 23,
+  "surfaces": [
+    {
+      "repository": "ai-or-die",
+      "path": "/ai-or-die/",
+      "url": "https://animesh.kundus.in/ai-or-die/",
+      "description": "Claude, Codex, Gemini, Copilot CLI on the web",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/ai-or-die"
+    },
+    {
+      "repository": "animeshkundu.github.io",
+      "path": "/animeshkundu.github.io/",
+      "url": "https://animesh.kundus.in/animeshkundu.github.io/",
+      "description": "Github hosted website",
+      "featured": false,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/animeshkundu.github.io"
+    },
+    {
+      "repository": "essays",
+      "path": "/essays/",
+      "url": "https://animesh.kundus.in/essays/",
+      "description": "Essays",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/essays"
+    },
+    {
+      "repository": "file-tools",
+      "path": "/file-tools/",
+      "url": "https://animesh.kundus.in/file-tools/",
+      "description": "Private, offline ZIP extraction for Firefox and Chrome, entirely in your browser.",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/file-tools"
+    },
+    {
+      "repository": "fix",
+      "path": "/fix/",
+      "url": "https://animesh.kundus.in/fix/",
+      "description": "CLI to use the command correction model",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/fix"
+    },
+    {
+      "repository": "flake",
+      "path": "/flake/",
+      "url": "https://animesh.kundus.in/flake/",
+      "description": "PHP Micro Framework",
+      "featured": false,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/flake"
+    },
+    {
+      "repository": "funnel",
+      "path": "/funnel/",
+      "url": "https://animesh.kundus.in/funnel/",
+      "description": "Connection Pooling",
+      "featured": false,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/funnel"
+    },
+    {
+      "repository": "gist-preview",
+      "path": "/gist-preview/",
+      "url": "https://animesh.kundus.in/gist-preview/",
+      "description": "Gists Rendered Beautifully",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/gist-preview"
+    },
+    {
+      "repository": "github-router",
+      "path": "/github-router/",
+      "url": "https://animesh.kundus.in/github-router/",
+      "description": "Power Claude Code, Codex CLI, and more with your Copilot subscription.",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/github-router"
+    },
+    {
+      "repository": "har-viewer",
+      "path": "/har-viewer/",
+      "url": "https://animesh.kundus.in/har-viewer/",
+      "description": "Pure client side HAR Viewer",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/har-viewer"
+    },
+    {
+      "repository": "html5_game",
+      "path": "/html5_game/",
+      "url": "https://animesh.kundus.in/html5_game/",
+      "description": "Flood Fill Game",
+      "featured": false,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/html5_game"
+    },
+    {
+      "repository": "kusto-mcp",
+      "path": "/kusto-mcp/",
+      "url": "https://animesh.kundus.in/kusto-mcp/",
+      "description": "Simple Kusto MCP with batteries built in",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/kusto-mcp"
+    },
+    {
+      "repository": "media-tools",
+      "path": "/media-tools/",
+      "url": "https://animesh.kundus.in/media-tools/",
+      "description": "Private, offline audio cutting for Firefox and Chrome, entirely in your browser.",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/media-tools"
+    },
+    {
+      "repository": "mermaid-editor",
+      "path": "/mermaid-editor/",
+      "url": "https://animesh.kundus.in/mermaid-editor/",
+      "description": "Preview, Edit, Share Mermaid Diagrams locally",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/mermaid-editor"
+    },
+    {
+      "repository": "oops",
+      "path": "/oops/",
+      "url": "https://animesh.kundus.in/oops/",
+      "description": "A blazingly fast command-line typo corrector",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/oops"
+    },
+    {
+      "repository": "pdf-viewer",
+      "path": "/pdf-viewer/",
+      "url": "https://animesh.kundus.in/pdf-viewer/",
+      "description": "View, edit pdf's locally on the browser",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/pdf-viewer"
+    },
+    {
+      "repository": "photo-tools",
+      "path": "/photo-tools/",
+      "url": "https://animesh.kundus.in/photo-tools/",
+      "description": "Private offline photo collage tools , nothing is uploaded",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/photo-tools"
+    },
+    {
+      "repository": "pyflix",
+      "path": "/pyflix/",
+      "url": "https://animesh.kundus.in/pyflix/",
+      "description": "Torrent Streaming Library",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/pyflix"
+    },
+    {
+      "repository": "runnerize",
+      "path": "/runnerize/",
+      "url": "https://animesh.kundus.in/runnerize/",
+      "description": "Stateless, on-demand self-hosted GitHub Actions runners for your private repos: a dispatcher mints an ephemeral JIT runner per queued job and runs it in a throwaway rootless container.",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/runnerize"
+    },
+    {
+      "repository": "sanger-viewer",
+      "path": "/sanger-viewer/",
+      "url": "https://animesh.kundus.in/sanger-viewer/",
+      "description": "World-class, high-performance web viewer for Sanger sequencing traces (.ab1/.scf): chromatogram rendering, base calls, quality scores. Client-side, hosted on GitHub Pages.",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/sanger-viewer"
+    },
+    {
+      "repository": "saz-viewer",
+      "path": "/saz-viewer/",
+      "url": "https://animesh.kundus.in/saz-viewer/",
+      "description": "View you SAZ files locally",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/saz-viewer"
+    },
+    {
+      "repository": "torrent-dl",
+      "path": "/torrent-dl/",
+      "url": "https://animesh.kundus.in/torrent-dl/",
+      "description": "Streaming Torrent Client for Python",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/torrent-dl"
+    },
+    {
+      "repository": "youtube-audio",
+      "path": "/youtube-audio/",
+      "url": "https://animesh.kundus.in/youtube-audio/",
+      "description": "Disable videos on youtube and save battery and bandwidth / data",
+      "featured": true,
+      "excluded": false,
+      "sourceUrl": "https://github.com/animeshkundu/youtube-audio"
+    }
+  ]
+}

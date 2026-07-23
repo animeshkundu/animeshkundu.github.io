@@ -21,11 +21,12 @@ Before making any changes, always:
 2. **Understand the Project Structure**
    ```
    src/
-   ├── components/      # React components
-   ├── hooks/           # Custom React hooks
-   ├── lib/             # Utilities and helpers
-   ├── types/           # TypeScript types
-   └── __tests__/       # Unit tests
+   ├── components/      # Shared Astro presentation
+   ├── data/            # Typed records and dated snapshots
+   ├── layouts/         # Static document shell
+   ├── lib/             # Utilities and schema helpers
+   ├── pages/           # Owned routes and endpoints
+   └── __tests__/       # Unit and render tests
    
    e2e/                 # End-to-end tests
    ```
@@ -42,8 +43,8 @@ Before making any changes, always:
 Execute these steps in order:
 
 ```bash
-# 1. Install dependencies (if needed)
-npm install
+# 1. Install the committed dependency graph
+npm ci --ignore-scripts
 
 # 2. Type check
 npm run typecheck
@@ -51,7 +52,7 @@ npm run typecheck
 # 3. Lint
 npm run lint
 
-# 4. Run unit tests
+# 4. Run unit and Astro render tests with enforced coverage
 npm test
 
 # 5. Build
@@ -84,19 +85,20 @@ npm run test:coverage
 ### Unit Tests
 
 - Location: `src/__tests__/`
-- Framework: Vitest + React Testing Library
-- Naming: `[component].test.tsx` or `[module].test.ts`
+- Framework: Vitest + Astro Container API
+- Naming: `[surface].test.ts`
 
 **For every new component or function:**
 ```typescript
-// Example: src/__tests__/NewComponent.test.tsx
-import { render, screen } from '@testing-library/react';
-import { NewComponent } from '../components/NewComponent';
+// Example: src/__tests__/NewComponent.test.ts
+import { experimental_AstroContainer as AstroContainer } from 'astro/container';
+import NewComponent from '../components/NewComponent.astro';
 
 describe('NewComponent', () => {
-  it('renders correctly', () => {
-    render(<NewComponent />);
-    expect(screen.getByRole('...')).toBeInTheDocument();
+  it('renders correctly', async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(NewComponent);
+    expect(html).toContain('Expected content');
   });
 
   // Test edge cases
@@ -160,12 +162,12 @@ For deprecated/removed features:
 - Use interfaces for object shapes
 - Document complex types with JSDoc comments
 
-### React
+### Astro and optional islands
 
-- Use functional components with hooks
-- Keep components focused and small
-- Extract reusable logic into custom hooks
-- Use proper TypeScript props interfaces
+- Render primary content in `.astro` files
+- Keep navigation and fallbacks functional without JavaScript
+- Use React only for progressive enhancement
+- Use explicit TypeScript props interfaces
 
 ### Styling
 
@@ -178,9 +180,9 @@ For deprecated/removed features:
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Components | PascalCase | `FeaturedProjects.tsx` |
-| Hooks | camelCase with `use` prefix | `useGitHubRepos.ts` |
-| Utilities | camelCase | `fetchRepos.ts` |
+| Components | PascalCase | `ProjectCard.astro` |
+| Pages | Route directories | `pages/repositories/index.astro` |
+| Utilities | camelCase | `canonicalUrl.ts` |
 | Types | PascalCase | `Repository` |
 | Files | PascalCase (components), camelCase (others) | - |
 
@@ -189,10 +191,9 @@ For deprecated/removed features:
 ### Adding a New Component
 
 1. Create component in `src/components/`
-2. Export from `src/components/index.ts`
-3. Add unit tests in `src/__tests__/`
-4. Add E2E tests if user-facing
-5. Update documentation if needed
+2. Add a Container API render test in `src/__tests__/`
+3. Add E2E tests if user-facing
+4. Update documentation if needed
 
 ### Adding a New Feature
 
@@ -213,25 +214,23 @@ For deprecated/removed features:
 
 ## Project-Specific Notes
 
-### GitHub API
+### Public snapshots
 
-- Used for fetching repository data
-- Handle rate limits gracefully
-- Implement loading and error states
-- See `src/lib/github.ts` for utilities
+- Refresh repository, surface, and essay snapshots for releases
+- Keep `asOf` and source provenance on changeable values
+- Never replace durable published content with a failed live request
 
 ### Theme System
 
-- Uses `useTheme` hook
+- Uses an inline no-FOUC initializer and a small progressive enhancement
 - Respects system preference
 - Persists user choice
-- See `src/hooks/useTheme.ts`
+- Keeps a readable no-JavaScript default
 
 ### Animations
 
-- Use Framer Motion
 - Respect `prefers-reduced-motion`
-- Keep animations subtle
+- Keep CSS motion subtle and non-essential
 - See DESIGN.md for guidelines
 
 ## Troubleshooting

@@ -1,0 +1,79 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { canonicalUrl, withBase } from '../lib/urls';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd: Record<string, unknown>;
+  ogType?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  jsonLd,
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+const canonical = canonicalUrl(path);
+const socialImage = canonicalUrl('/og-image.png');
+const safeJsonLd = JSON.stringify(jsonLd).split('<').join('\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Animesh Kundu" />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href={canonicalUrl('/sitemap.xml')} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <meta
+      name="google-site-verification"
+      content="SXtJPhRjXkQc6mcu-lDc38K1EK2aBy2d2YuVcRueelw"
+    />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Animesh Kundu public work index" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="theme-color" content="#f3efe6" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      const savedTheme = localStorage.getItem('theme');
+      const dark =
+        savedTheme === 'dark' ||
+        (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (dark) document.documentElement.classList.add('dark');
+    </script>
+    <script is:inline type="application/ld+json" set:html={safeJsonLd}></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <SiteHeader currentPath={path} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

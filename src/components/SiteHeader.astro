@@ -1,0 +1,93 @@
+---
+import { withBase } from '../lib/urls';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const links = [
+  { href: '/', label: 'Index' },
+  { href: '/projects/', label: 'Work' },
+  { href: '/writing/', label: 'Writing' },
+  { href: '/tools/', label: 'Tools' },
+  { href: '/repositories/', label: 'Repositories' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const isCurrent = (href: string) =>
+  href === '/'
+    ? currentPath === '/'
+    : currentPath === href ||
+      currentPath.startsWith(href.replace(/\/$/, '')) ||
+      (href === '/projects/' && currentPath.startsWith('/project/'));
+---
+
+<header class="site-header">
+  <div class="site-frame header-inner">
+    <a class="wordmark" href={withBase('/')} aria-label="Animesh Kundu, home">
+      <span>AK</span>
+      <span class="wordmark-name">Animesh Kundu</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {
+        links.map((link) => (
+          <a
+            href={withBase(link.href)}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+        Theme
+      </button>
+    </nav>
+
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {
+          links.map((link) => (
+            <a
+              href={withBase(link.href)}
+              aria-current={isCurrent(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+          Theme
+        </button>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const controls = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+
+  const updateControls = () => {
+    const dark = document.documentElement.classList.contains('dark');
+    controls.forEach((control) => {
+      control.textContent = dark ? 'Light' : 'Dark';
+      control.setAttribute(
+        'aria-label',
+        dark ? 'Switch to light theme' : 'Switch to dark theme',
+      );
+    });
+  };
+
+  controls.forEach((control) => {
+    control.addEventListener('click', () => {
+      const dark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+      updateControls();
+    });
+  });
+
+  updateControls();
+</script>

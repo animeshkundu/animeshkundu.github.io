@@ -1,0 +1,25 @@
+---
+import { identity } from '../data/identity';
+import { withBase } from '../lib/urls';
+---
+
+<footer class="site-footer">
+  <div class="site-frame footer-grid">
+    <div>
+      <p class="source-mark">PUBLIC RECORD / 2014 TO NOW</p>
+      <p class="footer-name">Animesh Kundu</p>
+      <p class="muted">Built from public source, dated snapshots, and original writing.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href={withBase('/projects/')}>Work</a>
+      <a href={withBase('/writing/')}>Writing</a>
+      <a href={withBase('/tools/')}>Tools</a>
+      <a href={withBase('/contact/')}>Contact</a>
+    </nav>
+    <div class="footer-links">
+      <a href={identity.sameAs[0]} rel="me">GitHub</a>
+      <a href={identity.sameAs[1]} rel="me">LinkedIn</a>
+      <a href={identity.sameAs[2]} rel="me">Hugging Face</a>
+    </div>
+  </div>
+</footer>

@@ -51,8 +51,8 @@ Broad → Specific → Verify
 **Good Queries:**
 - "TypeScript 5.9 strict mode configuration"
 - "Tailwind CSS 4 dark mode best practices 2024"
-- "Vitest coverage configuration React Testing Library"
-- "GitHub Actions Node.js 20 workflow example"
+- "Astro Container API Vitest coverage configuration"
+- "GitHub Actions Node.js 22 workflow example"
 
 **Poor Queries:**
 - "how to code" (too vague)

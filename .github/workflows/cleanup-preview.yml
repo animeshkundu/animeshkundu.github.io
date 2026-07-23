@@ -1,12 +1,13 @@
 name: Cleanup Preview Deployment
 
-on:
-  delete:
-    branches:
-      - '**'
+on: delete
 
 permissions:
   contents: write
+
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
 
 jobs:
   cleanup:
@@ -19,28 +20,36 @@ jobs:
           ref: gh-pages
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Extract branch name and remove preview
+        env:
+          BRANCH_NAME: ${{ github.event.ref }}
         run: |
-          # Get the deleted branch name
-          BRANCH_NAME="${{ github.event.ref }}"
-          
-          # Sanitize branch name for URL (replace slashes and special chars with hyphens)
-          SANITIZED_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g' | tr '[:upper:]' '[:lower:]')
-          
-          # Create the deployment path with test- prefix
-          DEPLOY_PATH="test-${SANITIZED_BRANCH}"
-          
+          set -euo pipefail
+          SANITIZED_BRANCH="$(
+            printf '%s' "$BRANCH_NAME" |
+              sed 's/[^a-zA-Z0-9-]/-/g' |
+              tr '[:upper:]' '[:lower:]' |
+              sed -E 's/-+/-/g; s/^-//; s/-$//' |
+              cut -c1-80
+          )"
+          if [ -z "$SANITIZED_BRANCH" ]; then
+            SANITIZED_BRANCH="branch"
+          fi
+          BRANCH_HASH="$(printf '%s' "$BRANCH_NAME" | sha256sum | cut -c1-8)"
+          DEPLOY_PATH="test-${SANITIZED_BRANCH}-${BRANCH_HASH}"
           echo "Cleaning up preview deployment at: ${DEPLOY_PATH}"
-          
-          # Check if the directory exists
+
           if [ -d "${DEPLOY_PATH}" ]; then
             git config user.name 'github-actions[bot]'
             git config user.email 'github-actions[bot]@users.noreply.github.com'
-            
-            git rm -rf "${DEPLOY_PATH}"
+            git rm -r --ignore-unmatch -- "${DEPLOY_PATH}"
             git commit -m "Clean up preview deployment for deleted branch: ${BRANCH_NAME}"
             git push origin gh-pages
-            
             echo "::notice::Removed preview deployment at /${DEPLOY_PATH}/"
           else
             echo "::notice::No preview deployment found at /${DEPLOY_PATH}/"

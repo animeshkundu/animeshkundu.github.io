@@ -1,0 +1,68 @@
+---
+import type { Tool } from '../data/types';
+
+interface Props {
+  tool: Tool;
+  index: number;
+}
+
+const { tool, index } = Astro.props;
+---
+
+<article class="tool-record" id={tool.slug}>
+  <div class="tool-copy">
+    <p class="source-mark">T-{String(index).padStart(2, '0')} / LIVE SURFACE</p>
+    <h2>{tool.name}</h2>
+    <p>{tool.purpose}</p>
+    <p class="privacy-note">{tool.privacyNote}</p>
+    <div class="tool-actions">
+      <a
+        class="button button-primary"
+        href={tool.fallbackUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open in a new tab
+      </a>
+      <a href={tool.privacyVerifiedSource} rel="noopener noreferrer">Inspect source</a>
+    </div>
+    <p class="embed-status" data-embed-status aria-live="polite">
+      The direct link remains available if the embedded view is blocked or slow.
+    </p>
+  </div>
+  <div class="embed-frame">
+    <iframe
+      src={tool.embedUrl}
+      title={`${tool.name} interactive preview`}
+      loading="lazy"
+      sandbox={tool.sandboxTokens}
+      referrerpolicy={tool.referrerPolicy}
+      data-tool-embed
+      aria-hidden="true"
+      tabindex="-1"
+    ></iframe>
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLIFrameElement>('[data-tool-embed]').forEach((frame) => {
+    const record = frame.closest('.tool-record');
+    const status = record?.querySelector<HTMLElement>('[data-embed-status]');
+    if (!status) return;
+
+    const timer = window.setTimeout(() => {
+      status.textContent =
+        'The embedded view is taking longer than expected. Use the direct link above.';
+      record?.classList.add('embed-slow');
+    }, 8000);
+
+    frame.addEventListener(
+      'load',
+      () => {
+        window.clearTimeout(timer);
+        status.textContent = 'Embedded view loaded. The direct link remains available.';
+      },
+      { once: true },
+    );
+  });
+</script>

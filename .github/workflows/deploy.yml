@@ -7,15 +7,14 @@ on:
     branches: [master, main]
 
 permissions:
-  contents: write
-  pull-requests: read
+  contents: read
 
 concurrency:
-  group: "gh-pages-deploy"
+  group: gh-pages-deploy
   cancel-in-progress: false
 
 jobs:
-  lint-and-test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,103 +23,75 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '22'
+          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      - name: Type check
-        run: npm run typecheck
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
 
-      - name: Lint
-        run: npm run lint
+      - name: Run quality gate
+        run: ./scripts/validate.sh
 
-      - name: Run unit tests
-        run: npm test
-
-  build:
-    needs: lint-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Copy index.html to 404.html for SPA routing
-        run: cp dist/index.html dist/404.html
-
-      - name: Upload artifact for deployment job
+      - name: Upload production build
         uses: actions/upload-artifact@v4
         with:
           name: production-build
-          path: ./dist
+          path: dist/
+          if-no-files-found: error
           retention-days: 1
 
-  e2e-tests:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Install Playwright browsers
-        run: npx playwright install chromium --with-deps
-
-      - name: Run E2E tests
-        run: npm run test:e2e
-
-      - name: Upload test results
+      - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
           path: playwright-report/
+          if-no-files-found: ignore
           retention-days: 7
 
   deploy:
-    needs: [build, e2e-tests]
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    needs: validate
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Download build artifact
+      - name: Checkout repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download production build
         uses: actions/download-artifact@v4
         with:
           name: production-build
-          path: ./dist
+          path: dist/
 
-      - name: Deploy to GitHub Pages (root)
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          keep_files: true
-          force_orphan: false
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy production build from ${{ github.ref }}'
+      - name: Clean-sync portfolio root
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin gh-pages:refs/remotes/origin/gh-pages
+          WORKTREE="$(mktemp -d)"
+          trap 'git worktree remove --force "$WORKTREE"' EXIT
+          git worktree add --detach "$WORKTREE" origin/gh-pages
+
+          rsync -a --delete \
+            --exclude '/test-*' \
+            --exclude '/.git' \
+            dist/ "$WORKTREE/"
+
+          git -C "$WORKTREE" config user.name 'github-actions[bot]'
+          git -C "$WORKTREE" config user.email 'github-actions[bot]@users.noreply.github.com'
+          git -C "$WORKTREE" add -A
+
+          if git -C "$WORKTREE" diff --cached --quiet; then
+            echo "::notice::Production Pages output is already current."
+          else
+            git -C "$WORKTREE" commit -m "Deploy production build from ${COMMIT_SHA}"
+            git -C "$WORKTREE" push origin HEAD:gh-pages
+          fi

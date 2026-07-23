@@ -1,0 +1,128 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { projects } from '../../data/projects';
+import type { Project } from '../../data/types';
+import { formatDate } from '../../lib/format';
+import { projectSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() =>
+  projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const title = `${project.title} | Public project record`;
+const description = `${project.summary} Read the public source, highlights, setup, usage, technology, and dated evidence.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={`/project/${project.slug}/`}
+  jsonLd={projectSchema(project)}
+>
+  <article class="project-detail">
+    <div class="site-frame project-detail-grid">
+      <div class="project-detail-copy">
+        <p class="kicker">{project.category} / {project.schemaType}</p>
+        <h1>{project.title}</h1>
+        <p class="page-lede">{project.summary}</p>
+        <div class="detail-links">
+          <a class="button button-primary" href={project.sourceUrl} rel="noopener noreferrer">
+            Inspect source
+          </a>
+          {project.liveUrl && (
+            <a class="link-arrow" href={project.liveUrl} rel="noopener noreferrer">
+              Open live surface
+            </a>
+          )}
+        </div>
+
+        <section aria-labelledby="about-title">
+          <h2 id="about-title">About</h2>
+          <p>
+            {project.summary} This page keeps the public source, current snapshot,
+            setup path, and related evidence together so the artifact can be judged
+            directly.
+          </p>
+        </section>
+
+        <section aria-labelledby="highlights-title">
+          <h2 id="highlights-title">Highlights</h2>
+          <ul>
+            {project.highlights.map((highlight) => <li>{highlight}</li>)}
+          </ul>
+          {
+            project.metrics.map((metric) => (
+              <p>
+                <strong>{metric.label}: {metric.value}</strong>{' '}
+                <span class="muted">as of {formatDate(metric.asOf)}</span>{' '}
+                <a href={metric.sourceUrl} rel="noopener noreferrer">verify</a>
+              </p>
+            ))
+          }
+        </section>
+
+        {
+          project.creativeWork && (
+            <section aria-labelledby="model-title">
+              <h2 id="model-title">The model behind the command</h2>
+              <p>{project.creativeWork.description}</p>
+              <a href={project.creativeWork.url} rel="me">
+                Inspect {project.creativeWork.name} on Hugging Face
+              </a>
+            </section>
+          )
+        }
+
+        <section aria-labelledby="install-title">
+          <h2 id="install-title">Install</h2>
+          <div class="command-list">
+            {project.install.map((command) => <code>{command}</code>)}
+          </div>
+        </section>
+
+        <section aria-labelledby="usage-title">
+          <h2 id="usage-title">Usage</h2>
+          <p>{project.usage}</p>
+        </section>
+
+        <section aria-labelledby="tech-title">
+          <h2 id="tech-title">Technology</h2>
+          <ul>
+            {project.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </section>
+
+        <section aria-labelledby="links-title">
+          <h2 id="links-title">Links</h2>
+          <div class="detail-links">
+            <a href={project.sourceUrl} rel="noopener noreferrer">GitHub repository</a>
+            {project.liveUrl && (
+              <a href={project.liveUrl} rel="noopener noreferrer">Live surface</a>
+            )}
+            {project.creativeWork && (
+              <a href={project.creativeWork.url} rel="me">Published model</a>
+            )}
+          </div>
+        </section>
+      </div>
+
+      <aside class="detail-facts" aria-label={`${project.title} facts`}>
+        <p class="source-mark">RECORD / {project.slug}</p>
+        <dl>
+          <div><dt>Artifact</dt><dd>{project.schemaType}</dd></div>
+          <div><dt>Category</dt><dd>{project.category}</dd></div>
+          <div><dt>Updated</dt><dd>{formatDate(project.updatedAt)}</dd></div>
+          <div><dt>Source</dt><dd>Public</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

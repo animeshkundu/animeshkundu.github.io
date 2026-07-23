@@ -1,0 +1,41 @@
+---
+import ToolEmbed from '../../components/ToolEmbed.astro';
+import { tools } from '../../data/tools';
+import { toolsSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Browser tools | Animesh Kundu';
+const description =
+  'Try or open browser tools by Animesh Kundu for diagrams, PDFs, GitHub Gists, HAR and SAZ captures, and Sanger sequencing traces.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/tools/"
+  jsonLd={toolsSchema(tools)}
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">TOOLS / FIRST-PARTY PAGES</p>
+        <h1>Useful before you sign in.</h1>
+        <p class="page-lede">
+          Open a file, inspect the result, and keep a direct path to the original
+          tool. Every embed has a static fallback link.
+        </p>
+      </div>
+      <aside class="page-meta">
+        <dl>
+          <div><dt>Tools</dt><dd>{tools.length}</dd></div>
+          <div><dt>Fallbacks</dt><dd>{tools.length}</dd></div>
+          <div><dt>Hosting</dt><dd>GitHub Pages</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <div class="site-frame">
+    {tools.map((tool, index) => <ToolEmbed tool={tool} index={index + 1} />)}
+  </div>
+</BaseLayout>

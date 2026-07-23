@@ -1,0 +1,58 @@
+---
+import { identity } from '../../data/identity';
+import { contactSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Contact | Animesh Kundu';
+const description =
+  'Send Animesh Kundu the product, model, systems, or collaboration context and the part that still feels uncertain.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/contact/"
+  jsonLd={contactSchema}
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">CONTACT / START WITH CONTEXT</p>
+        <h1>Bring the unfinished question.</h1>
+        <p class="page-lede">
+          Good conversations begin with the real constraint: who the work is for,
+          what has already been tried, and which part still resists a clean answer.
+        </p>
+      </div>
+      <aside class="page-meta">
+        <dl>
+          <div><dt>Base</dt><dd>{identity.location}</dd></div>
+          <div><dt>Public work</dt><dd>GitHub</dd></div>
+          <div><dt>Writing</dt><dd>Essays</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="contact-invitation">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">AN OPEN INVITATION</p>
+        <h2 id="contact-invitation">Send the shape of the problem.</h2>
+      </div>
+      <div class="section-content contact-panel">
+        <h2>Product, model, systems, or a difficult seam between them.</h2>
+        <p>
+          Share the context, the evidence you trust, and the decision that needs a
+          sharper frame. A public artifact from this site is a useful place to start.
+        </p>
+        <div class="detail-links">
+          <a class="button button-primary" href={`mailto:${identity.email}`}>Email Animesh</a>
+          <a href={identity.sameAs[0]} rel="me">GitHub</a>
+          <a href={identity.sameAs[1]} rel="me">LinkedIn</a>
+          <a href={identity.sameAs[2]} rel="me">Hugging Face</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

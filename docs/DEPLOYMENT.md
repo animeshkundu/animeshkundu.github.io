@@ -1,177 +1,74 @@
-# Deployment Guide
+# Deployment
 
-This document explains how the website is deployed to GitHub Pages, including both production and preview deployments.
+> The build, validation, preview, and scoped GitHub Pages deployment contract below is implemented in the checked-in workflows. Workflow changes require human review before merge.
 
-## Overview
+## Requirements
 
-The website uses GitHub Pages for hosting with two deployment modes:
+- Node.js 22.12 or newer
+- npm lockfile install
+- GitHub Pages custom domain `animesh.kundus.in`
 
-1. **Production Deployment**: Deploys from `master`/`main` branch to `https://animesh.kundus.in/`
-2. **Preview Deployment**: Deploys feature branches to `https://animesh.kundus.in/test-{branch-name}/`
+## Build modes
 
-## How It Works
+Production:
 
-### Vite Configuration
-
-The `vite.config.ts` uses an environment variable for the base path:
-
-```typescript
-export default defineConfig({
-  base: process.env.VITE_BASE_PATH || '/',
-  // ...
-});
+```bash
+npm ci --ignore-scripts
+npm run build
 ```
 
-- **Production**: `VITE_BASE_PATH` is not set, defaults to `/`
-- **Preview**: `VITE_BASE_PATH` is set to `/test-{branch-name}/`
+Preview:
 
-This ensures all asset paths (CSS, JS, images) are correctly prefixed.
-
-### React Router Configuration
-
-The website uses different routing strategies based on deployment location:
-
-**Production (root path `/`)**: Uses `BrowserRouter` for clean URLs
-```
-https://animesh.kundus.in/projects
-https://animesh.kundus.in/project/youtube-audio
+```bash
+VITE_BASE_PATH=/test-feature-name-a1b2c3d4/ npm run build
 ```
 
-**Preview (subdirectory `/test-{branch}/`)**: Uses `HashRouter` to work around GitHub Pages limitations
-```
-https://animesh.kundus.in/test-branch/#/projects
-https://animesh.kundus.in/test-branch/#/project/youtube-audio
-```
+Astro prefixes local routes and assets with `base`. Canonical, Open Graph, and sitemap URLs remain rooted at `https://animesh.kundus.in`.
 
-```typescript
-// In src/App.tsx
-const rawBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const isSubdirectory = rawBasePath !== '';
+## Local inspection
 
-function App() {
-  // Use HashRouter for subdirectory deployments (preview builds)
-  // Use BrowserRouter for root deployments (production)
-  if (isSubdirectory) {
-    return (
-      <HashRouter>
-        <AppRoutes />
-      </HashRouter>
-    );
-  }
-  return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
-  );
-}
+```bash
+npm run build
+npm run preview -- --port 4173 --strictPort --host 127.0.0.1
 ```
 
-Key points:
-- `import.meta.env.BASE_URL` is set by Vite from `VITE_BASE_PATH`
-- Production uses BrowserRouter for SEO-friendly URLs
-- Preview uses HashRouter because GitHub Pages 404.html only works at repository root
+## Production Pages sync
 
-### Why HashRouter for Previews?
+The production workflow checks out the `gh-pages` branch into a worktree and clean-syncs the build:
 
-GitHub Pages is a static file server. The `404.html` trick (copying `index.html` to `404.html`) only works at the repository root. For subdirectory deployments like `/test-branch/projects`, GitHub Pages will serve the root `404.html`, not the subdirectory's.
-
-HashRouter solves this by putting the route after a `#` symbol, which browsers don't send to the server. The URL `/test-branch/#/projects` always loads `/test-branch/index.html` and React Router handles the routing client-side.
-
-To handle this, we copy `index.html` to `404.html`:
-
-```yaml
-# In preview-deploy.yml (within "Update base path in built files" step)
-cp dist/index.html dist/404.html
-
-# In deploy.yml (separate step)
-- name: Copy index.html to 404.html for SPA routing
-  run: cp dist/index.html dist/404.html
+```bash
+rsync -a --delete \
+  --exclude '/test-*' \
+  --exclude '/.git' \
+  dist/ "$WORKTREE/"
 ```
 
-When GitHub Pages can't find a file, it serves `404.html`, which loads the SPA. React Router then handles the routing on the client side.
+This removes root ghost pages and old hashed assets while preserving branch previews. `public/CNAME` and `public/.nojekyll` are emitted into `dist/` on every build.
 
-## Workflow Files
+## Preview Pages sync
 
-### Production (`deploy.yml`)
+Each branch owns one collision-resistant directory. The workflow combines a bounded readable slug with the first eight characters of the branch name's SHA-256 digest:
 
-Triggered on push to `master` or `main` branch:
+```bash
+rsync -a --delete dist/ "$WORKTREE/test-$BRANCH_SLUG-$BRANCH_HASH/"
+```
 
-1. Lint and type check
-2. Run unit tests
-3. Build the site
-4. Copy `index.html` to `404.html`
-5. Run E2E tests
-6. Deploy to root of `gh-pages` branch
+The production and preview jobs must share a `gh-pages-deploy` concurrency group so worktree writes are serialized. They must use Node.js 22, install all three Playwright engines with `--with-deps`, and run `./scripts/validate.sh`.
 
-### Preview (`preview-deploy.yml`)
+## Independent same-origin apps
 
-Triggered on push to any non-main branch or PRs:
+Paths such as `/essays/`, `/mermaid-editor/`, `/fix/`, and `/github-router/` are deployed from their own repositories. The root portfolio build links to them but does not include or delete their artifacts.
 
-1. Lint and type check
-2. Run unit tests
-3. Extract and sanitize branch name
-4. Build with `VITE_BASE_PATH=/test-{branch-name}/`
-5. Update asset paths in HTML files
-6. Copy `index.html` to `404.html`
-7. Deploy to `test-{branch-name}/` directory on `gh-pages` branch
-8. Comment on PR with preview URL
+## 404 behavior
 
-## Testing a Preview
+`src/pages/404.astro` emits `dist/404.html`. The build does not copy `index.html` to `404.html` and does not rely on SPA fallback routing.
 
-1. Push to any branch (not `master`/`main`)
-2. Wait for CI to complete (~2 minutes)
-3. Visit `https://animesh.kundus.in/test-{branch-name}/`
+## Release checklist
 
-Branch names are sanitized:
-- `feature/dark-mode` becomes `test-feature-dark-mode`
-- `copilot/improve-design` becomes `test-copilot-improve-design`
-
-## Troubleshooting
-
-### Preview shows blank page
-
-1. **Check CI status**: Ensure the Preview Deployment workflow succeeded
-2. **Check browser console**: Look for 404 errors on assets
-3. **Verify base path**: The `VITE_BASE_PATH` must match the deployment directory
-
-### Routes don't work on refresh
-
-1. **Ensure 404.html exists**: Check that `index.html` was copied to `404.html`
-2. **Check basename**: The BrowserRouter `basename` must match the subpath
-
-### Assets not loading
-
-1. **Check Vite base config**: `base` in `vite.config.ts` must use `VITE_BASE_PATH`
-2. **Check HTML updates**: Asset paths in HTML should be prefixed with the deploy path
-
-## Architecture Decisions
-
-### Why BrowserRouter instead of HashRouter?
-
-- **Clean URLs**: `/project/youtube-audio` vs `/#/project/youtube-audio`
-- **Better SEO**: Search engines prefer path-based URLs
-- **Standard practice**: Most modern SPAs use BrowserRouter
-
-### Why copy to 404.html?
-
-GitHub Pages serves `404.html` for unknown paths. By making it identical to `index.html`, we let the SPA handle routing while still supporting direct URL access and page refreshes.
-
-### Why use environment variables for base path?
-
-- **Single codebase**: Same code works for root and subpath deployments
-- **Build-time configuration**: No runtime detection needed
-- **Vite integration**: Works seamlessly with Vite's built-in base path handling
-
-### Why use shared concurrency group?
-
-Both `deploy.yml` and `preview-deploy.yml` use the same concurrency group `"gh-pages-deploy"` with `cancel-in-progress: false`. This means:
-
-- Workflows queue and run sequentially (never cancel each other)
-- Prevents concurrent writes to the `gh-pages` branch
-- Safe for GitHub Pages which could have issues with concurrent deployments
-
-## Related Documentation
-
-- [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [React Router Deployment Guide](https://reactrouter.com/en/main/guides/deployment)
-- [Vite Static Deploy Guide](https://vitejs.dev/guide/static-deploy.html)
+1. Refresh repository, surface, and essay snapshots.
+2. Run the copy check and quality commands.
+3. Build at root and with a representative preview base.
+4. Inspect canonical URLs in both outputs.
+5. Capture full-page screenshots for owned canonical routes.
+6. Clean-sync the intended deployment scope.
+7. Obtain human review for workflow changes before merge.

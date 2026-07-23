@@ -1,0 +1,77 @@
+---
+import {
+  repositories,
+  repositoriesAsOf,
+  repositoriesSourceUrl,
+} from '../../data/repositories';
+import { formatDate, formatNumber } from '../../lib/format';
+import { collectionSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Public repositories | Animesh Kundu';
+const description =
+  'A durable dated snapshot of public, non-fork, non-empty GitHub repositories by Animesh Kundu across TypeScript, Python, Rust, JavaScript, PHP, and Shell.';
+const schema = collectionSchema(
+  'Public repositories by Animesh Kundu',
+  '/repositories/',
+  repositories.map((repository) => ({
+    name: repository.name,
+    url: repository.url,
+  })),
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/repositories/"
+  jsonLd={schema}
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">REPOSITORIES / DURABLE SNAPSHOT</p>
+        <h1>The broader public record.</h1>
+        <p class="page-lede">
+          A dated local snapshot keeps the repository history readable when GitHub
+          is unavailable or rate-limited. Forks, empty artifacts, and excluded work
+          are not present.
+        </p>
+      </div>
+      <aside class="page-meta">
+        <dl>
+          <div><dt>Repositories</dt><dd>{repositories.length}</dd></div>
+          <div><dt>Snapshot</dt><dd>{formatDate(repositoriesAsOf)}</dd></div>
+          <div><dt>Source</dt><dd><a href={repositoriesSourceUrl}>GitHub API</a></dd></div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="repository-index-title">
+    <div class="site-frame">
+      <div class="category-heading">
+        <h2 id="repository-index-title">Repository index</h2>
+        <a href="https://github.com/animeshkundu?tab=repositories" rel="me">
+          View current GitHub profile
+        </a>
+      </div>
+      <div class="repository-grid">
+        {
+          repositories.map((repository, index) => (
+            <article class="repository-record">
+              <p class="source-mark">R-{String(index + 1).padStart(2, '0')}</p>
+              <h2><a href={repository.url}>{repository.name}</a></h2>
+              <p>{repository.description}</p>
+              <div class="repository-meta">
+                <span>{repository.language ?? 'Mixed'}</span>
+                <span>{formatNumber(repository.stars)} stars</span>
+                <span>{formatNumber(repository.forks)} forks</span>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

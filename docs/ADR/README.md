@@ -46,7 +46,9 @@ YYYY-MM-DD
 | ID | Title | Status | Date |
 |----|-------|--------|------|
 | [0000](./0000-template.md) | Template | Template | - |
-| [0001](./0001-initial-tech-stack.md) | Initial Technology Stack Selection | Accepted | 2024-12 |
+| [0001](./0001-initial-tech-stack.md) | Initial Technology Stack Selection | Superseded | 2024-12 |
+| [0002](./0002-astro-islands-static-output.md) | Astro static output with narrow islands | Accepted | 2026-07-22 |
+| [0003](./0003-tailwind4-vite-and-scoped-pages-deploy.md) | Tailwind 4 Vite integration and scoped Pages deployment | Accepted | 2026-07-22 |
 
 ## Creating a New ADR
 

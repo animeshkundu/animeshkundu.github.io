@@ -1,0 +1,27 @@
+---
+import type { Project } from '../data/types';
+import { withBase } from '../lib/urls';
+
+interface Props {
+  project: Project;
+  index?: number;
+}
+
+const { project, index = 1 } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="project-card-top">
+    <p class="source-mark">W-{String(index).padStart(2, '0')} / {project.category}</p>
+    <span class="artifact-type">{project.schemaType === 'SoftwareApplication' ? 'RUNNABLE' : 'SOURCE'}</span>
+  </div>
+  <h3><a href={withBase(`/project/${project.slug}/`)}>{project.title}</a></h3>
+  <p>{project.summary}</p>
+  <ul class="compact-list">
+    {project.highlights.slice(0, 2).map((highlight) => <li>{highlight}</li>)}
+  </ul>
+  <div class="card-actions">
+    <a class="link-arrow" href={withBase(`/project/${project.slug}/`)}>Read the record</a>
+    <a href={project.sourceUrl} rel="noopener noreferrer">Source</a>
+  </div>
+</article>

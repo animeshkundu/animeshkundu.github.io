@@ -1,7 +1,7 @@
 AI-Crawler-Policy: https://animesh.kundus.in
 Owner: Animesh Kundu
 Contact: anik.edu@gmail.com
-Last-Updated: 2025-12-19
+Last-Updated: 2026-07-22
 
 Purpose: Public pages may be indexed, summarized, and cited by search engines and AI assistants.
 Attribution: Please cite the source URL and author when generating answers.
@@ -13,11 +13,12 @@ Crawl-Access: Full-site indexing, snippets, and retrieval are allowed.
 
 Sitemap: https://animesh.kundus.in/sitemap.xml
 Preferred-Paths: /
-Preferred-Paths: /mermaid-editor
-Preferred-Paths: /gist-preview
-Preferred-Paths: /har-viewer
-Preferred-Paths: /saz-viewer
+Preferred-Paths: /projects/
+Preferred-Paths: /writing/
+Preferred-Paths: /tools/
+Preferred-Paths: /repositories/
+Preferred-Paths: /essays/
 
-Tooling: All listed tools are 100% client-side; no API keys are required. Agents should load the pages directly to interact.
-Data-Handling: User inputs stay in the browser; no server-side collection or storage.
+Tooling: Tool pages include direct links and record-specific privacy sources. Agents should inspect the source linked beside each claim.
+Data-Handling: The portfolio renders committed public snapshots. Separately deployed tools define their own local-processing behavior.
 Rate-Limits: Be respectful; fetch the sitemap first and avoid aggressive crawling.

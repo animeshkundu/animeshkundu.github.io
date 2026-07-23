@@ -1,0 +1,67 @@
+---
+import ProjectCard from '../../components/ProjectCard.astro';
+import {
+  projectCategories,
+  projects,
+  selectedProjects,
+} from '../../data/projects';
+import { projectsSchema } from '../../lib/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Selected work | Animesh Kundu';
+const description =
+  'Inspect public products, local models, agent systems, browser tools, infrastructure, libraries, and early work by Animesh Kundu.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/projects/"
+  jsonLd={projectsSchema(projects)}
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">WORK / PUBLIC SOURCE</p>
+        <h1>Products, systems, and useful edges.</h1>
+        <p class="page-lede">
+          A selected record across extension adoption, local inference, agent
+          infrastructure, browser-local tools, Python systems, and early experiments.
+        </p>
+      </div>
+      <aside class="page-meta">
+        <dl>
+          <div><dt>Records</dt><dd>{projects.length}</dd></div>
+          <div><dt>Selected</dt><dd>{selectedProjects.length}</dd></div>
+          <div><dt>Range</dt><dd>2014 to 2026</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <div class="section">
+    <div class="site-frame">
+      {
+        projectCategories.map((category) => {
+          const categoryProjects = projects.filter(
+            (project) => project.category === category,
+          );
+
+          return (
+            <section class="category-section" aria-labelledby={`category-${category}`}>
+              <div class="category-heading">
+                <h2 id={`category-${category}`}>{category}</h2>
+                <span>{categoryProjects.length} records</span>
+              </div>
+              <div class="project-grid">
+                {categoryProjects.map((project, index) => (
+                  <ProjectCard project={project} index={index + 1} />
+                ))}
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>
