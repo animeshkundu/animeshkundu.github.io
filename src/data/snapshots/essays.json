@@ -1,0 +1,287 @@
+{
+  "asOf": "2026-07-22",
+  "sourceUrl": "https://animesh.kundus.in/essays/rss.xml",
+  "source": "feed",
+  "essays": [
+    {
+      "title": "The Room Someone Is Looking Through",
+      "url": "https://animesh.kundus.in/essays/2026-07-21-the-room-someone-is-looking-through/",
+      "summary": "Home robots may promise chores done for you, but their first bargain is stranger: a camera, memory, and a remote person learning the private choreography of the house.",
+      "publishedAt": "2026-07-21T00:00:00.000Z",
+      "category": "robots"
+    },
+    {
+      "title": "Close Enough to Call Her Back",
+      "url": "https://animesh.kundus.in/essays/2026-07-19-close-enough-to-call-her-back/",
+      "summary": "The real danger in de-extinction is not that it fails but that it partly works, giving just enough proof of return to make extinction feel provisional and teach us to mourn badly.",
+      "publishedAt": "2026-07-19T00:00:00.000Z",
+      "category": "de-extinction"
+    },
+    {
+      "title": "Level Three",
+      "url": "https://animesh.kundus.in/essays/2026-07-19-level-three/",
+      "summary": "A full body MRI promises reassurance, but its level three findings show how private scans can turn ordinary aging into a standing appointment.",
+      "publishedAt": "2026-07-19T00:00:00.000Z",
+      "category": "health"
+    },
+    {
+      "title": "Never Left Hanging",
+      "url": "https://animesh.kundus.in/essays/2026-07-17-never-left-hanging/",
+      "summary": "AI chatbots can offer comfort when human care is scarce, but their deeper risk is teaching us to prefer understanding without delay, pushback, or the burden of another person.",
+      "publishedAt": "2026-07-17T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "Solitude, Furnished",
+      "url": "https://animesh.kundus.in/essays/2026-07-16-solitude-furnished/",
+      "summary": "AI companions may ease lonely hours for older adults, but the humane test is whether they lead people back to other people or let families and institutions count machine comfort as enough.",
+      "publishedAt": "2026-07-16T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "The Music You Stopped Hearing",
+      "url": "https://animesh.kundus.in/essays/2026-07-15-the-music-you-stopped-hearing/",
+      "summary": "A human tribute band covering an AI act reveals that synthetic music's real fight is not detection or quality, but whether listeners still spend enough attention for authenticity to matter.",
+      "publishedAt": "2026-07-15T00:00:00.000Z",
+      "category": "music"
+    },
+    {
+      "title": "The Cry Was Not an Incident",
+      "url": "https://animesh.kundus.in/essays/2026-07-14-the-cry-was-not-an-incident/",
+      "summary": "New parents can instrument a nursery like a production system. The danger is the on-call mind: every cry as a signal, every nap as a metric, and care slowly learning the grammar of incident response.",
+      "publishedAt": "2026-07-14T00:00:00.000Z",
+      "category": "parenting"
+    },
+    {
+      "title": "What the Light Was For",
+      "url": "https://animesh.kundus.in/essays/2026-07-12-what-the-light-was-for/",
+      "summary": "Always-aware AI glasses promise better memory, but the darker bargain is what they take from bystanders: notice, refusal, and the ordinary mercy of fading from a stranger's mind.",
+      "publishedAt": "2026-07-12T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "Who Saw It",
+      "url": "https://animesh.kundus.in/essays/2026-07-12-who-saw-it/",
+      "summary": "AI can make historical memory feel intimate before it feels false, turning thin evidence into moving presence and making the source question harder to ask.",
+      "publishedAt": "2026-07-12T00:00:00.000Z",
+      "category": "AI"
+    },
+    {
+      "title": "The Seed Was Already There",
+      "url": "https://animesh.kundus.in/essays/2026-07-11-the-seed-was-already-there/",
+      "summary": "A meditation on lab-grown gametes, infertility, and why making sperm or eggs in the lab may change biological parenthood even if the medicine one day becomes safe.",
+      "publishedAt": "2026-07-11T00:00:00.000Z",
+      "category": "science"
+    },
+    {
+      "title": "Fifteen Minutes in the Dark",
+      "url": "https://animesh.kundus.in/essays/2026-07-10-fifteen-minutes-in-the-dark/",
+      "summary": "Florence's 2026 Michelangelo route shows why some culture products should make attention slower, scarcer, and more place-bound.",
+      "publishedAt": "2026-07-10T00:00:00.000Z",
+      "category": "culture"
+    },
+    {
+      "title": "No One at the Next Desk",
+      "url": "https://animesh.kundus.in/essays/2026-07-10-no-one-at-the-next-desk/",
+      "summary": "AI-native startups can now begin with one founder and many agents, but the missing early teammate may be the human witness who catches bad taste, bad assumptions, and dangerous commands.",
+      "publishedAt": "2026-07-10T00:00:00.000Z",
+      "category": "startups"
+    },
+    {
+      "title": "Who Was Doing the Wanting",
+      "url": "https://animesh.kundus.in/essays/2026-07-10-who-was-doing-the-wanting/",
+      "summary": "GLP-1 drugs quiet food noise, revealing how much of taste, discipline, ritual, and identity may have been the mind managing appetite static.",
+      "publishedAt": "2026-07-10T00:00:00.000Z",
+      "category": "health"
+    },
+    {
+      "title": "The Meeting Grew a Memory",
+      "url": "https://animesh.kundus.in/essays/2026-07-09-the-meeting-grew-a-memory/",
+      "summary": "AI notetakers can make meetings fairer by giving rooms a record, but the same memory raises the cost of unfinished, candid speech.",
+      "publishedAt": "2026-07-09T00:00:00.000Z",
+      "category": "AI"
+    },
+    {
+      "title": "What the Agent Can't Guess",
+      "url": "https://animesh.kundus.in/essays/2026-07-09-what-the-agent-cant-guess/",
+      "summary": "Coding agents are making specs matter again: not as old process theater, but as the durable statement of intent that generated code must prove or betray.",
+      "publishedAt": "2026-07-09T00:00:00.000Z",
+      "category": "software"
+    },
+    {
+      "title": "The Errand Is the City",
+      "url": "https://animesh.kundus.in/essays/the-errand-is-the-city/",
+      "summary": "A defense of useful, mixed streets, and an argument against neighborhoods designed only for ease, privacy, and quick extraction.",
+      "publishedAt": "2026-07-08T00:00:00.000Z",
+      "category": "cities"
+    },
+    {
+      "title": "The Six-Year Loan and the Two-Year Chip",
+      "url": "https://animesh.kundus.in/essays/2026-04-14-the-six-year-loan-and-the-two-year-chip/",
+      "summary": "AI compute is being financed like real estate, but GPU collateral ages on a technology clock. The risk is not empty data centers. It is whether revenue can outrun chip decay.",
+      "publishedAt": "2026-04-14T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "Milano Cortina's Short Rental of Certainty",
+      "url": "https://animesh.kundus.in/essays/2026-02-18-milano-cortinas-short-rental-of-certainty/",
+      "summary": "Milano Cortina 2026 shows the Winter Olympics as a rented guarantee of winter, paid for with manufactured snow, scattered venues, water, machinery, and faith that the mountain will still cooperate.",
+      "publishedAt": "2026-02-18T00:00:00.000Z",
+      "category": "olympics"
+    },
+    {
+      "title": "The Safe Place to Be Bad",
+      "url": "https://animesh.kundus.in/essays/2025-08-19-the-safe-place-to-be-bad/",
+      "summary": "AI is thinning the first rung of white-collar work, where low-stakes mistakes once taught judgment. The loss may be less the job than the supervised place to be bad.",
+      "publishedAt": "2025-08-19T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "The Cheap Years Were a Loan",
+      "url": "https://animesh.kundus.in/essays/2025-04-08-the-cheap-years-were-a-loan/",
+      "summary": "Easter chocolate sticker shock reveals a cocoa system that kept prices low by underpaying farm resilience, and whose new high prices still reach growers late and unevenly.",
+      "publishedAt": "2025-04-08T00:00:00.000Z",
+      "category": "cocoa"
+    },
+    {
+      "title": "No One Said Retreat. The Price Did.",
+      "url": "https://animesh.kundus.in/essays/2025-01-15-no-one-said-retreat-the-price-did/",
+      "summary": "After the Los Angeles fires, the real rebuilding limit may be the insurance market: a renewal notice, a denied quote, or a premium that turns staying into a price many households cannot pay.",
+      "publishedAt": "2025-01-15T00:00:00.000Z",
+      "category": "insurance"
+    },
+    {
+      "title": "There Is a Channel for That",
+      "url": "https://animesh.kundus.in/essays/2024-12-16-there-is-a-channel-for-that/",
+      "summary": "After a CEO killing, the bleak joke was not that people forgot murder was wrong. It was that insurance customers had been trained to see every appeal channel as another room with nobody answering.",
+      "publishedAt": "2024-12-16T00:00:00.000Z",
+      "category": "health-insurance"
+    },
+    {
+      "title": "The Blast Radius Was the Product",
+      "url": "https://animesh.kundus.in/essays/2024-07-23-the-blast-radius-was-the-product/",
+      "summary": "A security update meant to protect hospitals, airlines, and workstations became the outage, revealing how automatic, privileged control turns safety into a fleet-wide blast radius.",
+      "publishedAt": "2024-07-23T00:00:00.000Z",
+      "category": "cybersecurity"
+    },
+    {
+      "title": "The Four Minutes Nobody Could Own",
+      "url": "https://animesh.kundus.in/essays/2024-04-11-the-four-minutes-nobody-could-own/",
+      "summary": "The April 8, 2024 eclipse showed that people still hunger for shared moments that cannot be paused, personalized, replayed, or bought, even when commerce gathers around them.",
+      "publishedAt": "2024-04-11T00:00:00.000Z",
+      "category": "eclipse"
+    },
+    {
+      "title": "The Perfect World for One",
+      "url": "https://animesh.kundus.in/essays/2024-02-15-the-perfect-world-for-one/",
+      "summary": "Apple Vision Pro promised spatial computing, but its first hard test was social: a $3,499 private world that let the wearer see the room while making the room wonder if he was still there.",
+      "publishedAt": "2024-02-15T00:00:00.000Z",
+      "category": "technology"
+    },
+    {
+      "title": "The Machine Doesn't Have to Be Good",
+      "url": "https://animesh.kundus.in/essays/2023-07-27-the-machine-doesnt-have-to-be-good/",
+      "summary": "Hollywood's AI strike was less about a machine that could already replace workers than about paperwork that could capture their likeness, drafts, and judgment before future use could be priced.",
+      "publishedAt": "2023-07-27T00:00:00.000Z",
+      "category": "ai"
+    },
+    {
+      "title": "The Clock and the List",
+      "url": "https://animesh.kundus.in/essays/2023-06-26-the-clock-and-the-list/",
+      "summary": "Why the Titan submersible became a global vigil while the far deadlier Adriana shipwreck struggled to hold attention: public grief follows clocks, names, and story shape more easily than scale.",
+      "publishedAt": "2023-06-26T00:00:00.000Z",
+      "category": "attention"
+    },
+    {
+      "title": "The Best Paper in the Class",
+      "url": "https://animesh.kundus.in/essays/2023-02-04-the-best-paper-in-the-class/",
+      "summary": "ChatGPT's first mass test was not prompt writing, but answer literacy: knowing when fluent prose has built understanding and when it has only hidden the work thinking requires.",
+      "publishedAt": "2023-02-04T00:00:00.000Z",
+      "category": "chatgpt"
+    },
+    {
+      "title": "The Halo Was Load-Bearing",
+      "url": "https://animesh.kundus.in/essays/2022-11-16-the-halo-was-load-bearing/",
+      "summary": "When FTX collapsed, its promise to give billions away did not just fail. The philanthropy story had helped make ordinary proof feel less urgent, turning goodwill into collateral.",
+      "publishedAt": "2022-11-16T00:00:00.000Z",
+      "category": "ftx"
+    },
+    {
+      "title": "The Bear at the Gate",
+      "url": "https://animesh.kundus.in/essays/2022-09-13-the-bear-at-the-gate/",
+      "summary": "Paddington bears and marmalade sandwiches at palace gates revealed the private time people store inside public institutions, and the cost when those institutions change.",
+      "publishedAt": "2022-09-13T00:00:00.000Z",
+      "category": "grief"
+    },
+    {
+      "title": "The Extra Mile Was a Donation",
+      "url": "https://animesh.kundus.in/essays/2022-08-24-the-extra-mile-was-a-donation/",
+      "summary": "A quiet quitting essay about the hidden bargain behind the extra mile: how workplaces came to treat spare care, after-hours worry, and unpaid initiative as company property.",
+      "publishedAt": "2022-08-24T00:00:00.000Z",
+      "category": "work"
+    },
+    {
+      "title": "The Cloud Has a Shoreline",
+      "url": "https://animesh.kundus.in/essays/2022-02-28-the-cloud-has-a-shoreline/",
+      "summary": "When Tonga's only international cable went dark after the Hunga Tonga-Hunga Ha'apai eruption, the cloud stopped feeling weightless and became one glass line, one repair ship, and one family dialing through the night.",
+      "publishedAt": "2022-02-28T00:00:00.000Z",
+      "category": "internet"
+    },
+    {
+      "title": "The Half-Second They're Buying",
+      "url": "https://animesh.kundus.in/essays/2021-10-29-the-half-second-theyre-buying/",
+      "summary": "Meta's metaverse pivot is less a VR bet than a wager that embodied presence can make people trust a social graph the feed had taught them to doubt.",
+      "publishedAt": "2021-10-29T00:00:00.000Z",
+      "category": "meta"
+    },
+    {
+      "title": "A Good Time to Be Worth More",
+      "url": "https://animesh.kundus.in/essays/2021-09-15-a-good-time-to-be-worth-more/",
+      "summary": "A Burger King sign in Lincoln shows how the Great Resignation turned private workplace resentment into public dignity once a hot labor market made quitting feel affordable.",
+      "publishedAt": "2021-09-15T00:00:00.000Z",
+      "category": "work"
+    },
+    {
+      "title": "What the Screenshot Couldn't Cash",
+      "url": "https://animesh.kundus.in/essays/2021-01-29-what-the-screenshot-couldnt-cash/",
+      "summary": "GameStop was a retail victory, but the spendable money went to those early and liquid enough to sell while the chant still told everyone else to hold.",
+      "publishedAt": "2021-01-29T00:00:00.000Z",
+      "category": "markets"
+    },
+    {
+      "title": "The Calendar Was Never the Proof",
+      "url": "https://animesh.kundus.in/essays/2020-11-15-the-calendar-was-never-the-proof/",
+      "summary": "A blinded vaccine trial volunteer reveals why the Pfizer BioNTech mRNA result was not one year of rushed invention, but years of platform science becoming visible while long term proof still had to accrue.",
+      "publishedAt": "2020-11-15T00:00:00.000Z",
+      "category": "science"
+    },
+    {
+      "title": "Solidarity You Could Count",
+      "url": "https://animesh.kundus.in/essays/2020-06-09-solidarity-you-could-count/",
+      "summary": "Blackout Tuesday showed how a black square could turn care into a countable receipt before it became costly, burying live protest information while making solidarity feel finished.",
+      "publishedAt": "2020-06-09T00:00:00.000Z",
+      "category": "blackout-tuesday"
+    },
+    {
+      "title": "The Sourdough Starter That Answers Back",
+      "url": "https://animesh.kundus.in/essays/2020-04-21-the-sourdough-starter-that-answers-back/",
+      "summary": "The April 2020 sourdough boom was not just craft revival. It was a living clock, a daily ritual that let people tend, share, and show proof that time still counted.",
+      "publishedAt": "2020-04-21T00:00:00.000Z",
+      "category": "sourdough"
+    },
+    {
+      "title": "What the Counter Can't Teach",
+      "url": "https://animesh.kundus.in/essays/2020-03-24-what-the-counter-cant-teach/",
+      "summary": "When March 2020 sent office work to kitchen counters, task work survived first. The harder loss was the apprenticeship beginners got from overhearing, interrupting, and being corrected near people who knew.",
+      "publishedAt": "2020-03-24T00:00:00.000Z",
+      "category": "remote-work"
+    },
+    {
+      "title": "The Red You Get Used To",
+      "url": "https://animesh.kundus.in/essays/2020-01-16-the-red-you-get-used-to/",
+      "summary": "Australia's fire summer made climate change impossible not to see. The harder question is whether orange skies wake people up, or teach them how to survive the sight.",
+      "publishedAt": "2020-01-16T00:00:00.000Z",
+      "category": "climate"
+    }
+  ]
+}

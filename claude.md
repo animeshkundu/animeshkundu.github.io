@@ -13,12 +13,12 @@
 
 ## Project Overview
 
-This is a React 19 + TypeScript portfolio website:
+This is an Astro 7 + TypeScript static portfolio:
 
-- **Framework**: React 19, TypeScript 5.9, Vite 7
-- **Styling**: Tailwind CSS 4
-- **Animation**: Framer Motion
-- **Testing**: Vitest, React Testing Library, Playwright
+- **Framework**: Astro 7 static output, TypeScript 5.9, Vite 8
+- **Styling**: Tailwind CSS 4 through `@tailwindcss/vite`
+- **Enhancements**: React 19 only for optional islands
+- **Testing**: Vitest, Astro Container API, Playwright, axe
 - **Deployment**: GitHub Pages via GitHub Actions
 
 ## Documentation Hierarchy
@@ -68,15 +68,17 @@ docs/
 
 ```bash
 # Development
-npm install            # Install dependencies
+npm ci --ignore-scripts # Install the committed dependency graph
 npm run dev            # Development server
 
 # Quality Checks
 npm run typecheck      # Type checking
 npm run lint           # Linting
-npm test               # Unit tests
+npm test               # Unit and Astro render tests with enforced coverage
 npm run test:coverage  # Coverage report
+npm run check:copy     # Forbidden source and built-copy check
 npm run build          # Build
+npm run check:static   # Verify generated metadata, routes, and sitemap
 npm run test:e2e       # E2E tests
 
 # Full Validation
@@ -111,15 +113,13 @@ When modifying code:
 
 ```
 src/
-├── App.tsx              # Root component
-├── main.tsx             # Entry point
-├── index.css            # Global styles
-├── components/          # React components
-│   └── index.ts         # Barrel exports
-├── hooks/               # Custom hooks
-├── lib/                 # Utilities
-├── types/               # TypeScript types
-└── __tests__/           # Unit tests
+├── components/          # Shared Astro presentation
+├── data/                # Typed records and dated snapshots
+├── layouts/             # Static document and metadata shell
+├── lib/                 # URL, formatting, and schema helpers
+├── pages/               # Owned routes and build endpoints
+├── styles/              # Tailwind 4 CSS-first design system
+└── __tests__/           # Unit and Container API render tests
 
 e2e/                     # E2E tests
 scripts/                 # Automation scripts
@@ -134,11 +134,11 @@ docs/                    # Documentation
 - Use explicit interfaces
 - Add JSDoc for complex types
 
-### React
-- Functional components with hooks
-- Define props interfaces
-- Keep components small and focused
-- Extract logic to custom hooks
+### Astro and optional islands
+- Render primary content in `.astro` files
+- Keep navigation and fallbacks functional without JavaScript
+- Use React only for progressive enhancement
+- Define explicit props interfaces
 
 ### Styling
 - Use Tailwind CSS utilities
@@ -150,17 +150,17 @@ docs/                    # Documentation
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Components | PascalCase | `FeaturedProjects.tsx` |
-| Hooks | camelCase + `use` | `useGitHubRepos.ts` |
-| Utilities | camelCase | `fetchRepos.ts` |
+| Components | PascalCase | `ProjectCard.astro` |
+| Pages | Route directories | `pages/repositories/index.astro` |
+| Utilities | camelCase | `canonicalUrl.ts` |
 | Types | PascalCase | `Repository` |
 
 ## Testing Standards
 
 ### Unit Tests
 - Location: `src/__tests__/`
-- Framework: Vitest + React Testing Library
-- Naming: `[component].test.tsx`
+- Framework: Vitest + Astro Container API
+- Naming: `[surface].test.ts`
 
 ### E2E Tests
 - Location: `e2e/`

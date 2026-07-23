@@ -1,0 +1,25 @@
+{
+  "essays": [
+    {
+      "title": "No One at the Next Desk",
+      "url": "https://animesh.kundus.in/essays/2026-07-10-no-one-at-the-next-desk/",
+      "summary": "A field note on one-person organizations built with many software agents.",
+      "publishedAt": "2026-07-10T00:00:00.000Z",
+      "category": "AI and organizations"
+    },
+    {
+      "title": "What the Agent Can't Guess",
+      "url": "https://animesh.kundus.in/essays/2026-07-09-what-the-agent-cant-guess/",
+      "summary": "Why coding agents improve when intent, constraints, and verification are made explicit.",
+      "publishedAt": "2026-07-09T00:00:00.000Z",
+      "category": "Coding agents"
+    },
+    {
+      "title": "The Best Paper in the Class",
+      "url": "https://animesh.kundus.in/essays/",
+      "summary": "A reflection on authorship, learning, and the arrival of generative systems.",
+      "publishedAt": "2023-01-01T00:00:00.000Z",
+      "category": "AI and learning"
+    }
+  ]
+}

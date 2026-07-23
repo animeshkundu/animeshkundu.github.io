@@ -1,186 +1,86 @@
-# Product Requirements Document (PRD)
+# Product requirements
 
-## Product Overview
+## Product
 
-**Product Name:** Animesh Kundu Developer Portfolio  
-**Version:** 1.0.0  
-**Last Updated:** December 2024
+Animesh Kundu's public work index is a static, evidence-led personal site. It helps founders, technical leaders, and builders inspect products, model work, agent systems, essays, browser tools, and the longer public repository record.
 
-### Vision Statement
+The site does not make professional claims on Animesh's behalf. Public artifacts, adoption, source links, dated metrics, and original writing carry the story.
 
-A modern, elegant portfolio website that showcases Animesh Kundu's open source projects and developer tools, providing visitors with an intuitive way to explore projects, view live demos, and connect with the developer.
+## Primary journeys
 
-### Problem Statement
+1. A visitor arrives by exact-name search and sees concrete evidence immediately.
+2. A visitor opens selected work and can inspect a public source or live artifact.
+3. A visitor discovers recent essays and continues to their canonical pages.
+4. A visitor tries a browser tool or uses its direct fallback link.
+5. A visitor reviews the durable repository record even if GitHub is unavailable.
+6. A visitor reaches a low-pressure contact invitation.
 
-Developers need a professional online presence to showcase their work, demonstrate technical expertise, and facilitate networking with potential collaborators and employers. Traditional resumes and LinkedIn profiles don't adequately showcase technical projects and live demos.
+## Required surfaces
 
-### Target Users
+- Home with identity, proof ledger, selected work, writing, tools, repository trajectory, and contact
+- Categorized selected work index
+- Static detail page for every retained project slug
+- Writing index backed by a dated feed snapshot and local fallback
+- Tools index with static fallback links and optional embeds
+- Repository index backed by a dated snapshot
+- Contact page
+- Authored 404 page
 
-1. **Recruiters & Hiring Managers** - Looking to evaluate technical capabilities
-2. **Fellow Developers** - Seeking collaboration opportunities or tool usage
-3. **Open Source Community** - Discovering useful tools and libraries
-4. **Potential Clients** - Evaluating expertise for consulting/freelance work
+The separately deployed `/essays/` site and same-origin tool, AI, and CLI Pages apps remain independent and are linked rather than copied.
 
-## Core Features
+## Content requirements
 
-### 1. Hero Section
-- **Description:** Eye-catching introduction with professional branding
-- **Requirements:**
-  - Display name and professional title
-  - Brief tagline summarizing expertise
-  - Call-to-action buttons for key actions
-  - Smooth entrance animations
+- Exact name appears in the home heading, title, and identity graph.
+- youtube-audio adoption is dated and links to Mozilla's public source.
+- cmd-correct is connected to the fix CLI and its public training record.
+- AI and agent work includes condukt, github-router, ai-or-die, and kusto-mcp.
+- Writing includes the AI-native organization and coding-agent essays.
+- Browser tools include direct links when an embed cannot load.
+- Every changeable metric has an `asOf` date or provenance.
+- Excluded private, personal, forked, empty, and unverifiable artifacts never render.
 
-### 2. Featured Projects
-- **Description:** Highlight showcase of top open source projects
-- **Requirements:**
-  - Display 4-6 flagship projects
-  - Show project name, description, tech stack
-  - Include live demo links where applicable
-  - Display GitHub stars count
-  - Support for project categorization (Web Tools, Libraries, Extensions)
+## Experience requirements
 
-### 3. Live Demos
-- **Description:** Interactive embedded demos of web tools
-- **Requirements:**
-  - Iframe-based embedding of tool demos
-  - Seamless integration without leaving the site
-  - Responsive scaling for different screen sizes
-  - Quick-access selection between multiple demos
+- Primary content and navigation work without JavaScript.
+- No content begins hidden or waits for viewport animation.
+- Mobile navigation uses a native disclosure.
+- Light and dark themes are readable and keyboard operable.
+- Reduced-motion users receive no non-essential movement.
+- Content remains useful when an external data source is unavailable.
+- The visual language is warm, editorial, restrained, and specific to the evidence.
 
-### 4. All Repositories
-- **Description:** Dynamic listing of all GitHub repositories
-- **Requirements:**
-  - Real-time fetching from GitHub API
-  - Display repository metadata (name, description, language, stars)
-  - Sorting and filtering capabilities
-  - Lazy loading for performance
-  - Graceful error handling for API failures
+## Search requirements
 
-### 5. About Section
-- **Description:** Personal introduction and background
-- **Requirements:**
-  - Professional bio
-  - Technical expertise areas
-  - Years of experience indicators
-  - Personal touch without oversharing
+Every non-404 route emits:
 
-### 6. FAQ Section
-- **Description:** Common questions and answers
-- **Requirements:**
-  - Accordion-style expandable answers
-  - Cover common inquiries about projects and availability
-  - Easy to update content
+- a unique title and description
+- a production-absolute canonical
+- Open Graph and Twitter metadata
+- page-appropriate JSON-LD
+- meaningful initial HTML
 
-### 7. Contact Section
-- **Description:** Multiple ways to connect
-- **Requirements:**
-  - Social media links (GitHub, LinkedIn, Twitter/X)
-  - Email contact option
-  - Clear call-to-action
+The sitemap is generated by the build and includes owned routes plus meaningful preserved same-origin surfaces. Search rank is monitored after launch and is not guaranteed.
 
-### 8. Navigation
-- **Description:** Smooth site navigation
-- **Requirements:**
-  - Responsive navbar
-  - Smooth scroll to sections
-  - Mobile hamburger menu
-  - Active section highlighting
+## Delivery requirements
 
-### 9. Theme Support
-- **Description:** Light/Dark mode support
-- **Requirements:**
-  - Automatic system preference detection
-  - Manual toggle option
-  - Persistent user preference
-  - Smooth theme transitions
+- Root and collision-resistant `/test-<branch>-<hash>/` builds use the same source.
+- Preview links and assets use the preview base.
+- Preview canonical and sitemap URLs remain production-absolute.
+- `404.html` comes from Astro.
+- `.nojekyll` is present.
+- A clean lockfile install builds without dependency resolution errors.
+- Release screenshots cover every owned canonical page.
 
-## Non-Functional Requirements
+## Success measures
 
-### Performance
-- Lighthouse Performance Score: ≥ 90
-- First Contentful Paint: < 1.5s
-- Time to Interactive: < 3s
-- Core Web Vitals: All "Good"
+- Complete initial HTML on every owned route
+- No-JavaScript navigation and content
+- WCAG 2.1 AA color and structural accessibility
+- No forbidden copy in source or built HTML
+- No stale root pages after deployment
+- Durable writing and repository content under upstream failure
+- Core Web Vitals in the good range on representative mobile hardware
 
-### Accessibility
-- WCAG 2.1 AA compliance
-- Keyboard navigation support
-- Screen reader compatibility
-- Sufficient color contrast
+## Source of truth
 
-### SEO
-- Semantic HTML structure
-- Meta tags optimization
-- Open Graph / Twitter Cards
-- Structured data (JSON-LD)
-- Sitemap generation
-
-### Responsiveness
-- Mobile-first design
-- Breakpoints: 320px, 640px, 768px, 1024px, 1280px
-- Touch-friendly interactions
-
-### Browser Support
-- Chrome (latest 2 versions)
-- Firefox (latest 2 versions)
-- Safari (latest 2 versions)
-- Edge (latest 2 versions)
-
-## Success Metrics
-
-| Metric | Target |
-|--------|--------|
-| Page Load Time | < 2s |
-| Bounce Rate | < 40% |
-| Test Coverage | > 90% |
-| Lighthouse Score | > 90 |
-| Accessibility Score | 100 |
-
-## Future Roadmap
-
-### Phase 2 (Planned)
-- Blog integration
-- Project case studies
-- Animation improvements
-- Analytics dashboard
-
-### Phase 3 (Considered)
-- Multi-language support
-- Newsletter subscription
-- Project filtering by technology
-- Search functionality
-
-## Dependencies
-
-### External Services
-- GitHub API (repository data)
-- GitHub Pages (hosting)
-
-### Key Libraries
-- React 19
-- TypeScript 5.9
-- Tailwind CSS 4
-- Vite 7
-- Framer Motion
-- Lucide React
-
-## Constraints
-
-- Client-side only (no backend)
-- GitHub Pages hosting limitations
-- GitHub API rate limits
-- Static site generation
-
-## Appendix
-
-### Glossary
-- **SPA:** Single Page Application
-- **SSG:** Static Site Generation
-- **PWA:** Progressive Web App
-- **CWV:** Core Web Vitals
-
-### Related Documents
-- [Architecture Documentation](./ARCHITECTURE.md)
-- [Design Documentation](./DESIGN.md)
-- [ADR Records](./ADR/)
+Detailed route, content, schema, embed, provenance, and exclusion contracts live in [the July 2026 redesign specification](./specs/2026-07-redesign.md).

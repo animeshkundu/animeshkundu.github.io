@@ -31,15 +31,15 @@ The only acceptable exceptions are:
 
 - Configuration files (e.g., `vite.config.ts`)
 - Type-only files (e.g., `types/index.ts`)
-- Entry points with no logic (e.g., `main.tsx`)
+- Declaration-only entry points (e.g., `env.d.ts`)
 
 Document exceptions in `vitest.config.ts`:
 
 ```typescript
 coverage: {
   exclude: [
-    'src/main.tsx',
-    'src/types/**',
+    'src/env.d.ts',
+    'src/data/types.ts',
   ]
 }
 ```
@@ -96,32 +96,19 @@ coverage: {
 ### Unit Tests
 
 **Location:** `src/__tests__/`  
-**Framework:** Vitest + React Testing Library
+**Framework:** Vitest + Astro Container API
 
 ```typescript
-// src/__tests__/Component.test.tsx
-import { render, screen } from '@testing-library/react';
+// src/__tests__/Component.test.ts
+import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { describe, it, expect } from 'vitest';
-import { Component } from '../components/Component';
+import Component from '../components/Component.astro';
 
 describe('Component', () => {
-  it('renders correctly', () => {
-    render(<Component />);
-    expect(screen.getByRole('...')).toBeInTheDocument();
-  });
-
-  it('handles user interaction', async () => {
-    const user = userEvent.setup();
-    render(<Component />);
-    
-    await user.click(screen.getByRole('button'));
-    
-    expect(screen.getByText('Clicked!')).toBeInTheDocument();
-  });
-
-  it('shows error state', () => {
-    render(<Component error="Something went wrong" />);
-    expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong');
+  it('renders accessible static HTML', async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Component);
+    expect(html).toContain('<main');
   });
 });
 ```

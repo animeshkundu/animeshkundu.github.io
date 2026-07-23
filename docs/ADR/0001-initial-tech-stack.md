@@ -1,7 +1,7 @@
 # ADR-0001: Initial Technology Stack Selection
 
 ## Status
-Accepted
+Superseded by [ADR-0002](./0002-astro-islands-static-output.md) and [ADR-0003](./0003-tailwind4-vite-and-scoped-pages-deploy.md)
 
 ## Date
 2024-12

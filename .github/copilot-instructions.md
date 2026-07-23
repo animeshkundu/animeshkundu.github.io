@@ -19,11 +19,11 @@ This file provides repository-specific instructions for GitHub Copilot to ensure
 
 ## Project Overview
 
-This is a React 19 + TypeScript portfolio website using:
-- **Framework**: React 19, TypeScript 5.9, Vite 7
-- **Styling**: Tailwind CSS 4
-- **Animation**: Framer Motion
-- **Testing**: Vitest, React Testing Library, Playwright
+This is an Astro 7 + TypeScript static portfolio:
+- **Framework**: Astro 7 static output, TypeScript 5.9, Vite 8
+- **Styling**: Tailwind CSS 4 through `@tailwindcss/vite`
+- **Enhancements**: React 19 only for optional islands
+- **Testing**: Vitest, Astro Container API, Playwright, axe
 - **Deployment**: GitHub Pages via GitHub Actions
 
 ## Documentation Hierarchy
@@ -74,7 +74,7 @@ Before making changes, read relevant documentation:
 
 ```bash
 # Install dependencies
-npm install
+npm ci --ignore-scripts
 
 # Development server
 npm run dev
@@ -85,14 +85,20 @@ npm run typecheck
 # Linting
 npm run lint
 
-# Unit tests
+# Unit and Astro render tests with enforced coverage
 npm test
 
 # Coverage (maintain >90%)
 npm run test:coverage
 
+# Forbidden source and built-copy check
+npm run check:copy
+
 # Build
 npm run build
+
+# Generated route, metadata, and sitemap contract
+npm run check:static
 
 # E2E tests
 npm run test:e2e
@@ -116,7 +122,7 @@ For EVERY change:
 ### Unit Tests
 - Add tests for every new component/function
 - Location: `src/__tests__/`
-- Naming: `[component].test.tsx` or `[module].test.ts`
+- Naming: `[surface].test.ts`
 
 ### E2E Tests
 - Add tests for user-facing features
@@ -131,11 +137,11 @@ For EVERY change:
 - Use explicit interfaces
 - Add JSDoc for complex types
 
-### React Components
-- Functional components with hooks
-- Define props interfaces
-- Keep components small and focused
-- Extract logic to custom hooks
+### Astro and optional islands
+- Render primary content in `.astro` files
+- Keep navigation and fallbacks functional without JavaScript
+- Use React only for progressive enhancement
+- Define explicit props interfaces
 
 ### Styling
 - Use Tailwind CSS utilities
@@ -146,9 +152,9 @@ For EVERY change:
 ### Naming Conventions
 | Type | Convention | Example |
 |------|------------|---------|
-| Components | PascalCase | `FeaturedProjects.tsx` |
-| Hooks | camelCase + `use` | `useGitHubRepos.ts` |
-| Utilities | camelCase | `fetchRepos.ts` |
+| Components | PascalCase | `ProjectCard.astro` |
+| Pages | Route directories | `pages/repositories/index.astro` |
+| Utilities | camelCase | `canonicalUrl.ts` |
 | Types | PascalCase | `Repository` |
 
 ## Component Pattern
@@ -188,15 +194,13 @@ Update docs when:
 
 ```
 src/
-├── App.tsx              # Root component
-├── main.tsx             # Entry point
-├── index.css            # Global styles
-├── components/          # React components
-│   └── index.ts         # Barrel exports
-├── hooks/               # Custom hooks
-├── lib/                 # Utilities
-├── types/               # TypeScript types
-└── __tests__/           # Unit tests
+├── components/          # Shared Astro presentation
+├── data/                # Typed records and dated snapshots
+├── layouts/             # Static document and metadata shell
+├── lib/                 # URL, formatting, and schema helpers
+├── pages/               # Owned routes and build endpoints
+├── styles/              # Tailwind 4 CSS-first design system
+└── __tests__/           # Unit and Container API render tests
 
 e2e/                     # E2E tests
 scripts/                 # Automation scripts

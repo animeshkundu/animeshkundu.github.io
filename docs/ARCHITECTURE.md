@@ -1,272 +1,96 @@
-# Architecture Documentation
+# Architecture
 
-## System Overview
+## Overview
 
-This portfolio website is a modern, client-side rendered Single Page Application (SPA) built with React and TypeScript. It's designed to be fast, maintainable, and easy to deploy on static hosting platforms like GitHub Pages.
+The portfolio is an Astro 7 static site hosted on GitHub Pages. Astro renders complete route HTML at build time. Tailwind 4 compiles the CSS through Vite. React is available for narrow optional islands, but primary content and navigation do not depend on hydration.
 
-## Architecture Diagram
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Client Browser                               │
-├─────────────────────────────────────────────────────────────────────┤
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                    React Application                          │   │
-│  │  ┌─────────────────────────────────────────────────────────┐ │   │
-│  │  │                     App.tsx                              │ │   │
-│  │  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐       │ │   │
-│  │  │  │ Navbar  │ │  Hero   │ │Featured │ │  Live   │       │ │   │
-│  │  │  └─────────┘ └─────────┘ │Projects │ │ Demos   │       │ │   │
-│  │  │  ┌─────────┐ ┌─────────┐ └─────────┘ └─────────┘       │ │   │
-│  │  │  │  All    │ │  About  │ ┌─────────┐ ┌─────────┐       │ │   │
-│  │  │  │  Repos  │ │         │ │   FAQ   │ │ Contact │       │ │   │
-│  │  │  └─────────┘ └─────────┘ └─────────┘ └─────────┘       │ │   │
-│  │  │  ┌─────────┐                                            │ │   │
-│  │  │  │ Footer  │                                            │ │   │
-│  │  │  └─────────┘                                            │ │   │
-│  │  └─────────────────────────────────────────────────────────┘ │   │
-│  │                              │                                │   │
-│  │  ┌─────────────────────────────────────────────────────────┐ │   │
-│  │  │                     Custom Hooks                         │ │   │
-│  │  │  ┌─────────────────┐  ┌─────────────────┐               │ │   │
-│  │  │  │ useGitHubRepos  │  │    useTheme     │               │ │   │
-│  │  │  └─────────────────┘  └─────────────────┘               │ │   │
-│  │  └─────────────────────────────────────────────────────────┘ │   │
-│  └─────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    │ HTTPS
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                         GitHub API                                   │
-│                    api.github.com/users/animeshkundu                 │
-└─────────────────────────────────────────────────────────────────────┘
+```text
+Public sources
+  |  release-time snapshot scripts
+  v
+Committed typed snapshots
+  |  Astro getStaticPaths and page rendering
+  v
+Static HTML + CSS + optional enhancement islands
+  |  scoped GitHub Pages deployment
+  v
+animesh.kundus.in and /test-<branch>-<hash>/ previews
 ```
 
-## Technology Stack
+## Rendering model
 
-### Core Framework
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 19 | UI Component Library |
-| TypeScript | 5.9 | Type-safe JavaScript |
-| Vite | 7 | Build Tool & Dev Server |
+- `output: 'static'`
+- `site: 'https://animesh.kundus.in'`
+- `base: VITE_BASE_PATH || '/'`
+- canonical helpers ignore `base`
+- link helpers include `base`
+- route metadata and JSON-LD are rendered in `BaseLayout.astro`
+- project pages are enumerated by `getStaticPaths()`
 
-### Styling
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Tailwind CSS | 4 | Utility-first CSS |
-| PostCSS | 8 | CSS Processing |
-| Autoprefixer | 10 | CSS Vendor Prefixes |
+## Source layout
 
-### UI & Animation
-| Technology | Purpose |
-|------------|---------|
-| Framer Motion | Animation Library |
-| Lucide React | Icon Library |
-
-### Testing
-| Technology | Purpose |
-|------------|---------|
-| Vitest | Unit Testing Framework |
-| React Testing Library | Component Testing |
-| Playwright | E2E Testing |
-
-### Code Quality
-| Technology | Purpose |
-|------------|---------|
-| ESLint | Linting |
-| TypeScript | Type Checking |
-
-## Directory Structure
-
-```
-├── src/
-│   ├── App.tsx              # Root component
-│   ├── main.tsx             # Application entry point
-│   ├── index.css            # Global styles & Tailwind imports
-│   │
-│   ├── components/          # React components
-│   │   ├── index.ts         # Barrel exports
-│   │   ├── Navbar.tsx       # Navigation component
-│   │   ├── Hero.tsx         # Hero section
-│   │   ├── FeaturedProjects.tsx
-│   │   ├── LiveDemos.tsx
-│   │   ├── AllRepositories.tsx
-│   │   ├── About.tsx
-│   │   ├── FAQ.tsx
-│   │   ├── Contact.tsx
-│   │   └── Footer.tsx
-│   │
-│   ├── hooks/               # Custom React hooks
-│   │   ├── useGitHubRepos.ts
-│   │   └── useTheme.ts
-│   │
-│   ├── lib/                 # Utilities & helpers
-│   │   ├── github.ts        # GitHub API utilities
-│   │   └── constants.ts     # Static data & configuration
-│   │
-│   ├── types/               # TypeScript type definitions
-│   │   └── index.ts
-│   │
-│   ├── __tests__/           # Unit tests
-│   │   ├── App.test.tsx
-│   │   └── github.test.ts
-│   │
-│   └── test/                # Test utilities
-│       └── setup.ts
-│
-├── e2e/                     # End-to-end tests
-│   └── portfolio.spec.ts
-│
-├── public/                  # Static assets
-│   └── ...
-│
-├── docs/                    # Documentation
-│   ├── PRD.md
-│   ├── ARCHITECTURE.md
-│   ├── DESIGN.md
-│   ├── AGENT.md
-│   ├── ADR/
-│   └── history/
-│
-└── Configuration Files
-    ├── vite.config.ts
-    ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── tsconfig.json
-    ├── eslint.config.js
-    └── playwright.config.ts
+```text
+src/
+  components/        shared Astro presentation and optional islands
+  data/              typed curated records and committed snapshots
+  layouts/           document shell and metadata
+  lib/               URL, SEO, repository, and essay helpers
+  pages/             owned routes and build endpoints
+  styles/            Tailwind 4 theme and global CSS
+scripts/             snapshot, copy, screenshot, and validation tools
+public/              CNAME, .nojekyll, crawler policy, icons, and OG art
 ```
 
-## Key Architectural Decisions
+## Data model
 
-### 1. Client-Side Rendering (CSR)
+Changing public facts are not fetched in the critical browser rendering path. Release-time scripts produce committed JSON snapshots with an `asOf` date. The build reads those snapshots and emits durable content.
 
-The application uses client-side rendering for simplicity and GitHub Pages compatibility. For details, see [ADR-0001](./ADR/0001-initial-tech-stack.md).
+An optional client refresh may append newer repository information. A failed refresh leaves the committed content unchanged.
 
-**Pros:**
-- Simple deployment to static hosting
-- No server infrastructure needed
-- Rich interactivity
+The writing snapshot script reads the essays RSS feed. A curated fallback is committed and used only when the feed cannot be read.
 
-**Cons:**
-- Initial load shows blank page
-- SEO requires consideration
-- Bundle size affects performance
+## SEO model
 
-### 2. Component-Based Architecture
+`BaseLayout.astro` owns shared head output. Each route provides a title, description, canonical path, schema graph, and optional social title.
 
-The UI is built using React's component model with functional components and hooks.
+Schema selection follows the artifact:
 
-**Principles:**
-- Single Responsibility: Each component does one thing well
-- Composition: Complex UIs built from simple components
-- Reusability: Components are designed for reuse
+- home: `Person`, `WebSite`, `ProfilePage`
+- runnable tool or extension: `SoftwareApplication`
+- library, CLI, framework, or infrastructure: `SoftwareSourceCode`
+- model: `CreativeWork`
+- writing: `BlogPosting` or `Article` and `ItemList`
 
-### 3. Custom Hooks for State Logic
+The sitemap endpoint emits production-absolute URLs and also references meaningful separately deployed same-origin surfaces.
 
-Business logic is extracted into custom hooks (`useGitHubRepos`, `useTheme`) to:
-- Separate concerns
-- Enable reuse
-- Facilitate testing
-- Keep components focused on rendering
+## Same-origin deployment topology
 
-### 4. TypeScript Throughout
+The root user site and project repository Pages deployments share the custom domain. They do not share a build artifact.
 
-TypeScript is used for all code to:
-- Catch errors at compile time
-- Improve IDE support and autocomplete
-- Document code with types
-- Enable safe refactoring
+The portfolio deploy owns root portfolio files. Project repositories continue to own paths such as `/essays/`, `/mermaid-editor/`, `/fix/`, and `/github-router/`.
 
-### 5. CSS-in-JS Alternative: Tailwind CSS
+A production clean-sync deletes stale root files but excludes `/test-*`. A preview clean-sync targets only its own subdirectory. The checked-in workflows implement these commands and serialize all `gh-pages` writes through the shared deployment concurrency group.
 
-Tailwind CSS was chosen over CSS-in-JS solutions for:
-- Smaller bundle size (purges unused CSS)
-- Faster development with utility classes
-- Consistent design system
-- No runtime overhead
+## Accessibility model
 
-## Data Flow
+- semantic landmarks exist in the static document
+- native anchors provide navigation
+- a native `details` element provides mobile disclosure
+- focus indication is never removed
+- theme selection has a no-JavaScript default
+- theme enhancement stores a preference when JavaScript is available
+- reduced motion removes transitions without hiding content
 
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   App.tsx    │────▶│    Hooks     │────▶│  Components  │
-└──────────────┘     └──────────────┘     └──────────────┘
-                            │
-                            ▼
-                    ┌──────────────┐
-                    │  GitHub API  │
-                    └──────────────┘
-```
+## Security and privacy
 
-1. **App.tsx** mounts and renders the component tree
-2. **Custom Hooks** manage state and side effects
-3. **Components** receive props and render UI
-4. **GitHub API** provides dynamic repository data
+- no secrets or authenticated API calls ship to the browser
+- only allowlisted public artifacts are committed
+- iframe capabilities are defined per tool
+- direct fallback links are always present
+- privacy claims require a public verification source
+- external links use appropriate referrer and opener controls
 
-## Performance Considerations
+## Decisions
 
-### Bundle Optimization
-- Tree shaking eliminates unused code
-- Code splitting for lazy loading (future)
-- Minification and compression
-
-### Runtime Performance
-- React 19's automatic optimizations
-- Memoization where beneficial
-- Lazy loading of images
-- Efficient re-renders with hooks
-
-### Loading Strategy
-- Critical CSS inlined
-- Fonts preloaded
-- API calls deferred until needed
-
-## Security Considerations
-
-### Client-Side Security
-- No sensitive data in client code
-- Environment variables for configuration
-- Content Security Policy headers (via GitHub Pages)
-
-### API Security
-- Read-only GitHub API access
-- No authentication required
-- Rate limiting handled gracefully
-
-## Deployment Architecture
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Developer   │────▶│   GitHub     │────▶│GitHub Pages  │
-│    Push      │     │   Actions    │     │   (CDN)      │
-└──────────────┘     └──────────────┘     └──────────────┘
-```
-
-### CI/CD Pipeline
-1. Push to `master`/`main` triggers workflow
-2. Dependencies installed
-3. Type checking & linting
-4. Unit tests executed
-5. Build created
-6. E2E tests run against build
-7. Deploy to GitHub Pages
-
-## Scalability Considerations
-
-### Current Limits
-- GitHub API rate limits (60/hour unauthenticated)
-- Static hosting limitations
-
-### Future Scaling
-- Consider API caching layer
-- Implement service worker for offline support
-- Add incremental static regeneration
-
-## Related Documents
-
-- [PRD](./PRD.md) - Product Requirements
-- [Design](./DESIGN.md) - Design System
-- [ADR](./ADR/) - Architectural Decision Records
+- [ADR-0002](./ADR/0002-astro-islands-static-output.md)
+- [ADR-0003](./ADR/0003-tailwind4-vite-and-scoped-pages-deploy.md)

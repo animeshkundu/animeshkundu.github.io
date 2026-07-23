@@ -51,7 +51,7 @@ When documenting a deprecated or removed feature, use this template:
 
 | Date | Feature | Status | Description |
 |------|---------|--------|-------------|
-| - | - | - | No deprecated features yet |
+| 2026-07 | Client-rendered portfolio shell | Replaced | Astro static output now owns production routes |
 
 ## Guidelines
 

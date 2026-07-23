@@ -179,9 +179,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm run typecheck
       - run: npm run lint
 
@@ -192,10 +192,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
-      - run: npm ci
-      - run: npm test -- --coverage
+      - run: npm ci --ignore-scripts
+      - run: npm test
       - name: Check coverage threshold
         run: |
           # Verify coverage meets minimum
@@ -209,9 +209,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
@@ -226,10 +226,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run build
       - run: npm run test:e2e
 
@@ -268,13 +268,13 @@ jobs:
 
 ```bash
 # Verify Node.js version
-node --version  # Should be 20.x
+node --version  # Should be 22.12 or newer
 
 # Verify npm version
 npm --version
 
 # Install dependencies
-npm install
+npm ci --ignore-scripts
 
 # Verify everything works
 npm run typecheck

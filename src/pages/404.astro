@@ -1,0 +1,34 @@
+---
+import { collectionSchema } from '../lib/seo';
+import { withBase } from '../lib/urls';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Page not found | Animesh Kundu';
+const description =
+  'The requested page is not part of the current public work index.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/404.html"
+  jsonLd={collectionSchema('Page not found', '/404.html', [])}
+  noindex
+>
+  <header class="page-hero">
+    <div class="site-frame page-hero-grid">
+      <div class="page-hero-copy">
+        <p class="kicker">404 / NO RECORD</p>
+        <h1>This path has no current record.</h1>
+        <p class="page-lede">
+          Continue through the work index, writing archive, browser tools, or the
+          durable repository snapshot.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href={withBase('/projects/')}>Browse the work</a>
+          <a href={withBase('/')}>Return to the index</a>
+        </div>
+      </div>
+    </div>
+  </header>
+</BaseLayout>

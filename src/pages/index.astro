@@ -1,0 +1,227 @@
+---
+import ProjectCard from '../components/ProjectCard.astro';
+import { featuredEssays, essaysAsOf } from '../data/essays';
+import { selectedProjects } from '../data/projects';
+import { repositoriesAsOf } from '../data/repositories';
+import { homeSchema } from '../lib/seo';
+import { formatDate } from '../lib/format';
+import { withBase } from '../lib/urls';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Animesh Kundu | Products, models, systems, and essays';
+const description =
+  'Public work by Animesh Kundu across adopted products, local models, agent systems, browser tools, infrastructure, and original essays.';
+---
+
+<BaseLayout title={title} description={description} path="/" jsonLd={homeSchema} ogType="profile">
+  <section class="hero">
+    <div class="site-frame hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">ANIMESH KUNDU / PUBLIC WORK INDEX</p>
+        <h1>Built in public, from utility to judgment.</h1>
+        <p class="hero-lede">
+          A Firefox extension used by 14,484 people each day. A small command model
+          trained from scratch and shipped inside a Rust CLI. Agent systems, browser
+          tools, infrastructure, and a steady record of essays.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href={withBase('/projects/')}>Inspect the work</a>
+          <a class="link-arrow" href={withBase('/writing/')}>Read the essays</a>
+        </div>
+      </div>
+      <aside class="hero-rail" aria-label="Public building trajectory">
+        <p class="source-mark">RECORD 01 / GITHUB</p>
+        <p class="rail-value">12</p>
+        <p class="rail-label">
+          years of public building, from PHP and Python to TypeScript, Rust, local
+          models, and agent systems.
+        </p>
+        <a href="https://github.com/animeshkundu" rel="me">Follow the source trail</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="proof-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">EVIDENCE / DATED</p>
+        <h2 id="proof-title">Proof before promise.</h2>
+        <p class="muted">
+          Each record leads to a public source. Changing numbers carry the date on
+          which they were checked.
+        </p>
+      </div>
+      <div class="section-content evidence-list">
+        <article class="evidence-record">
+          <span class="evidence-index">E-01</span>
+          <strong>14,484 daily users</strong>
+          <p>
+            youtube-audio keeps video off when only the sound matters. Mozilla also
+            reports 527 ratings and 224 written reviews.
+          </p>
+          <a
+            href="https://addons.mozilla.org/api/v5/addons/addon/youtube-audio/"
+            rel="noopener noreferrer"
+          >Source, Jul 21 2026</a>
+        </article>
+        <article class="evidence-record">
+          <span class="evidence-index">E-02</span>
+          <strong>135K training examples</strong>
+          <p>
+            cmd-correct is a Qwen3 LoRA trained with MLX and published as a compact
+            GGUF model behind the offline fix CLI.
+          </p>
+          <a href="https://huggingface.co/animeshkundu/cmd-correct" rel="me">
+            Model card
+          </a>
+        </article>
+        <article class="evidence-record">
+          <span class="evidence-index">E-03</span>
+          <strong>40 published essays</strong>
+          <p>
+            Notes on agent work, organizations, attention, privacy, cities, health,
+            and the systems around everyday choices.
+          </p>
+          <a href="https://animesh.kundus.in/essays/">
+            Feed snapshot, {formatDate(essaysAsOf)}
+          </a>
+        </article>
+        <article class="evidence-record">
+          <span class="evidence-index">E-04</span>
+          <strong>31 durable repositories</strong>
+          <p>
+            A local snapshot keeps the record present even when GitHub is unavailable
+            or rate-limited.
+          </p>
+          <a href={withBase('/repositories/')}>
+            Snapshot, {formatDate(repositoriesAsOf)}
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">SELECTED WORK</p>
+        <h2 id="work-title">Different layers, one habit.</h2>
+        <p class="muted">
+          Find the useful edge, make the whole path work, and leave the source open
+          for inspection.
+        </p>
+        <a class="link-arrow" href={withBase('/projects/')}>See all project records</a>
+      </div>
+      <div class="section-content project-grid">
+        {
+          selectedProjects.slice(0, 6).map((project, index) => (
+            <ProjectCard project={project} index={index + 1} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="agents-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">MODELS + AGENTS</p>
+        <h2 id="agents-title">The system around the model.</h2>
+        <p class="muted">
+          Training is one layer. Routing, state, execution, interfaces, and
+          verification decide whether the result becomes useful.
+        </p>
+      </div>
+      <div class="section-content evidence-list">
+        {
+          selectedProjects
+            .filter((project) =>
+              ['fix', 'condukt', 'github-router', 'runnerize'].includes(project.slug),
+            )
+            .map((project, index) => (
+              <article class="evidence-record">
+                <span class="evidence-index">A-{String(index + 1).padStart(2, '0')}</span>
+                <strong>{project.title}</strong>
+                <p>{project.summary}</p>
+                <a href={withBase(`/project/${project.slug}/`)}>Open record</a>
+              </article>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="writing-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">WRITING / {formatDate(essaysAsOf)}</p>
+        <h2 id="writing-title">Questions that survive the build.</h2>
+        <p class="muted">
+          The essays follow consequences past the demo: what agents cannot infer,
+          what organizations lose, and what convenience asks in return.
+        </p>
+        <a class="link-arrow" href={withBase('/writing/')}>Browse the writing index</a>
+      </div>
+      <div class="section-content essay-list">
+        {
+          featuredEssays.slice(0, 4).map((essay, index) => (
+            <article class="essay-row">
+              <span class="evidence-index">N-{String(index + 1).padStart(2, '0')}</span>
+              <h3><a href={essay.url}>{essay.title}</a></h3>
+              <p>{essay.summary}</p>
+              <time datetime={essay.publishedAt}>{formatDate(essay.publishedAt)}</time>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tools-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">BROWSER TOOLS</p>
+        <h2 id="tools-title">Open the file, not an account.</h2>
+        <p class="muted">
+          Inspect a network capture, edit a diagram, read a sequencing trace, or
+          work with a PDF. Direct links remain available if an embed cannot load.
+        </p>
+        <a class="button button-primary" href={withBase('/tools/')}>Try the tools</a>
+      </div>
+      <div class="section-content evidence-list">
+        {
+          [
+            ['Mermaid Editor', 'Write, preview, share, and export diagrams.', 'mermaid-editor'],
+            ['Sanger Viewer', 'Read chromatograms and base quality in the browser.', 'sanger-viewer'],
+            ['HAR + SAZ viewers', 'Inspect network captures without a desktop install.', 'har-viewer'],
+            ['PDF Viewer', 'View, annotate, and export a document locally.', 'pdf-viewer'],
+          ].map(([name, summary, slug], index) => (
+            <article class="evidence-record">
+              <span class="evidence-index">T-{String(index + 1).padStart(2, '0')}</span>
+              <strong>{name}</strong>
+              <p>{summary}</p>
+              <a href={withBase(`/tools/#${slug}`)}>Open tool</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="contact-title">
+    <div class="site-frame section-grid">
+      <div class="section-heading">
+        <p class="source-mark">NEXT CONVERSATION</p>
+        <h2 id="contact-title">Bring the unfinished question.</h2>
+      </div>
+      <div class="section-content contact-panel">
+        <h2>Complex product, model, or systems work usually starts before the shape is obvious.</h2>
+        <p>
+          If a public artifact here connects to something you are building, send the
+          context, the constraint, and the part that still feels uncertain.
+        </p>
+        <a class="button button-primary" href={withBase('/contact/')}>Start with context</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
