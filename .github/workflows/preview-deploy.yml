@@ -126,7 +126,16 @@ jobs:
           git -C "$WORKTREE" add -A -- "$DEPLOY_PATH"
 
           if git -C "$WORKTREE" diff --cached --quiet; then
-            echo "::notice::Preview Pages output is already current."
+            if [ "$PAGES_PUSH_REMOTE" != "origin" ]; then
+              # Content is already on gh-pages, but GitHub only rebuilds Pages
+              # on a new push. Push an empty commit over the deploy key so the
+              # preview reflects the current gh-pages tree.
+              echo "::notice::Preview Pages output unchanged; pushing empty commit to trigger a Pages rebuild."
+              git -C "$WORKTREE" commit --allow-empty -m "Rebuild preview for ${BRANCH_NAME}"
+              git -C "$WORKTREE" push "$PAGES_PUSH_REMOTE" HEAD:gh-pages
+            else
+              echo "::notice::Preview Pages output is already current."
+            fi
           else
             git -C "$WORKTREE" commit -m "Deploy preview for ${BRANCH_NAME}"
             git -C "$WORKTREE" push "$PAGES_PUSH_REMOTE" HEAD:gh-pages

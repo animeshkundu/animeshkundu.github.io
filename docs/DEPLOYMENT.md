@@ -102,6 +102,14 @@ SSH remote, so the push is authored by the deploy key and GitHub automatically
 runs `pages build and deployment` to publish the new commit. No Pages REST API
 call is made.
 
+Because GitHub only rebuilds a branch-sourced site when it receives a **new
+push**, the deploy step pushes an **empty commit** over the deploy key whenever
+the built output is byte-identical to what is already on `gh-pages`. This
+guarantees the live site always reflects the current `gh-pages` tree, including
+after a re-run or after content was previously committed by a push that did not
+trigger a build. When no deploy key is configured the empty-commit fallback is
+skipped, since a token-authored push cannot trigger a rebuild anyway.
+
 ## Independent same-origin apps
 
 Paths such as `/essays/`, `/mermaid-editor/`, `/fix/`, and `/github-router/` are deployed from their own repositories. The root portfolio build links to them but does not include or delete their artifacts.
