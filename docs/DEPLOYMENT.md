@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- Node.js 22.12 or newer
+- Node.js 24 or newer
 - npm lockfile install
 - GitHub Pages custom domain `animesh.kundus.in`
 
@@ -45,6 +45,8 @@ rsync -a --delete \
 
 This removes root ghost pages and old hashed assets while preserving branch previews. `public/CNAME` and `public/.nojekyll` are emitted into `dist/` on every build.
 
+The production build crosses a GitHub Actions artifact boundary before deployment. Artifact upload must opt into hidden files so `.nojekyll` reaches the `gh-pages` root. Without it, GitHub Pages runs Jekyll, drops Astro's `_astro` asset directory, and publishes unstyled HTML. `npm run check:static` rejects any build that does not contain the marker.
+
 ## Preview Pages sync
 
 Each branch owns one collision-resistant directory. The workflow combines a bounded readable slug with the first eight characters of the branch name's SHA-256 digest:
@@ -53,7 +55,7 @@ Each branch owns one collision-resistant directory. The workflow combines a boun
 rsync -a --delete dist/ "$WORKTREE/test-$BRANCH_SLUG-$BRANCH_HASH/"
 ```
 
-The production and preview jobs must share a `gh-pages-deploy` concurrency group so worktree writes are serialized. They must use Node.js 22, install all three Playwright engines with `--with-deps`, and run `./scripts/validate.sh`.
+The production and preview jobs must share a `gh-pages-deploy` concurrency group so worktree writes are serialized. They must use Node.js 24, install all three Playwright engines with `--with-deps`, and run `./scripts/validate.sh`.
 
 ## Independent same-origin apps
 

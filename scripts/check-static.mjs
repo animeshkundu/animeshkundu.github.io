@@ -27,6 +27,11 @@ const valueOf = (html, pattern, label, route) => {
 };
 
 const files = await collect(dist);
+const noJekyll = join(dist, '.nojekyll');
+if (!files.includes(noJekyll)) {
+  throw new Error('Static output is missing .nojekyll');
+}
+
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
 const canonicalPages = htmlFiles.filter(
   (file) =>

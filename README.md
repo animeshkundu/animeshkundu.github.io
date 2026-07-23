@@ -15,7 +15,7 @@ Primary content is rendered as HTML and works without JavaScript. Separately dep
 
 ## Requirements
 
-- Node.js 22.12 or newer
+- Node.js 24 or newer
 - npm
 
 ## Commands
