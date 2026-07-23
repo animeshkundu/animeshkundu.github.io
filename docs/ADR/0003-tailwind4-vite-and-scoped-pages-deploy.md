@@ -33,7 +33,7 @@ The checked-in production, preview, and cleanup workflows implement this decisio
 5. Astro's generated `404.html` is deployed unchanged.
 6. Production, preview, and cleanup writes share the `gh-pages-deploy` concurrency group.
 7. Production artifact upload includes hidden files, and the static contract requires `dist/.nojekyll`, so GitHub Pages serves Astro's `_astro` assets without Jekyll filtering.
-8. After updating `gh-pages`, each publishing workflow explicitly requests a Pages build. Commits created with the workflow token do not recursively trigger the branch-source Pages workflow.
+8. After updating `gh-pages`, each publishing workflow explicitly requests a Pages build. Commits created with the workflow token do not recursively trigger the branch-source Pages workflow. The request is best effort: it enables the `gh-pages` branch source if the site reports as missing, retries, and downgrades a persistent failure to a warning so an otherwise-correct deployment is not marked failed.
 9. Preview artifacts run the browser contract at their configured `VITE_BASE_PATH` before publication.
 
 Because these files control repository publishing, changes to `.github/workflows/` require human review before merge.
