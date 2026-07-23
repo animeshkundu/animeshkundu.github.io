@@ -4,6 +4,7 @@ on: delete
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: gh-pages-deploy
@@ -54,3 +55,12 @@ jobs:
           else
             echo "::notice::No preview deployment found at /${DEPLOY_PATH}/"
           fi
+
+      - name: Publish GitHub Pages
+        uses: actions/github-script@v9
+        with:
+          script: |
+           await github.request('POST /repos/{owner}/{repo}/pages/builds', {
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+           });

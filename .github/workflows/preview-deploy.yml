@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
       pull-requests: write
     steps:
       - name: Checkout repository history
@@ -94,6 +95,11 @@ jobs:
           npm run check:static
           npm run check:copy
 
+      - name: Test preview base path
+        run: npm run test:e2e
+        env:
+          VITE_BASE_PATH: /${{ steps.branch.outputs.deploy_path }}/
+
       - name: Clean-sync preview directory
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch_name }}
@@ -118,6 +124,15 @@ jobs:
             git -C "$WORKTREE" commit -m "Deploy preview for ${BRANCH_NAME}"
             git -C "$WORKTREE" push origin HEAD:gh-pages
           fi
+
+      - name: Publish GitHub Pages
+        uses: actions/github-script@v9
+        with:
+          script: |
+            await github.request('POST /repos/{owner}/{repo}/pages/builds', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
 
       - name: Comment on pull request
         if: github.event_name == 'pull_request'

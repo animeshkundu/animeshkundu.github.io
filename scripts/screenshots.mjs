@@ -5,6 +5,9 @@ import { chromium } from '@playwright/test';
 
 const port = process.env.SCREENSHOT_PORT || '4321';
 const origin = `http://127.0.0.1:${port}`;
+const basePath = `/${(process.env.VITE_BASE_PATH || '/').replace(/^\/|\/$/g, '')}`;
+const pageUrl = (route = '/') =>
+  `${origin}${basePath === '/' ? route : `${basePath}${route}`}`;
 const outputDirectory = new URL('../screenshots/', import.meta.url);
 
 const run = (command, args) =>
@@ -43,7 +46,7 @@ const routes = (await collectHtml('dist'))
   .sort();
 
 try {
-  const response = await fetch(origin);
+  const response = await fetch(pageUrl());
   if (response) throw new Error(`Screenshot port ${port} is already in use`);
 } catch (error) {
   if (!(error instanceof TypeError)) throw error;
@@ -65,7 +68,7 @@ const server = spawn(
 const waitUntilReady = async () => {
   for (let attempt = 0; attempt < 60; attempt += 1) {
     try {
-      const response = await fetch(origin);
+      const response = await fetch(pageUrl());
       if (response.ok) return;
     } catch {
       // The server is still starting.
@@ -89,7 +92,7 @@ try {
 
   for (const route of routes) {
     const page = await visual.newPage();
-    await page.goto(`${origin}${route}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(pageUrl(route), { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(350);
     const name =
       route === '/'
@@ -102,7 +105,7 @@ try {
     await page.close();
 
     const noJsPage = await noJavaScript.newPage();
-    await noJsPage.goto(`${origin}${route}`, { waitUntil: 'domcontentloaded' });
+    await noJsPage.goto(pageUrl(route), { waitUntil: 'domcontentloaded' });
     const mainText = (await noJsPage.locator('main').innerText()).trim();
     const links = await noJsPage.locator('main a').count();
     if (mainText.length < 80 || links === 0) {
@@ -112,7 +115,7 @@ try {
   }
 
   const home = await visual.newPage();
-  await home.goto(origin, { waitUntil: 'domcontentloaded' });
+  await home.goto(pageUrl(), { waitUntil: 'domcontentloaded' });
   await home.evaluate(() => document.documentElement.classList.add('dark'));
   await home.setViewportSize({ width: 390, height: 844 });
   await home.waitForTimeout(250);
